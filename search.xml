@@ -83,6 +83,69 @@
       </tags>
   </entry>
   <entry>
+    <title>vue中filter过滤器的使用</title>
+    <url>/post/51760.html</url>
+    <content><![CDATA[<h3 id="一、全局filter过滤器的配置及使用"><a href="#一、全局filter过滤器的配置及使用" class="headerlink" title="一、全局filter过滤器的配置及使用"></a><font color="#f65e63" size="5">一、全局filter过滤器的配置及使用</font></h3><p><strong>1、在src下面新建filters/index.js</strong></p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> currency = <span class="function">(<span class="params">price</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!price) <span class="keyword">return</span> <span class="string">&#x27;0.00&#x27;</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">`人民币<span class="subst">$&#123;price.toFixed(<span class="number">2</span>)&#125;</span>`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  currency</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里的函数就相当于把红色方框里的函数抽离出来,单独放在一个文件</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202304170003515.png"
+                      alt="image-20230417000335469"
+                ></p>
+<p><strong>2、在main.js中引入和注册全局过滤器</strong></p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> filters <span class="keyword">from</span> <span class="string">&#x27;./filter/index&#x27;</span></span><br><span class="line"><span class="built_in">Object</span>.keys(filters).forEach(<span class="function"><span class="params">filterName</span> =&gt;</span> &#123;</span><br><span class="line">  Vue.filter(filterName, filters[filterName])</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Object.keys(filters)得到的就是filters/index.js里面的函数名组成的数组 [&#x27;currency &#x27;] 因为这里index.js里面就一个函数所以数组里就只有一个值</span></span><br><span class="line"><span class="comment">//filterName 就是通过遍历[&#x27;currency &#x27;] 得到的就是index.js中的每一个函数名(过滤器名字)</span></span><br><span class="line"><span class="comment">//filters[filterName])出发./filter/index中的某个函数</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3、在不同的vue文件中使用定义的全局过滤器了</strong></p>
+<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"> &lt;div <span class="keyword">class</span>=<span class="string">&quot;proPrice&quot;</span>&gt;&#123;&#123;<span class="number">66</span>  | currency&#125;&#125;元&lt;/div&gt;</span><br><span class="line"><span class="comment">// currency就是过滤器名</span></span><br></pre></td></tr></table></figure>
+
+<p>最终打印的是 66.00</p>
+<h3 id="二、局部filter过滤器的使用"><a href="#二、局部filter过滤器的使用" class="headerlink" title="二、局部filter过滤器的使用"></a><font color="#f65e63" size="5">二、局部filter过滤器的使用</font></h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;displayOrderStatus&quot;</span>&gt;</span>&#123;&#123; resultList.orderStatus | statusText &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">        <span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">        &#125;;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    &#125;,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="attr">filters</span>: &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">        <span class="attr">statusText</span>: <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            <span class="keyword">switch</span> (value) &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;S2&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;办理成功&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;R2&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;已解约&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;R3&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;已退货&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;F1&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;审批失败&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;F2&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;已失效&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;F3&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;已失效&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;F4&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;已失效&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;S1P&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;办理中&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;S1F&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;办理失败&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">default</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            &#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">        &#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    &#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">&#125;;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>javascript中throw error与throw new Error(error)的用法及区别</title>
+    <url>/post/39453.html</url>
+    <content><![CDATA[<p>抛出错误一般都是与try catch 同时出现的<br>先看定义：</p>
+<p><strong>throw new Error(error)：</strong> 这个是创建错误，创造一个错误类型抛出<br><strong>throw error：</strong>这个是抛出错误。</p>
+<h3 id="throw-new-Error-error"><a href="#throw-new-Error-error" class="headerlink" title="throw new Error(error)"></a><strong><font color="#f65e63" size="5">throw new Error(error)</font></strong></h3><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(a==<span class="number">5</span>)&#123;</span><br><span class="line">        <span class="comment">//   抛出错误</span></span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;loopTerminates&quot;</span>); <span class="comment">//Error要大写</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e);    <span class="comment">//打印出Error对象：Error: loopTerminates</span></span><br><span class="line">    <span class="built_in">console</span>.log(e.message); <span class="comment">//打印：loopTerminates</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>打印结果：</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202304170003263.png"
+                      alt="image-20230417000354212"
+                ></p>
+<h3 id="throw-error"><a href="#throw-error" class="headerlink" title="throw error"></a><strong><font color="#f65e63" size="5">throw error</font></strong></h3><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(a==<span class="number">5</span>)&#123;</span><br><span class="line">        <span class="comment">//   抛出错误</span></span><br><span class="line">        <span class="keyword">throw</span> <span class="string">&quot;loopTerminates&quot;</span>;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e);    <span class="comment">//打印: loopTerminates</span></span><br><span class="line">    <span class="built_in">console</span>.log(e.message); <span class="comment">//打印：undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>打印结果：</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202304170004633.png"
+                      alt="image-20230417000400590"
+                ></p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>javaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>.map() .filter() .reduce() 的用法</title>
     <url>/post/2007.html</url>
     <content><![CDATA[<h5 id="map"><a href="#map" class="headerlink" title="map()"></a><strong><font color="#f65e63" size="5">map()</font></strong></h5><p>让我用一些简单的例子来解释它是如何工作的。 如果说你收到一组包含多个对象的数组，每个对象是一个 person。最终你只希望得到一个只包含 id 的数组。</p>
@@ -149,89 +212,6 @@
       </tags>
   </entry>
   <entry>
-    <title>javascript中throw error与throw new Error(error)的用法及区别</title>
-    <url>/post/39453.html</url>
-    <content><![CDATA[<p>抛出错误一般都是与try catch 同时出现的<br>先看定义：</p>
-<p><strong>throw new Error(error)：</strong> 这个是创建错误，创造一个错误类型抛出<br><strong>throw error：</strong>这个是抛出错误。</p>
-<h3 id="throw-new-Error-error"><a href="#throw-new-Error-error" class="headerlink" title="throw new Error(error)"></a><strong><font color="#f65e63" size="5">throw new Error(error)</font></strong></h3><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(a==<span class="number">5</span>)&#123;</span><br><span class="line">        <span class="comment">//   抛出错误</span></span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&quot;loopTerminates&quot;</span>); <span class="comment">//Error要大写</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e);    <span class="comment">//打印出Error对象：Error: loopTerminates</span></span><br><span class="line">    <span class="built_in">console</span>.log(e.message); <span class="comment">//打印：loopTerminates</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>打印结果：</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202304170003263.png"
-                      alt="image-20230417000354212"
-                ></p>
-<h3 id="throw-error"><a href="#throw-error" class="headerlink" title="throw error"></a><strong><font color="#f65e63" size="5">throw error</font></strong></h3><figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">   <span class="keyword">if</span>(a==<span class="number">5</span>)&#123;</span><br><span class="line">        <span class="comment">//   抛出错误</span></span><br><span class="line">        <span class="keyword">throw</span> <span class="string">&quot;loopTerminates&quot;</span>;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;<span class="keyword">catch</span>(e)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e);    <span class="comment">//打印: loopTerminates</span></span><br><span class="line">    <span class="built_in">console</span>.log(e.message); <span class="comment">//打印：undefined</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><strong>打印结果：</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202304170004633.png"
-                      alt="image-20230417000400590"
-                ></p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-        <tag>javaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue中filter过滤器的使用</title>
-    <url>/post/51760.html</url>
-    <content><![CDATA[<h3 id="一、全局filter过滤器的配置及使用"><a href="#一、全局filter过滤器的配置及使用" class="headerlink" title="一、全局filter过滤器的配置及使用"></a><font color="#f65e63" size="5">一、全局filter过滤器的配置及使用</font></h3><p><strong>1、在src下面新建filters/index.js</strong></p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> currency = <span class="function">(<span class="params">price</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (!price) <span class="keyword">return</span> <span class="string">&#x27;0.00&#x27;</span></span><br><span class="line">  <span class="keyword">return</span> <span class="string">`人民币<span class="subst">$&#123;price.toFixed(<span class="number">2</span>)&#125;</span>`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  currency</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>这里的函数就相当于把红色方框里的函数抽离出来,单独放在一个文件</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202304170003515.png"
-                      alt="image-20230417000335469"
-                ></p>
-<p><strong>2、在main.js中引入和注册全局过滤器</strong></p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> filters <span class="keyword">from</span> <span class="string">&#x27;./filter/index&#x27;</span></span><br><span class="line"><span class="built_in">Object</span>.keys(filters).forEach(<span class="function"><span class="params">filterName</span> =&gt;</span> &#123;</span><br><span class="line">  Vue.filter(filterName, filters[filterName])</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// Object.keys(filters)得到的就是filters/index.js里面的函数名组成的数组 [&#x27;currency &#x27;] 因为这里index.js里面就一个函数所以数组里就只有一个值</span></span><br><span class="line"><span class="comment">//filterName 就是通过遍历[&#x27;currency &#x27;] 得到的就是index.js中的每一个函数名(过滤器名字)</span></span><br><span class="line"><span class="comment">//filters[filterName])出发./filter/index中的某个函数</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>3、在不同的vue文件中使用定义的全局过滤器了</strong></p>
-<figure class="highlight csharp"><table><tr><td class="code"><pre><span class="line"> &lt;div <span class="keyword">class</span>=<span class="string">&quot;proPrice&quot;</span>&gt;&#123;&#123;<span class="number">66</span>  | currency&#125;&#125;元&lt;/div&gt;</span><br><span class="line"><span class="comment">// currency就是过滤器名</span></span><br></pre></td></tr></table></figure>
-
-<p>最终打印的是 66.00</p>
-<h3 id="二、局部filter过滤器的使用"><a href="#二、局部filter过滤器的使用" class="headerlink" title="二、局部filter过滤器的使用"></a><font color="#f65e63" size="5">二、局部filter过滤器的使用</font></h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;displayOrderStatus&quot;</span>&gt;</span>&#123;&#123; resultList.orderStatus | statusText &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="function"><span class="title">data</span>(<span class="params"></span>)</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">        <span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">        &#125;;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    &#125;,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    <span class="attr">filters</span>: &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">        <span class="attr">statusText</span>: <span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            <span class="keyword">switch</span> (value) &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;S2&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;办理成功&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;R2&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;已解约&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;R3&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;已退货&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;F1&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;审批失败&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;F2&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;已失效&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;F3&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;已失效&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;F4&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;已失效&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;S1P&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;办理中&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">case</span> <span class="string">&#x27;S1F&#x27;</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;办理失败&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="keyword">default</span>:</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                    <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            &#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">        &#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">    &#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">&#125;;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Vue</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Js使用new关键字调用函数和直接调用函数的区别</title>
-    <url>/post/53848.html</url>
-    <content><![CDATA[<p>调用经典的构造函数需要加new</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">      o.name = name;</span><br><span class="line">      o.age = age;</span><br><span class="line">      o.job = job;</span><br><span class="line">      o.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="built_in">this</span>.name);</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> Person(<span class="string">&#x27;Nicholas&#x27;</span>, <span class="number">29</span>, <span class="string">&#x27;Software&#x27;</span>));    </span><br></pre></td></tr></table></figure>
-
-<p>Person函数创建了一个对象，并以相应的属性和方法初始化该对象，然后又返回了这个对象，除了使用new操作符且把使用的包装函数叫做构造函数</p>
-<p>看到这里，我就将上面的例子的new关键字去掉，发现和原来结果一样。<br>而后，写了几个例子，进行比较：</p>
-<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name;</span><br><span class="line">  <span class="built_in">this</span>.age = age;</span><br><span class="line">  <span class="built_in">this</span>.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="built_in">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person=<span class="keyword">new</span> Person(<span class="string">&quot;张三&quot;</span>,<span class="number">20</span>); <span class="comment">//此处为 构造对象，构造对象的话，返回的新对象是由解析器自己生成的。</span></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// 有new 函数内部的this指向实例本身  Person &#123;name: &quot;张三&quot;, age: 20, sayName: ƒ&#125;</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">var</span> person = Person(<span class="string">&quot;张三&quot;</span>, <span class="number">20</span>); <span class="comment">//没有new 函数内部的this指向window</span></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">//报错 person undefined 此处为普通函数调用，又没有给返回值，出错。</span></span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：构造函数在不返回值的情况下，默认返回新对象实例。</strong></p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-        <tag>javaScript</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>前端本地的html页面，手机如何查看？</title>
     <url>/post/16035.html</url>
     <content><![CDATA[<p>在写前端页面中，经常会在浏览器运行HTML页面，从本地文件夹中直接打开的一般都是file协议，当代码中存在http或https的链接时，HTML页面就无法正常打开，为了解决这种情况，需要在在本地开启一个本地的服务器。<br>本文是利用node.js中的http-server，开启本地服务，步骤如下：</p>
@@ -280,6 +260,26 @@
       <tags>
         <tag>前端</tag>
         <tag>http-server</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Js使用new关键字调用函数和直接调用函数的区别</title>
+    <url>/post/53848.html</url>
+    <content><![CDATA[<p>调用经典的构造函数需要加new</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age, job</span>)</span>&#123;</span><br><span class="line">      <span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">      o.name = name;</span><br><span class="line">      o.age = age;</span><br><span class="line">      o.job = job;</span><br><span class="line">      o.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        alert(<span class="built_in">this</span>.name);</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">return</span> o;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">new</span> Person(<span class="string">&#x27;Nicholas&#x27;</span>, <span class="number">29</span>, <span class="string">&#x27;Software&#x27;</span>));    </span><br></pre></td></tr></table></figure>
+
+<p>Person函数创建了一个对象，并以相应的属性和方法初始化该对象，然后又返回了这个对象，除了使用new操作符且把使用的包装函数叫做构造函数</p>
+<p>看到这里，我就将上面的例子的new关键字去掉，发现和原来结果一样。<br>而后，写了几个例子，进行比较：</p>
+<figure class="highlight jsx"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name, age</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">this</span>.name = name;</span><br><span class="line">  <span class="built_in">this</span>.age = age;</span><br><span class="line">  <span class="built_in">this</span>.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="built_in">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person=<span class="keyword">new</span> Person(<span class="string">&quot;张三&quot;</span>,<span class="number">20</span>); <span class="comment">//此处为 构造对象，构造对象的话，返回的新对象是由解析器自己生成的。</span></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">// 有new 函数内部的this指向实例本身  Person &#123;name: &quot;张三&quot;, age: 20, sayName: ƒ&#125;</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">var</span> person = Person(<span class="string">&quot;张三&quot;</span>, <span class="number">20</span>); <span class="comment">//没有new 函数内部的this指向window</span></span><br><span class="line"><span class="built_in">console</span>.log(person); <span class="comment">//报错 person undefined 此处为普通函数调用，又没有给返回值，出错。</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：构造函数在不返回值的情况下，默认返回新对象实例。</strong></p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>javaScript</tag>
       </tags>
   </entry>
   <entry>
@@ -467,6 +467,38 @@
       </tags>
   </entry>
   <entry>
+    <title>标准盒模型和怪异盒模型的区别</title>
+    <url>/post/44928.html</url>
+    <content><![CDATA[<p>css盒模型本质是一个盒子，它由边距、边框、填充和实际内容组成。盒模型能够让我们在其他元素和周边元素边框之间的空间放置元素。</p>
+<p><strong>标准盒与怪异盒的区别在于他们的总宽度的计算公式不一样。</strong></p>
+<p>标准模式下总宽度=width+margin（左右）+padding（左右）border（左右）；<br>怪异模式下总宽度=width+margin（左右）（就是说width已经包含了padding和border值）。</p>
+<p>标准模式下如果定义的DOCTYPE缺失，则在ie6、ie7、ie8下汇触发怪异模式。当设置为box-sizing:content-box时，将采用标准模式解析计算，也是默认模式；当设置为box-sizing:border-box时，将采用怪异模式解析计算；</p>
+<h3 id="标准盒模型"><a href="#标准盒模型" class="headerlink" title="标准盒模型"></a>标准盒模型</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202304170016079.png"
+                      alt="image-20230417001610017"
+                ></p>
+<h3 id="怪异盒模型-IE"><a href="#怪异盒模型-IE" class="headerlink" title="怪异盒模型(IE)"></a>怪异盒模型(IE)</h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202304170016041.png"
+                      alt="image-20230417001615992"
+                ></p>
+<br>
+
+<p>转载：<a class="link"   href="https://www.jianshu.com/p/7dadcc458410" >https://www.jianshu.com/p/7dadcc458410<i class="fas fa-external-link-alt"></i></a></p>
+]]></content>
+      <categories>
+        <category>CSS</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>转载</tag>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue项目中快速使用阿里字体图标</title>
     <url>/post/3e5e4cab.html</url>
     <content><![CDATA[<p><font color="#10c300" size="3">1、”font-class引用” 和 “Unicode引用”下载</font></p>
@@ -521,38 +553,6 @@
       <tags>
         <tag>前端</tag>
         <tag>阿里图标</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>标准盒模型和怪异盒模型的区别</title>
-    <url>/post/44928.html</url>
-    <content><![CDATA[<p>css盒模型本质是一个盒子，它由边距、边框、填充和实际内容组成。盒模型能够让我们在其他元素和周边元素边框之间的空间放置元素。</p>
-<p><strong>标准盒与怪异盒的区别在于他们的总宽度的计算公式不一样。</strong></p>
-<p>标准模式下总宽度=width+margin（左右）+padding（左右）border（左右）；<br>怪异模式下总宽度=width+margin（左右）（就是说width已经包含了padding和border值）。</p>
-<p>标准模式下如果定义的DOCTYPE缺失，则在ie6、ie7、ie8下汇触发怪异模式。当设置为box-sizing:content-box时，将采用标准模式解析计算，也是默认模式；当设置为box-sizing:border-box时，将采用怪异模式解析计算；</p>
-<h3 id="标准盒模型"><a href="#标准盒模型" class="headerlink" title="标准盒模型"></a>标准盒模型</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202304170016079.png"
-                      alt="image-20230417001610017"
-                ></p>
-<h3 id="怪异盒模型-IE"><a href="#怪异盒模型-IE" class="headerlink" title="怪异盒模型(IE)"></a>怪异盒模型(IE)</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202304170016041.png"
-                      alt="image-20230417001615992"
-                ></p>
-<br>
-
-<p>转载：<a class="link"   href="https://www.jianshu.com/p/7dadcc458410" >https://www.jianshu.com/p/7dadcc458410<i class="fas fa-external-link-alt"></i></a></p>
-]]></content>
-      <categories>
-        <category>CSS</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-        <tag>转载</tag>
-        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -1405,6 +1405,66 @@
       </tags>
   </entry>
   <entry>
+    <title>Vue中的Mutation不能使用异步函数</title>
+    <url>/post/1515505e.html</url>
+    <content><![CDATA[<p><strong>为什么必须是同步更新？</strong><br>因为在开发过程中，我们常常会追踪状态的变化。常用的手段就是在浏览器控制台中调试。而在 mutation 中使用异步更新状态，虽然也会使状态正常更新，但是会导致开发者工具有时无法追踪到状态的变化，调试起来就会很困难。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">index.js</span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"><span class="keyword">const</span> state = &#123; <span class="attr">count</span>: <span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mutations = &#123;</span><br><span class="line">  synchronization (state, params) &#123;</span><br><span class="line">    state.count += params.num</span><br><span class="line">  &#125;,</span><br><span class="line">  asynchronous (state, params) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      state.count += params.num</span><br><span class="line">    &#125;, <span class="number">3000</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;state,mutations&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>测试在mutations使用同步和异步<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;sync&quot;</span>&gt;</span>同步<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;async&quot;</span>&gt;</span>异步<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;font-size: 30px;&quot;</span>&gt;</span>这是vuex中的 <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&quot;color:red&quot;</span>&gt;</span>&#123;&#123; $store.state.count &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    sync () &#123;</span><br><span class="line">      <span class="built_in">this</span>.$store.commit(&#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;synchronization&#x27;</span>,</span><br><span class="line">        <span class="attr">num</span>: <span class="number">20</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">async</span> () &#123;</span><br><span class="line">      <span class="built_in">this</span>.$store.commit(&#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;asynchronous&#x27;</span>,</span><br><span class="line">        <span class="attr">num</span>: <span class="number">20</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们来看Devtools的Vuex状态图</p>
+<h4 id="一、点击同步-在mutations里面做同步操作"><a href="#一、点击同步-在mutations里面做同步操作" class="headerlink" title="一、点击同步 (在mutations里面做同步操作)"></a>一、点击同步 (在mutations里面做同步操作)</h4><p>点击5次，点击时间线可以看到5次的点击每次都是增加20，页面中的count会随着点击变化而变化20&gt;40&gt;60&gt;80&gt;100</p>
+<p><strong>第1次：</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202304170040536.png"
+                      alt="image-20230417004004491"
+                ></p>
+<p><strong>第2次：</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202304170040418.png"
+                      alt="image-20230417004009379"
+                ></p>
+<p><strong>… …</strong></p>
+<p><strong>第5次：</strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202304170040011.png"
+                      alt="image-20230417004014966"
+                ></p>
+<h4 id="二、点击异步-在mutations里面做异步操作"><a href="#二、点击异步-在mutations里面做异步操作" class="headerlink" title="二、点击异步 (在mutations里面做异步操作)"></a>二、点击异步 (在mutations里面做异步操作)</h4><p>1、在3s内点击异步按钮5次，因为异步操作未完成，所以在时间线里面可以看到点击的这5次count都是0。页面中的count不会随着点击变化而变化，而是在3s后计算总和100</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202304170040380.png"
+                      alt="image-20230417004041328"
+                ></p>
+<p>2、在3s后点击异步按钮1次(第六次点击)，时间线上的count为前五次的总和100，而页面且为6次点击的总和120</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202304170040988.png"
+                      alt="image-20230417004045943"
+                ></p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>可以看到在Mutation中使用异步和同步最终页面的总和都是正确的，也就是说在Mutation中使用异步不会对数据造成丢失和其他影响。然而我们注意Vue Devtools显示结果，当我们去查看多次Mutation状态时，发现同步的显示Ok，异步的Count显示为0 和我们预期结果不一致，所以会造成状态改变的不可追踪，所以官方说我们Mutation是同步的！</p>
+<p><strong>重点事情</strong><br>造成状态改变的不可追踪<br>造成状态改变的不可追踪<br>造成状态改变的不可追踪</p>
+<p><strong>在actions中就不会出现这种状态改变不可追踪的情况</strong></p>
+]]></content>
+      <categories>
+        <category>VueX</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>mutation</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用nginx部署vue项目</title>
     <url>/post/16717.html</url>
     <content><![CDATA[<p>使用Vue做前后端分离项目时，通常前端是单独部署，用户访问的也是前端项目地址，因此前端开发人员很有必要熟悉一下项目部署的流程与各类问题的解决办法了。</p>
@@ -1675,66 +1735,6 @@
       <tags>
         <tag>前端</tag>
         <tag>nginx</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vue中的Mutation不能使用异步函数</title>
-    <url>/post/1515505e.html</url>
-    <content><![CDATA[<p><strong>为什么必须是同步更新？</strong><br>因为在开发过程中，我们常常会追踪状态的变化。常用的手段就是在浏览器控制台中调试。而在 mutation 中使用异步更新状态，虽然也会使状态正常更新，但是会导致开发者工具有时无法追踪到状态的变化，调试起来就会很困难。</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">index.js</span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"><span class="keyword">const</span> state = &#123; <span class="attr">count</span>: <span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> mutations = &#123;</span><br><span class="line">  synchronization (state, params) &#123;</span><br><span class="line">    state.count += params.num</span><br><span class="line">  &#125;,</span><br><span class="line">  asynchronous (state, params) &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      state.count += params.num</span><br><span class="line">    &#125;, <span class="number">3000</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">new</span> Vuex.Store(&#123;state,mutations&#125;)</span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;content&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">h3</span>&gt;</span>测试在mutations使用同步和异步<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;sync&quot;</span>&gt;</span>同步<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;async&quot;</span>&gt;</span>异步<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">style</span>=<span class="string">&quot;font-size: 30px;&quot;</span>&gt;</span>这是vuex中的 <span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&quot;color:red&quot;</span>&gt;</span>&#123;&#123; $store.state.count &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    sync () &#123;</span><br><span class="line">      <span class="built_in">this</span>.$store.commit(&#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;synchronization&#x27;</span>,</span><br><span class="line">        <span class="attr">num</span>: <span class="number">20</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="keyword">async</span> () &#123;</span><br><span class="line">      <span class="built_in">this</span>.$store.commit(&#123;</span><br><span class="line">        <span class="attr">type</span>: <span class="string">&#x27;asynchronous&#x27;</span>,</span><br><span class="line">        <span class="attr">num</span>: <span class="number">20</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>我们来看Devtools的Vuex状态图</p>
-<h4 id="一、点击同步-在mutations里面做同步操作"><a href="#一、点击同步-在mutations里面做同步操作" class="headerlink" title="一、点击同步 (在mutations里面做同步操作)"></a>一、点击同步 (在mutations里面做同步操作)</h4><p>点击5次，点击时间线可以看到5次的点击每次都是增加20，页面中的count会随着点击变化而变化20&gt;40&gt;60&gt;80&gt;100</p>
-<p><strong>第1次：</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202304170040536.png"
-                      alt="image-20230417004004491"
-                ></p>
-<p><strong>第2次：</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202304170040418.png"
-                      alt="image-20230417004009379"
-                ></p>
-<p><strong>… …</strong></p>
-<p><strong>第5次：</strong></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202304170040011.png"
-                      alt="image-20230417004014966"
-                ></p>
-<h4 id="二、点击异步-在mutations里面做异步操作"><a href="#二、点击异步-在mutations里面做异步操作" class="headerlink" title="二、点击异步 (在mutations里面做异步操作)"></a>二、点击异步 (在mutations里面做异步操作)</h4><p>1、在3s内点击异步按钮5次，因为异步操作未完成，所以在时间线里面可以看到点击的这5次count都是0。页面中的count不会随着点击变化而变化，而是在3s后计算总和100</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202304170040380.png"
-                      alt="image-20230417004041328"
-                ></p>
-<p>2、在3s后点击异步按钮1次(第六次点击)，时间线上的count为前五次的总和100，而页面且为6次点击的总和120</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202304170040988.png"
-                      alt="image-20230417004045943"
-                ></p>
-<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>可以看到在Mutation中使用异步和同步最终页面的总和都是正确的，也就是说在Mutation中使用异步不会对数据造成丢失和其他影响。然而我们注意Vue Devtools显示结果，当我们去查看多次Mutation状态时，发现同步的显示Ok，异步的Count显示为0 和我们预期结果不一致，所以会造成状态改变的不可追踪，所以官方说我们Mutation是同步的！</p>
-<p><strong>重点事情</strong><br>造成状态改变的不可追踪<br>造成状态改变的不可追踪<br>造成状态改变的不可追踪</p>
-<p><strong>在actions中就不会出现这种状态改变不可追踪的情况</strong></p>
-]]></content>
-      <categories>
-        <category>VueX</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-        <tag>mutation</tag>
       </tags>
   </entry>
   <entry>
@@ -2386,6 +2386,186 @@
       <tags>
         <tag>viewports</tag>
         <tag>移动端</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决git上传代码时每次都要输入username-password</title>
+    <url>/post/237a66a0.html</url>
+    <content><![CDATA[<h3 id="一、了解知识"><a href="#一、了解知识" class="headerlink" title="一、了解知识"></a><font color="#f65e63" size="5">一、了解知识</font></h3><p>git config –list：git的config配置项<br>git config –global –unset credential.helper：删除某一配置项(credential.helper就是其中一配置项)<br>git config –global user.name “zhb”：全局添加用户名<br>git config –global user.email “<a class="link"   href="mailto:&#49;&#x39;&#53;&#x38;&#52;&#52;&#x33;&#x34;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109;" >&#49;&#x39;&#53;&#x38;&#52;&#52;&#x33;&#x34;&#x40;&#113;&#x71;&#46;&#99;&#111;&#109;<i class="fas fa-external-link-alt"></i></a>“：全局添加邮箱</p>
+<br>
+
+<h3 id="二、采用-SSH-连接方式-（前提是拉取-SSH连接方式的项目）"><a href="#二、采用-SSH-连接方式-（前提是拉取-SSH连接方式的项目）" class="headerlink" title="二、采用 SSH 连接方式 （前提是拉取 SSH连接方式的项目）"></a><font color="#f65e63" size="5">二、采用 SSH 连接方式 （前提是拉取 SSH连接方式的项目）</font></h3><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202304162357958.png"
+                      alt="image-20230416235751911"
+                ><br>前提当然你得有权限将自己主机 id_rsa.pub 加入到 git 账户的 SSH Keys 中<br><strong>1、ssh-keygen -t rsa -C “<a class="link"   href="mailto:&#120;&#120;&#120;&#120;&#120;&#x40;&#120;&#120;&#x78;&#x78;&#x78;&#46;&#99;&#x6f;&#109;" >&#120;&#120;&#120;&#120;&#120;&#x40;&#120;&#120;&#x78;&#x78;&#x78;&#46;&#99;&#x6f;&#109;<i class="fas fa-external-link-alt"></i></a>“ ： 一直回车  生成 sshkey(最开始是没有的)</strong><br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202304162357430.png"
+                      alt="image-20230416235759372"
+                ><br><strong>2、通过cat ~/.ssh/id_rsa.pub 获取到你的 public key</strong></p>
+<h3 id="三、采用-HTTPS-连接方式（前提是拉取-HTTPS连接方式的项目）"><a href="#三、采用-HTTPS-连接方式（前提是拉取-HTTPS连接方式的项目）" class="headerlink" title="三、采用 HTTPS 连接方式（前提是拉取 HTTPS连接方式的项目）"></a><font color="#f65e63" size="5">三、采用 HTTPS 连接方式（前提是拉取 HTTPS连接方式的项目）</font></h3><p>只要你有仓库访问权限即可<br>git config –global credential.helper store：给credential.helpe设置了值就解决了每次上传都要填写用户名和密<br>git config –global credential.helper “” 设置为空又要用户名了<br><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202304162358947.png"
+                      alt="image-20230416235810910"
+                ></p>
+]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vue中自定义组件如何使用v-model</title>
+    <url>/post/c9a5b6609.html</url>
+    <content><![CDATA[<h3 id="一、基础准备"><a href="#一、基础准备" class="headerlink" title="一、基础准备"></a>一、基础准备</h3><h4 id="1-1、v-model基本概念"><a href="#1-1、v-model基本概念" class="headerlink" title="1.1、v-model基本概念"></a>1.1、v-model基本概念</h4><blockquote>
+<p>v-model 实际上就是 $emit(‘input’) 以及 props:value 的组合<a class="link"   href="https://so.csdn.net/so/search?q=%E8%AF%AD%E6%B3%95%E7%B3%96&spm=1001.2101.3001.7020" >语法糖<i class="fas fa-external-link-alt"></i></a>，在背后做了两件事：</p>
+<ol>
+<li>v-bind绑定value属性的值；</li>
+<li>v-on绑定input事件监听到函数中，函数会获取最新的值赋值到绑定的属性中；</li>
+</ol>
+</blockquote>
+<p>所以，在大部分情况下，以下两种写发是等价的：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">&quot;foo&quot;</span> /&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">el-input</span> <span class="attr">:value</span>=<span class="string">&quot;foo&quot;</span> @<span class="attr">input</span>=<span class="string">&quot;foo = $event&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>checkbox 和 radio 使用 props:checked 属性和 $emit(‘change’) 事件。</p>
+<p>select 使用 props:value 属性和 $emit(‘change’) 事件。</p>
+<p>但是，除了上面列举的这些，别的都是 $emit(‘input’) 以及 props:value</p>
+<hr>
+<h4 id="1-2、单向数据流"><a href="#1-2、单向数据流" class="headerlink" title="1.2、单向数据流"></a><strong>1.2、单向数据流</strong></h4><blockquote>
+<p>props 有一个特性，那就是「单向数据流」,也可以称之为「单向下行绑定」，相当于就是父组件的值通过 props 传递给子组件，父组件中值的修改会传递到子组件，而子组件中对于这个值的修改则不能传递给父组件。「（虽然可以，控制台会给出警告，而且官方也不推荐这样子做）」</p>
+</blockquote>
+<h4 id="1-2、单向数据流-1"><a href="#1-2、单向数据流-1" class="headerlink" title="1.2、单向数据流"></a><strong>1.2、单向数据流</strong></h4><blockquote>
+<p>默认情况下，一个组件上的 v-model 会把 value 用作 prop 且把 input 用作 event，为了避免有时候的冲突，我们可以自定义事件；以下是在子组件中声明：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 当我们使用model的默认值的时候value作prop，input作event时，可以省略不写model。</span></span><br><span class="line"><span class="attr">model</span>: &#123;</span><br><span class="line">    <span class="attr">prop</span>: <span class="string">&#x27;myValue&#x27;</span>, <span class="comment">// 默认是value</span></span><br><span class="line">    <span class="attr">event</span>: <span class="string">&#x27;myInput&#x27;</span>, <span class="comment">// 默认是input</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体见绑定方式2中的例子</p>
+<h3 id="二、三种绑定方法"><a href="#二、三种绑定方法" class="headerlink" title="二、三种绑定方法"></a>二、三种绑定方法</h3><h4 id="2-1、父组件使用v-model绑定"><a href="#2-1、父组件使用v-model绑定" class="headerlink" title="2.1、父组件使用v-model绑定"></a>2.1、<strong>父组件使用v-model绑定</strong></h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202403211707630.png"
+                      alt="image-20240321170725400"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202403211707761.png"
+                      alt="image-20240321170744666"
+                ></p>
+<h4 id="2-2、父组件使用v-model绑定"><a href="#2-2、父组件使用v-model绑定" class="headerlink" title="2.2、父组件使用v-model绑定"></a>2.2、<strong>父组件使用v-model绑定</strong></h4><p>子组件props接收参数，参数名称可以自定义，$emit触发方法传值，方法名称可以 自定义，通过model属性将prop参数名和事件名进行关联</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202403211712139.png"
+                      alt="image-20240321171220991"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202403211712054.png"
+                      alt="image-20240321171233922"
+                ></p>
+<h4 id="2-3、父组件使用-name-sync绑定"><a href="#2-3、父组件使用-name-sync绑定" class="headerlink" title="2.3、父组件使用:name.sync绑定"></a>2.3、<strong>父组件使用:name.sync绑定</strong></h4><p>子组件props接收参数名称为name，$emit触发update:name事件传值，这三部的name名称可以自定义，但需保持一致</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202403211713199.png"
+                      alt="image-20240321171321083"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202403211713845.png"
+                      alt="image-20240321171350643"
+                ></p>
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>match()函数和exec()函数的区别</title>
+    <url>/post/c9a5b66010.html</url>
+    <content><![CDATA[<h3 id="match"><a href="#match" class="headerlink" title="match()"></a>match()</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;api/getProduct/2&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> match = str.match(<span class="regexp">/api\/getProduct\/(\d+)/</span>);</span><br><span class="line"><span class="built_in">console</span>.log(match); <span class="comment">// 打印如下图</span></span><br><span class="line"><span class="built_in">console</span>.log(match[<span class="number">1</span>]);  <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202404080131705.jpg"
+                      alt="1712511078985"
+                ></p>
+<h3 id="exec"><a href="#exec" class="headerlink" title="exec()"></a>exec()</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;api/getProduct/2&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> match = <span class="regexp">/api\/getProduct\/(\d+)/</span>.exec(str);</span><br><span class="line"><span class="built_in">console</span>.log(match); <span class="comment">// 打印如下图</span></span><br><span class="line"><span class="built_in">console</span>.log(match[<span class="number">1</span>]);  <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202404080131243.jpg"
+                      alt="1712511103572"
+                ></p>
+<p><strong>/api/getProduct/(\d+)/ 解释</strong><br>这段代码是一个正则表达式，用于匹配特定格式的字符串。在这个例子中，它被设计用来匹配类似 “/api/getProduct/123” 这样的 URL。</p>
+<p>让我们逐一解析这个正则表达式的各个部分：</p>
+<p>/api/getProduct/：这部分会匹配字符串中的 “/api/getProduct/“。在正则表达式中，斜线（/）是一个特殊字符，所以我们需要使用反斜线（\）来转义它，使其被视为普通字符。</p>
+<p>(\d+)：这部分会匹配一个或多个数字。在正则表达式中，\d 代表任何数字，+ 代表前面的元素可以出现一次或多次。括号（()）用于创建一个捕获组，这意味着匹配的数字可以被单独提取出来。</p>
+<p>所以，这个正则表达式可以匹配 “/api/getProduct/“ 后面跟着一串数字的字符串，并且可以提取出这串数字。</p>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>javaScript</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>运行单个Vue文件；不创建脚手架项目运行.vue文件</title>
+    <url>/post/c9a5b66011.html</url>
+    <content><![CDATA[<h4 id="1-安装vue脚手架"><a href="#1-安装vue脚手架" class="headerlink" title="1.安装vue脚手架"></a>1.安装vue脚手架</h4><p>这里一定要安装4.x的脚手架，5.x的脚手架会报错</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install -g @vue/cli@<span class="number">4.</span>x</span><br><span class="line">vue --version  <span class="comment">// 查看版本号 是否安装成功</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-全局安装支持零配置运行-vue文件的扩展"><a href="#2-全局安装支持零配置运行-vue文件的扩展" class="headerlink" title="2.全局安装支持零配置运行 .vue文件的扩展"></a>2.全局安装支持零配置运行 .vue文件的扩展</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g @vue/cli-service-global</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-新建一个test文件夹"><a href="#3-新建一个test文件夹" class="headerlink" title="3.新建一个test文件夹"></a>3.新建一个test文件夹</h4><p>在test文件夹中创建一个需要运行的vue文件–app.vue</p>
+<h4 id="4-初始化项目"><a href="#4-初始化项目" class="headerlink" title="4.初始化项目"></a>4.初始化项目</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-运行app-vue文件"><a href="#5-运行app-vue文件" class="headerlink" title="5.运行app.vue文件"></a>5.运行app.vue文件</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">vue serve app.vue</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>官方文档文档的介绍到此为止，但是我运行的时候一直报错，详细错误见</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">PS E:\Desktop\test&gt; vue serve text.vue</span><br><span class="line"> INFO  Starting development server...</span><br><span class="line">(node:<span class="number">30628</span>) UnhandledPromiseRejectionWarning: <span class="built_in">Error</span>: Cannot find <span class="built_in">module</span> <span class="string">&#x27;vue-template-compiler&#x27;</span></span><br><span class="line">Require stack:</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\compiler.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\resolveScript.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\select.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\index.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\@vue\cli-service\lib\config\base.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\@vue\cli-service\lib\Service.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\index.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli\lib\util\loadCommand.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli\bin\vue.js</span><br><span class="line">    at <span class="built_in">Function</span>.Module._resolveFilename (internal/modules/cjs/loader.js:<span class="number">966</span>:<span class="number">15</span>)</span><br><span class="line">    at <span class="built_in">Function</span>.resolve (internal/modules/cjs/helpers.js:<span class="number">78</span>:<span class="number">19</span>)</span><br><span class="line">    at loadFromContext (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\compiler.js:<span class="number">30</span>:<span class="number">26</span>)</span><br><span class="line">    at loadTemplateCompiler (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\compiler.js:<span class="number">37</span>:<span class="number">12</span>)</span><br><span class="line">    at <span class="built_in">exports</span>.resolveCompiler (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\compiler.js:<span class="number">25</span>:<span class="number">23</span>)</span><br><span class="line">    at VueLoaderPlugin.apply (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\plugin-webpack4.js:<span class="number">91</span>:<span class="number">22</span>)</span><br><span class="line">    at VueLoaderPlugin.apply (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\plugin.js:<span class="number">13</span>:<span class="number">16</span>)</span><br><span class="line">    at webpack (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\webpack\lib\webpack.js:<span class="number">51</span>:<span class="number">13</span>)</span><br><span class="line">    at serve (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\@vue\cli-service\lib\commands\serve.js:<span class="number">163</span>:<span class="number">22</span>)</span><br><span class="line">    at processTicksAndRejections (internal/process/task_queues.js:<span class="number">97</span>:<span class="number">5</span>)</span><br><span class="line">(node:<span class="number">30628</span>) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside <span class="keyword">of</span> an <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">without</span> <span class="title">a</span> <span class="title">catch</span> <span class="title">block</span>, <span class="title">or</span> <span class="title">by</span> <span class="title">rejecting</span> <span class="title">a</span> <span class="title">promise</span> <span class="title">which</span> <span class="title">was</span> <span class="title">not</span> <span class="title">handled</span> <span class="title">with</span> .<span class="title">catch</span>(<span class="params"></span>). <span class="title">To</span> <span class="title">terminate</span> <span class="title">the</span> <span class="title">node</span> <span class="title">process</span> <span class="title">on</span> <span class="title">unhandled</span> <span class="title">promise</span> <span class="title">rejection</span>, <span class="title">use</span> <span class="title">the</span> <span class="title">CLI</span> <span class="title">flag</span> `--<span class="title">unhandled</span>-<span class="title">rejections</span>=<span class="title">strict</span>` (<span class="params">see https:<span class="comment">//nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)</span></span></span></span><br><span class="line"><span class="params"><span class="function">(node:<span class="number">30628</span>) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process <span class="keyword">with</span> a non-zero exit code.</span></span></span><br></pre></td></tr></table></figure>
+
+<p>上面的错误主要是说 找不到 ‘vue-template-compiler’ 这个模块。<br><strong>那我们就安装这个依赖模块</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install vue-template-compiler --save-dev</span><br></pre></td></tr></table></figure>
+
+<p><strong>最后执行命令，运行成功</strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">vue serve app.vue</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo.shixna.cn/imgs/202404080136326.jpg"
+                      alt="1712511397966"
+                ></p>
+]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
@@ -3543,14 +3723,14 @@
 </thead>
 <tbody><tr>
 <td>lib-flexible</td>
-<td><a class="link"   href="mailto:&#x66;&#x6c;&#x65;&#120;&#105;&#98;&#x6c;&#x65;&#64;&#x30;&#46;&#x33;&#46;&#50;" >&#x66;&#x6c;&#x65;&#120;&#105;&#98;&#x6c;&#x65;&#64;&#x30;&#46;&#x33;&#46;&#50;<i class="fas fa-external-link-alt"></i></a></td>
+<td><a class="link"   href="mailto:&#102;&#x6c;&#x65;&#x78;&#105;&#98;&#x6c;&#x65;&#x40;&#48;&#46;&#51;&#46;&#50;" >&#102;&#x6c;&#x65;&#x78;&#105;&#98;&#x6c;&#x65;&#x40;&#48;&#46;&#51;&#46;&#50;<i class="fas fa-external-link-alt"></i></a></td>
 <td>master</td>
 <td>解决1px问题</td>
 <td>作为过渡方案，弃用</td>
 </tr>
 <tr>
 <td>amfe-flexible</td>
-<td><a class="link"   href="mailto:&#x66;&#108;&#101;&#120;&#x69;&#98;&#x6c;&#101;&#x40;&#50;&#46;&#x30;" >&#x66;&#108;&#101;&#120;&#x69;&#98;&#x6c;&#101;&#x40;&#50;&#46;&#x30;<i class="fas fa-external-link-alt"></i></a></td>
+<td><a class="link"   href="mailto:&#102;&#108;&#x65;&#120;&#105;&#98;&#108;&#101;&#x40;&#x32;&#46;&#x30;" >&#102;&#108;&#x65;&#120;&#105;&#98;&#108;&#101;&#x40;&#x32;&#46;&#x30;<i class="fas fa-external-link-alt"></i></a></td>
 <td>2.0</td>
 <td></td>
 <td>建议使用</td>
@@ -3793,186 +3973,6 @@
         <tag>移动端</tag>
         <tag>vh/vw</tag>
         <tag>flexible</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解决git上传代码时每次都要输入username-password</title>
-    <url>/post/237a66a0.html</url>
-    <content><![CDATA[<h3 id="一、了解知识"><a href="#一、了解知识" class="headerlink" title="一、了解知识"></a><font color="#f65e63" size="5">一、了解知识</font></h3><p>git config –list：git的config配置项<br>git config –global –unset credential.helper：删除某一配置项(credential.helper就是其中一配置项)<br>git config –global user.name “zhb”：全局添加用户名<br>git config –global user.email “<a class="link"   href="mailto:&#x31;&#x39;&#53;&#56;&#x34;&#52;&#51;&#x34;&#x40;&#x71;&#113;&#x2e;&#x63;&#111;&#x6d;" >&#x31;&#x39;&#53;&#56;&#x34;&#52;&#51;&#x34;&#x40;&#x71;&#113;&#x2e;&#x63;&#111;&#x6d;<i class="fas fa-external-link-alt"></i></a>“：全局添加邮箱</p>
-<br>
-
-<h3 id="二、采用-SSH-连接方式-（前提是拉取-SSH连接方式的项目）"><a href="#二、采用-SSH-连接方式-（前提是拉取-SSH连接方式的项目）" class="headerlink" title="二、采用 SSH 连接方式 （前提是拉取 SSH连接方式的项目）"></a><font color="#f65e63" size="5">二、采用 SSH 连接方式 （前提是拉取 SSH连接方式的项目）</font></h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202304162357958.png"
-                      alt="image-20230416235751911"
-                ><br>前提当然你得有权限将自己主机 id_rsa.pub 加入到 git 账户的 SSH Keys 中<br><strong>1、ssh-keygen -t rsa -C “<a class="link"   href="mailto:&#x78;&#120;&#x78;&#120;&#x78;&#64;&#x78;&#120;&#x78;&#120;&#x78;&#x2e;&#99;&#111;&#109;" >&#x78;&#120;&#x78;&#120;&#x78;&#64;&#x78;&#120;&#x78;&#120;&#x78;&#x2e;&#99;&#111;&#109;<i class="fas fa-external-link-alt"></i></a>“ ： 一直回车  生成 sshkey(最开始是没有的)</strong><br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202304162357430.png"
-                      alt="image-20230416235759372"
-                ><br><strong>2、通过cat ~/.ssh/id_rsa.pub 获取到你的 public key</strong></p>
-<h3 id="三、采用-HTTPS-连接方式（前提是拉取-HTTPS连接方式的项目）"><a href="#三、采用-HTTPS-连接方式（前提是拉取-HTTPS连接方式的项目）" class="headerlink" title="三、采用 HTTPS 连接方式（前提是拉取 HTTPS连接方式的项目）"></a><font color="#f65e63" size="5">三、采用 HTTPS 连接方式（前提是拉取 HTTPS连接方式的项目）</font></h3><p>只要你有仓库访问权限即可<br>git config –global credential.helper store：给credential.helpe设置了值就解决了每次上传都要填写用户名和密<br>git config –global credential.helper “” 设置为空又要用户名了<br><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202304162358947.png"
-                      alt="image-20230416235810910"
-                ></p>
-]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-        <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vue中自定义组件如何使用v-model</title>
-    <url>/post/c9a5b6609.html</url>
-    <content><![CDATA[<h3 id="一、基础准备"><a href="#一、基础准备" class="headerlink" title="一、基础准备"></a>一、基础准备</h3><h4 id="1-1、v-model基本概念"><a href="#1-1、v-model基本概念" class="headerlink" title="1.1、v-model基本概念"></a>1.1、v-model基本概念</h4><blockquote>
-<p>v-model 实际上就是 $emit(‘input’) 以及 props:value 的组合<a class="link"   href="https://so.csdn.net/so/search?q=%E8%AF%AD%E6%B3%95%E7%B3%96&spm=1001.2101.3001.7020" >语法糖<i class="fas fa-external-link-alt"></i></a>，在背后做了两件事：</p>
-<ol>
-<li>v-bind绑定value属性的值；</li>
-<li>v-on绑定input事件监听到函数中，函数会获取最新的值赋值到绑定的属性中；</li>
-</ol>
-</blockquote>
-<p>所以，在大部分情况下，以下两种写发是等价的：</p>
-<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">&quot;foo&quot;</span> /&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">el-input</span> <span class="attr">:value</span>=<span class="string">&quot;foo&quot;</span> @<span class="attr">input</span>=<span class="string">&quot;foo = $event&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>checkbox 和 radio 使用 props:checked 属性和 $emit(‘change’) 事件。</p>
-<p>select 使用 props:value 属性和 $emit(‘change’) 事件。</p>
-<p>但是，除了上面列举的这些，别的都是 $emit(‘input’) 以及 props:value</p>
-<hr>
-<h4 id="1-2、单向数据流"><a href="#1-2、单向数据流" class="headerlink" title="1.2、单向数据流"></a><strong>1.2、单向数据流</strong></h4><blockquote>
-<p>props 有一个特性，那就是「单向数据流」,也可以称之为「单向下行绑定」，相当于就是父组件的值通过 props 传递给子组件，父组件中值的修改会传递到子组件，而子组件中对于这个值的修改则不能传递给父组件。「（虽然可以，控制台会给出警告，而且官方也不推荐这样子做）」</p>
-</blockquote>
-<h4 id="1-2、单向数据流-1"><a href="#1-2、单向数据流-1" class="headerlink" title="1.2、单向数据流"></a><strong>1.2、单向数据流</strong></h4><blockquote>
-<p>默认情况下，一个组件上的 v-model 会把 value 用作 prop 且把 input 用作 event，为了避免有时候的冲突，我们可以自定义事件；以下是在子组件中声明：</p>
-</blockquote>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 当我们使用model的默认值的时候value作prop，input作event时，可以省略不写model。</span></span><br><span class="line"><span class="attr">model</span>: &#123;</span><br><span class="line">    <span class="attr">prop</span>: <span class="string">&#x27;myValue&#x27;</span>, <span class="comment">// 默认是value</span></span><br><span class="line">    <span class="attr">event</span>: <span class="string">&#x27;myInput&#x27;</span>, <span class="comment">// 默认是input</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>具体见绑定方式2中的例子</p>
-<h3 id="二、三种绑定方法"><a href="#二、三种绑定方法" class="headerlink" title="二、三种绑定方法"></a>二、三种绑定方法</h3><h4 id="2-1、父组件使用v-model绑定"><a href="#2-1、父组件使用v-model绑定" class="headerlink" title="2.1、父组件使用v-model绑定"></a>2.1、<strong>父组件使用v-model绑定</strong></h4><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202403211707630.png"
-                      alt="image-20240321170725400"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202403211707761.png"
-                      alt="image-20240321170744666"
-                ></p>
-<h4 id="2-2、父组件使用v-model绑定"><a href="#2-2、父组件使用v-model绑定" class="headerlink" title="2.2、父组件使用v-model绑定"></a>2.2、<strong>父组件使用v-model绑定</strong></h4><p>子组件props接收参数，参数名称可以自定义，$emit触发方法传值，方法名称可以 自定义，通过model属性将prop参数名和事件名进行关联</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202403211712139.png"
-                      alt="image-20240321171220991"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202403211712054.png"
-                      alt="image-20240321171233922"
-                ></p>
-<h4 id="2-3、父组件使用-name-sync绑定"><a href="#2-3、父组件使用-name-sync绑定" class="headerlink" title="2.3、父组件使用:name.sync绑定"></a>2.3、<strong>父组件使用:name.sync绑定</strong></h4><p>子组件props接收参数名称为name，$emit触发update:name事件传值，这三部的name名称可以自定义，但需保持一致</p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202403211713199.png"
-                      alt="image-20240321171321083"
-                ></p>
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202403211713845.png"
-                      alt="image-20240321171350643"
-                ></p>
-]]></content>
-      <categories>
-        <category>Vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>match()函数和exec()函数的区别</title>
-    <url>/post/c9a5b66010.html</url>
-    <content><![CDATA[<h3 id="match"><a href="#match" class="headerlink" title="match()"></a>match()</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;api/getProduct/2&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> match = str.match(<span class="regexp">/api\/getProduct\/(\d+)/</span>);</span><br><span class="line"><span class="built_in">console</span>.log(match); <span class="comment">// 打印如下图</span></span><br><span class="line"><span class="built_in">console</span>.log(match[<span class="number">1</span>]);  <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202404080131705.jpg"
-                      alt="1712511078985"
-                ></p>
-<h3 id="exec"><a href="#exec" class="headerlink" title="exec()"></a>exec()</h3><figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> str = <span class="string">&#x27;api/getProduct/2&#x27;</span>;</span><br><span class="line"><span class="keyword">var</span> match = <span class="regexp">/api\/getProduct\/(\d+)/</span>.exec(str);</span><br><span class="line"><span class="built_in">console</span>.log(match); <span class="comment">// 打印如下图</span></span><br><span class="line"><span class="built_in">console</span>.log(match[<span class="number">1</span>]);  <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202404080131243.jpg"
-                      alt="1712511103572"
-                ></p>
-<p><strong>/api/getProduct/(\d+)/ 解释</strong><br>这段代码是一个正则表达式，用于匹配特定格式的字符串。在这个例子中，它被设计用来匹配类似 “/api/getProduct/123” 这样的 URL。</p>
-<p>让我们逐一解析这个正则表达式的各个部分：</p>
-<p>/api/getProduct/：这部分会匹配字符串中的 “/api/getProduct/“。在正则表达式中，斜线（/）是一个特殊字符，所以我们需要使用反斜线（\）来转义它，使其被视为普通字符。</p>
-<p>(\d+)：这部分会匹配一个或多个数字。在正则表达式中，\d 代表任何数字，+ 代表前面的元素可以出现一次或多次。括号（()）用于创建一个捕获组，这意味着匹配的数字可以被单独提取出来。</p>
-<p>所以，这个正则表达式可以匹配 “/api/getProduct/“ 后面跟着一串数字的字符串，并且可以提取出这串数字。</p>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>javaScript</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>运行单个Vue文件；不创建脚手架项目运行.vue文件</title>
-    <url>/post/c9a5b66011.html</url>
-    <content><![CDATA[<h4 id="1-安装vue脚手架"><a href="#1-安装vue脚手架" class="headerlink" title="1.安装vue脚手架"></a>1.安装vue脚手架</h4><p>这里一定要安装4.x的脚手架，5.x的脚手架会报错</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install -g @vue/cli@<span class="number">4.</span>x</span><br><span class="line">vue --version  <span class="comment">// 查看版本号 是否安装成功</span></span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="2-全局安装支持零配置运行-vue文件的扩展"><a href="#2-全局安装支持零配置运行-vue文件的扩展" class="headerlink" title="2.全局安装支持零配置运行 .vue文件的扩展"></a>2.全局安装支持零配置运行 .vue文件的扩展</h4><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm install -g @vue/cli-service-global</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="3-新建一个test文件夹"><a href="#3-新建一个test文件夹" class="headerlink" title="3.新建一个test文件夹"></a>3.新建一个test文件夹</h4><p>在test文件夹中创建一个需要运行的vue文件–app.vue</p>
-<h4 id="4-初始化项目"><a href="#4-初始化项目" class="headerlink" title="4.初始化项目"></a>4.初始化项目</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="5-运行app-vue文件"><a href="#5-运行app-vue文件" class="headerlink" title="5.运行app.vue文件"></a>5.运行app.vue文件</h4><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">vue serve app.vue</span><br></pre></td></tr></table></figure>
-
-
-
-<p><strong>官方文档文档的介绍到此为止，但是我运行的时候一直报错，详细错误见</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">PS E:\Desktop\test&gt; vue serve text.vue</span><br><span class="line"> INFO  Starting development server...</span><br><span class="line">(node:<span class="number">30628</span>) UnhandledPromiseRejectionWarning: <span class="built_in">Error</span>: Cannot find <span class="built_in">module</span> <span class="string">&#x27;vue-template-compiler&#x27;</span></span><br><span class="line">Require stack:</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\compiler.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\resolveScript.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\select.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\index.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\@vue\cli-service\lib\config\base.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\@vue\cli-service\lib\Service.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\index.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli\lib\util\loadCommand.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli\bin\vue.js</span><br><span class="line">    at <span class="built_in">Function</span>.Module._resolveFilename (internal/modules/cjs/loader.js:<span class="number">966</span>:<span class="number">15</span>)</span><br><span class="line">    at <span class="built_in">Function</span>.resolve (internal/modules/cjs/helpers.js:<span class="number">78</span>:<span class="number">19</span>)</span><br><span class="line">    at loadFromContext (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\compiler.js:<span class="number">30</span>:<span class="number">26</span>)</span><br><span class="line">    at loadTemplateCompiler (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\compiler.js:<span class="number">37</span>:<span class="number">12</span>)</span><br><span class="line">    at <span class="built_in">exports</span>.resolveCompiler (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\compiler.js:<span class="number">25</span>:<span class="number">23</span>)</span><br><span class="line">    at VueLoaderPlugin.apply (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\plugin-webpack4.js:<span class="number">91</span>:<span class="number">22</span>)</span><br><span class="line">    at VueLoaderPlugin.apply (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\plugin.js:<span class="number">13</span>:<span class="number">16</span>)</span><br><span class="line">    at webpack (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\webpack\lib\webpack.js:<span class="number">51</span>:<span class="number">13</span>)</span><br><span class="line">    at serve (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\@vue\cli-service\lib\commands\serve.js:<span class="number">163</span>:<span class="number">22</span>)</span><br><span class="line">    at processTicksAndRejections (internal/process/task_queues.js:<span class="number">97</span>:<span class="number">5</span>)</span><br><span class="line">(node:<span class="number">30628</span>) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside <span class="keyword">of</span> an <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">without</span> <span class="title">a</span> <span class="title">catch</span> <span class="title">block</span>, <span class="title">or</span> <span class="title">by</span> <span class="title">rejecting</span> <span class="title">a</span> <span class="title">promise</span> <span class="title">which</span> <span class="title">was</span> <span class="title">not</span> <span class="title">handled</span> <span class="title">with</span> .<span class="title">catch</span>(<span class="params"></span>). <span class="title">To</span> <span class="title">terminate</span> <span class="title">the</span> <span class="title">node</span> <span class="title">process</span> <span class="title">on</span> <span class="title">unhandled</span> <span class="title">promise</span> <span class="title">rejection</span>, <span class="title">use</span> <span class="title">the</span> <span class="title">CLI</span> <span class="title">flag</span> `--<span class="title">unhandled</span>-<span class="title">rejections</span>=<span class="title">strict</span>` (<span class="params">see https:<span class="comment">//nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)</span></span></span></span><br><span class="line"><span class="params"><span class="function">(node:<span class="number">30628</span>) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process <span class="keyword">with</span> a non-zero exit code.</span></span></span><br></pre></td></tr></table></figure>
-
-<p>上面的错误主要是说 找不到 ‘vue-template-compiler’ 这个模块。<br><strong>那我们就安装这个依赖模块</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">npm install vue-template-compiler --save-dev</span><br></pre></td></tr></table></figure>
-
-<p><strong>最后执行命令，运行成功</strong></p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">vue serve app.vue</span><br></pre></td></tr></table></figure>
-
-<p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo.shixna.cn/imgs/202404080136326.jpg"
-                      alt="1712511397966"
-                ></p>
-]]></content>
-      <categories>
-        <category>Vue</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
       </tags>
   </entry>
   <entry>
