@@ -1,595 +1,132 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Hexo Theme Keep">
-    <meta name="description" content="Hexo Theme Keep">
-    <meta name="author" content="ZH_彪">
-    
-    <title>
-        
-            在浏览器调试器中加载某个js插件并调用其中的方法 |
-        
-        Blog
-    </title>
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <link rel="shortcut icon" href="/images/icon1.png">
-    
-<link rel="stylesheet" href="/css/font-awesome.min.css">
-
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"shixna.cn","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#f54c52","bannerIcon_color_light":"#fff","bannerIcon_color_dark":"#bebec6","nav_color_light":"#7b7b89","nav_color_dark":"#bebec6","nav_bgColor_light":"#fff0","nav_bgColor_dark":"#383940","avatar":"/images/authorIcon.png","favicon":"/images/icon1.png","article_img_align":"center","left_side_width":"500px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/banner2k.png","description":null},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
-    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
-  </script>
-<meta name="generator" content="Hexo 6.0.0"></head>
-
-
-<body>
-<div class="progress-bar-container">
-    
-
-    
-        <span class="pjax-progress-bar"></span>
-        <span class="pjax-progress-icon">
-            <i class="fas fa-circle-notch fa-spin"></i>
-        </span>
-    
-</div>
-
-
-<main class="page-container">
-
-    
-
-    <div class="page-main-content">
-
-        <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
-            
-                <a class="logo-image" href="/">
-                    <img src="/images/logo2.png">
-                </a>
-            
-            <!-- <a class="logo-title" href="/">
-                Blog
-            </a> -->
-        </div>
-
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/"
-                            >
-                                首页
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                分类
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
-                                标签
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                归档
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                关于
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/">首页</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">分类</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">关于</a>
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-        </div>
-
-        <div class="page-main-content-middle">
-
-            <div class="main-content">
-
-                
-                    <div class="fade-in-down-animation">
-    <div class="article-content-container">
-
-        <div class="article-title">
-            <span class="title-hover-animation">在浏览器调试器中加载某个js插件并调用其中的方法</span>
-        </div>
-
-        
-            <div class="article-header">
-                <div class="avatar">
-                    <img src="/images/authorIcon.png">
-                </div>
-                <div class="info">
-                    <div class="author">
-                        <span class="name">ZH_彪</span>
-                        
-                            <span class="author-label">Lv4</span>
-                        
-                    </div>
-                    <div class="meta-info">
-                        <div class="article-meta-info">
-    <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2024-04-08 00:59:36</span>
-        <span class="mobile">2024-04-08 00:59</span>
-    </span>
-    
-        <span class="article-categories article-meta-item">
-            <i class="fas fa-folder"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-    
-        <span class="article-tags article-meta-item">
-            <i class="fas fa-tags"></i>&nbsp;
-            <ul>
-                
-                    <li>
-                        <a href="/tags/javaScript/">javaScript</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        | <a href="/tags/fetch/">fetch</a>&nbsp;
-                    </li>
-                
-            </ul>
-        </span>
-    
-
-    
-    
-        <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>481 字</span>
-        </span>
-    
-    
-        <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
-        </span>
-    
-    
-        <span class="article-pv article-meta-item">
-            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
-        </span>
-    
-</div>
-
-                    </div>
-                </div>
-            </div>
-        
-
-        <div class="article-content markdown-body">
-            <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用dayjs中的方法</span></span><br><span class="line">fetch(<span class="string">&#x27;https://cdn.bootcdn.net/ajax/libs/dayjs/1.11.9/dayjs.min.js&#x27;</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">response</span> =&gt;</span> response.text())</span><br><span class="line">  .then(<span class="function"><span class="params">text</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">eval</span>(text);</span><br><span class="line">    <span class="keyword">const</span> now = dayjs();</span><br><span class="line">    <span class="built_in">console</span>.log(now.format(<span class="string">&#x27;YYYY-MM-DD HH:mm:ss&#x27;</span>));</span><br><span class="line">  &#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(err);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-<p>在JavaScript中，fetch API返回的Response对象还提供了其他一些属性和方法，可以根据需要来获取数据或者执行其他操作。以下是一些常用的Response对象的属性和方法：</p>
-<h5 id="1、json-这个方法返回一个Promise，解析为JSON格式的响应体。"><a href="#1、json-这个方法返回一个Promise，解析为JSON格式的响应体。" class="headerlink" title="1、json(): 这个方法返回一个Promise，解析为JSON格式的响应体。"></a>1、json(): 这个方法返回一个Promise，解析为JSON格式的响应体。</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">&#x27;https://api.example.com/data&#x27;</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">response</span> =&gt;</span> response.json())</span><br><span class="line">  .then(<span class="function"><span class="params">data</span> =&gt;</span> <span class="built_in">console</span>.log(data))</span><br><span class="line">  .catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(<span class="string">&#x27;Error fetching data:&#x27;</span>, error))</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="2、blob-这个方法返回一个Promise，将响应体解析为二进制数据（Blob对象）。"><a href="#2、blob-这个方法返回一个Promise，将响应体解析为二进制数据（Blob对象）。" class="headerlink" title="2、blob(): 这个方法返回一个Promise，将响应体解析为二进制数据（Blob对象）。"></a>2、blob(): 这个方法返回一个Promise，将响应体解析为二进制数据（Blob对象）。</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">&#x27;https://example.com/image.png&#x27;</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">response</span> =&gt;</span> response.blob())</span><br><span class="line">  .then(<span class="function"><span class="params">blob</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 处理二进制数据</span></span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(<span class="string">&#x27;Error fetching image:&#x27;</span>, error));</span><br></pre></td></tr></table></figure>
-
-<h5 id="3、arrayBuffer-这个方法返回一个Promise，将响应体解析为ArrayBuffer。"><a href="#3、arrayBuffer-这个方法返回一个Promise，将响应体解析为ArrayBuffer。" class="headerlink" title="3、arrayBuffer(): 这个方法返回一个Promise，将响应体解析为ArrayBuffer。"></a>3、arrayBuffer(): 这个方法返回一个Promise，将响应体解析为ArrayBuffer。</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">&#x27;https://example.com/file&#x27;</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">response</span> =&gt;</span> response.arrayBuffer())</span><br><span class="line">  .then(<span class="function"><span class="params">arrayBuffer</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 处理ArrayBuffer</span></span><br><span class="line">  &#125;)</span><br><span class="line">  .catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(<span class="string">&#x27;Error fetching file:&#x27;</span>, error));</span><br></pre></td></tr></table></figure>
-
-<h5 id="4、text-它返回一个Promise，将响应体解析为文本。"><a href="#4、text-它返回一个Promise，将响应体解析为文本。" class="headerlink" title="4、text(): 它返回一个Promise，将响应体解析为文本。"></a>4、text(): 它返回一个Promise，将响应体解析为文本。</h5><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">&#x27;https://example.com/text&#x27;</span>)</span><br><span class="line">  .then(<span class="function"><span class="params">response</span> =&gt;</span> response.text())</span><br><span class="line">  .then(<span class="function"><span class="params">text</span> =&gt;</span> <span class="built_in">console</span>.log(text))</span><br><span class="line">  .catch(<span class="function"><span class="params">error</span> =&gt;</span> <span class="built_in">console</span>.error(<span class="string">&#x27;Error fetching text:&#x27;</span>, error));</span><br></pre></td></tr></table></figure>
-
-<h5 id="eval函数"><a href="#eval函数" class="headerlink" title="eval函数"></a>eval函数</h5><p>eval函数是JavaScript中的一个内置函数，用于将传入的字符串作为代码来执行。当使用eval函数时，传入的字符串会被当作JavaScript代码来执行，这可以用来动态执行代码或者动态生成代码。然而，由于eval函数的执行会影响性能和安全性，通常不推荐在实际项目中使用eval函数，除非确实有必要使用它。因为eval函数的执行会增加代码的复杂性，并且可能存在安全风险，因此应该尽量避免使用它。</p>
-
-        </div>
-
-        
-
-        
-            <ul class="post-tags-box">
-                
-                    <li class="tag-item">
-                        <a href="/tags/javaScript/">#javaScript</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item">
-                        <a href="/tags/fetch/">#fetch</a>&nbsp;
-                    </li>
-                
-            </ul>
-        
-
-        
-            <div class="article-nav">
-                
-                
-                    <div class="article-next">
-                        <a class="next"
-                           rel="next"
-                           href="/post/c9a5b66011.html"
-                        >
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">运行单个Vue文件；不创建脚手架项目运行.vue文件</span>
-                                <span class="post-nav-item">下一篇</span>
-                            </span>
-                            <span class="right arrow-icon flex-center">
-                              <i class="fas fa-chevron-right"></i>
-                            </span>
-                        </a>
-                    </div>
-                
-            </div>
-        
-
-        
-            <div class="comment-container">
-                <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fas fa-comments">&nbsp;评论</i>
-    </div>
-    
-
-        
-            
-    <div class="twikoo-container">
-        <script data-pjax
-                src="//cdn.jsdelivr.net/npm/twikoo@1.0.0/dist/twikoo.all.min.js"
-        ></script>
-        <div id="twikoo-comment"></div>
-        <script data-pjax>
-            function loadTwikoo() {
-                twikoo.init({
-                    el: '#twikoo-comment',
-                    envId: 'https://twikoo.shixna.cn/',
-                    region: '',
-                });
-            }
-
-            if ('true') {
-                const loadTwikooTimeout = setTimeout(() => {
-                    loadTwikoo();
-                    clearTimeout(loadTwikooTimeout);
-                }, 1000);
-            } else {
-                window.addEventListener('DOMContentLoaded', loadTwikoo);
-            }
-        </script>
-    </div>
-
-
-
-        
-    
-</div>
-
-            </div>
-        
-    </div>
-</div>
-
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
-            
-              <span>2020</span>
-              -
-            
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ZH_彪</a>
-        </div>
-        
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>&ensp;
-                    </span>
-                
-                <!-- <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
-                <span>公安备案号43010402001143</span> -->
-            </div>
-        
-        <div class="theme-info info-item">
-          <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
-          <span>公安备案号43010402001143</span>
-            <!-- 由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a> -->
-        </div>
-        
-        
-    </div>
-</footer>
-
-        </div>
-    </div>
-
-    
-        <div class="post-tools">
-            <div class="post-tools-container">
-    <ul class="tools-list">
-        <!-- TOC aside toggle -->
-        
-            <li class="tools-item page-aside-toggle">
-                <i class="fas fa-outdent"></i>
-            </li>
-        
-
-        <!-- go comment -->
-        
-            <li class="go-comment">
-                <i class="fas fa-comment"></i>
-            </li>
-        
-    </ul>
-</div>
-
-        </div>
-    
-
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
-
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-    </ul>
-</div>
-
-    </div>
-
-    
-        <aside class="page-aside">
-            <div class="post-toc-wrap">
-    <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%E3%80%81json-%E8%BF%99%E4%B8%AA%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AAPromise%EF%BC%8C%E8%A7%A3%E6%9E%90%E4%B8%BAJSON%E6%A0%BC%E5%BC%8F%E7%9A%84%E5%93%8D%E5%BA%94%E4%BD%93%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">1、json(): 这个方法返回一个Promise，解析为JSON格式的响应体。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%E3%80%81blob-%E8%BF%99%E4%B8%AA%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AAPromise%EF%BC%8C%E5%B0%86%E5%93%8D%E5%BA%94%E4%BD%93%E8%A7%A3%E6%9E%90%E4%B8%BA%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%95%B0%E6%8D%AE%EF%BC%88Blob%E5%AF%B9%E8%B1%A1%EF%BC%89%E3%80%82"><span class="nav-number">2.</span> <span class="nav-text">2、blob(): 这个方法返回一个Promise，将响应体解析为二进制数据（Blob对象）。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%E3%80%81arrayBuffer-%E8%BF%99%E4%B8%AA%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AAPromise%EF%BC%8C%E5%B0%86%E5%93%8D%E5%BA%94%E4%BD%93%E8%A7%A3%E6%9E%90%E4%B8%BAArrayBuffer%E3%80%82"><span class="nav-number">3.</span> <span class="nav-text">3、arrayBuffer(): 这个方法返回一个Promise，将响应体解析为ArrayBuffer。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4%E3%80%81text-%E5%AE%83%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AAPromise%EF%BC%8C%E5%B0%86%E5%93%8D%E5%BA%94%E4%BD%93%E8%A7%A3%E6%9E%90%E4%B8%BA%E6%96%87%E6%9C%AC%E3%80%82"><span class="nav-number">4.</span> <span class="nav-text">4、text(): 它返回一个Promise，将响应体解析为文本。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#eval%E5%87%BD%E6%95%B0"><span class="nav-number">5.</span> <span class="nav-text">eval函数</span></a></li></ol>
-    </div>
-</div>
-        </aside>
-    
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fas fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="搜索..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fas fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
-
-</main>
-
-
-
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/main.js"></script>
-
-<script src="/js/header-shrink.js"></script>
-
-<script src="/js/back2top.js"></script>
-
-<script src="/js/dark-light-toggle.js"></script>
-
-
-
-    
-<script src="/js/local-search.js"></script>
-
-
-
-
-    
-<script src="/js/code-copy.js"></script>
-
-
-
-
-    
-<script src="/js/lazyload.js"></script>
-
-
-
-<div class="post-scripts pjax">
-    
-        
-<script src="/js/left-side-toggle.js"></script>
-
-<script src="/js/libs/anime.min.js"></script>
-
-<script src="/js/toc.js"></script>
-
-    
-</div>
-
-
-    
-<script src="/js/libs/pjax.min.js"></script>
-
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        window.pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax'
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            KEEP.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            KEEP.utils.pjaxProgressBarEnd();
-            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            KEEP.refresh();
-        });
-    });
-</script>
-
-
-
-</body>
-</html>
+.page-container {
+  width: 100%;
+  height: auto;
+  background: var(--background-color-1);
+}
+.page-container .page-main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  padding-top: var(--header-height);
+keep-tablet()
+keep-mobile()
+}
+.page-container .page-main-content.is-home .transparent-1 {
+  background: var(--header-transparent-background-1);
+  -webkit-backdrop-filter: blur(var(--header-backdrop-filter-blur));
+  backdrop-filter: blur(var(--header-backdrop-filter-blur));
+}
+.page-container .page-main-content.is-home .transparent-2 {
+  background: var(--header-transparent-background-2);
+  -webkit-backdrop-filter: blur(calc(var(--header-backdrop-filter-blur) * 1.25));
+  backdrop-filter: blur(calc(var(--header-backdrop-filter-blur) * 1.25));
+}
+.header-shrink .page-container .page-main-content {
+  padding-top: var(--header-shrink-height);
+keep-tablet()
+keep-mobile()
+}
+.page-container .page-main-content .page-main-content-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: $z-index-5;
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--header-height);
+keep-tablet()
+keep-mobile()
+}
+.page-container .page-main-content .page-main-content-top.hide {
+  transform: translateY(-105%);
+}
+.header-shrink .page-container .page-main-content .page-main-content-top {
+  height: var(--header-shrink-height);
+keep-tablet()
+keep-mobile()
+}
+.page-container .page-main-content .page-main-content-top.reset-color .header-content .site-name {
+  color: var(--text-color-1) !important;
+}
+.page-container .page-main-content .page-main-content-top.reset-color .header-content .menu-item a {
+  color: var(--text-color-3) !important;
+}
+.page-container .page-main-content .page-main-content-top.reset-color .header-content .menu-item a:hover {
+  color: var(--primary-color) !important;
+}
+.page-container .page-main-content .page-main-content-top.reset-color .header-content .menu-item i.search {
+  color: var(--text-color-3) !important;
+}
+.page-container .page-main-content .page-main-content-middle {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: var(--component-gap) 0;
+keep-tablet()
+keep-mobile()
+}
+.page-container .page-main-content .page-main-content-middle .main-content {
+  width: var(--page-content-width);
+  max-width: var(--page-content-max-width);
+  height: 100%;
+keep-tablet()
+keep-mobile()
+}
+.has-toc .page-container .page-main-content .page-main-content-middle .main-content {
+  max-width: var(--page-content-max-width-2);
+}
+.page-container .page-main-content .page-main-content-bottom {
+  width: 100%;
+}
+.page-container .post-tools {
+  position: fixed;
+  top: calc(var(--header-height) + var(--component-gap));
+  box-sizing: border-box;
+  opacity: 0;
+keep-tablet()
+}
+.page-container .post-tools.right-toc {
+  left: calc((100vw - var(--page-content-max-width) / 2) - 5rem);
+}
+.page-container .post-tools.left-toc {
+  right: calc((100vw - var(--page-content-max-width) / 2) - 5rem);
+}
+.header-shrink .page-container .post-tools {
+  top: calc(var(--header-shrink-height) + var(--component-gap));
+}
+.page-container .side-tools {
+  position: fixed;
+  right: 0;
+  bottom: 1.6rem;
+  box-sizing: border-box;
+  padding-right: 1rem;
+keep-tablet()
+}
+.page-container .side-tools:hover .side-tools-container {
+  transform: translateX(0);
+  opacity: 1;
+}
+.page-container .tablet-post-toc-mask {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: $z-index-10;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0);
+  visibility: hidden;
+}
+.page-container .tablet-post-toc-mask .tablet-post-toc {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 22rem;
+  height: 100%;
+  padding: 1.2rem 1rem;
+  background: var(--background-color-1);
+  transform: translateX(-100%);
+keep-mobile()
+}

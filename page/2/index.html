@@ -1,1324 +1,236 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Hexo Theme Keep">
-    <meta name="description" content="Hexo Theme Keep">
-    <meta name="author" content="ZH_彪">
-    
-    <title>
-        
-        Blog
-    </title>
-    
-<link rel="stylesheet" href="/css/style.css">
-
-    <link rel="shortcut icon" href="/images/icon1.png">
-    
-<link rel="stylesheet" href="/css/font-awesome.min.css">
-
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {};
-    KEEP.hexo_config = {"hostname":"shixna.cn","root":"/","language":"zh-CN","path":"search.xml"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#f54c52","bannerIcon_color_light":"#fff","bannerIcon_color_dark":"#bebec6","nav_color_light":"#7b7b89","nav_color_dark":"#bebec6","nav_bgColor_light":"#fff0","nav_bgColor_dark":"#383940","avatar":"/images/authorIcon.png","favicon":"/images/icon1.png","article_img_align":"center","left_side_width":"500px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/banner2k.png","description":null},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
-    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
-  </script>
-<meta name="generator" content="Hexo 6.0.0"></head>
-
-
-<body>
-<div class="progress-bar-container">
-    
-
-    
-        <span class="pjax-progress-bar"></span>
-        <span class="pjax-progress-icon">
-            <i class="fas fa-circle-notch fa-spin"></i>
-        </span>
-    
-</div>
-
-
-<main class="page-container">
-
-    
-
-    <div class="page-main-content">
-
-        <div class="page-main-content-top">
-            <header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
-            
-                <a class="logo-image" href="/">
-                    <img src="/images/logo2.png">
-                </a>
-            
-            <!-- <a class="logo-title" href="/">
-                Blog
-            </a> -->
-        </div>
-
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class="active"
-                               href="/"
-                            >
-                                首页
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/categories"
-                            >
-                                分类
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/tags"
-                            >
-                                标签
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                归档
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/about"
-                            >
-                                关于
-                            </a>
-                        </li>
-                    
-                    
-                        <li class="menu-item search search-popup-trigger">
-                            <i class="fas fa-search"></i>
-                        </li>
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class="active"
-                       href="/">首页</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/categories">分类</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/tags">标签</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">归档</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/about">关于</a>
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
-</header>
-
-
-        </div>
-
-        <div class="page-main-content-middle">
-
-            <div class="main-content">
-
-                
-                    <div class="home-content-container fade-in-down-animation">
-    <ul class="home-article-list">
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/post/28442.html">
-                        ES6: Map和Set与iterable类型
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        JavaScript的默认对象表示方式{}可以视为其他语言中的Map或Dictionary的数据结构，即一组键值对。
-但是JavaScript的对象有个小问题，就是键必须是字符串。但实际上Number或者其他数据类型作为键也是非常合理的。为了解决这个...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 31 2022 23:36:01 GMT+0800">2022-07-31</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/javaScript/">javaScript</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/post/28442.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/post/36687.html">
-                        Vue.extend()
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        官方例子：
-注意点:1、Vue.extend()必须要new出来(实例)
-12let Constructor = Vue.extend()let Profile = new Constructor
-
-
-
-2、将创建的Profile实例, 挂载到一个元...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 31 2022 23:35:01 GMT+0800">2022-07-31</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/vue/">vue</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/post/36687.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/post/23283.html">
-                        Javascript闭包
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        一、变量的作用域变量的作用域无非就是两种：全局变量和局部变量。Javascript语言的特殊之处，就在于函数内部可以直接读取全局变量。
-12345var n=999;function f1()&#123;　　alert(n);&#125;f1(); ...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 31 2022 23:31:14 GMT+0800">2022-07-31</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/javaScript/">javaScript</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/post/23283.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/post/98546.html">
-                        state，mapState，...mapState对象展开符详解
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        statestate是什么?定义:state(vuex) ≈ data (vue)
-vuex的state和vue的data有很多相似之处，都是用于存储一些数据，或者说状态值。这些值都将被挂载数据和dom的双向绑定事件，也就是当你改变值的时候可以触发d...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 31 2022 23:20:14 GMT+0800">2022-07-31</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/vuex/">vuex</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/post/98546.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/post/15628.html">
-                        深拷贝与浅拷贝的区别，实现深拷贝的几种方法
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        1、引言如何区分深拷贝与浅拷贝，简单点来说，就是假设B复制了A，当修改A时，看B是否会发生变化，如果B也跟着变了，说明这是浅拷贝，拿人手短，如果B没变，那就是深拷贝，自食其力。
-此篇文章中也会简单阐述到栈堆，基本数据类型与引用数据类型，因为这些概念能...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 31 2022 21:56:14 GMT+0800">2022-07-31</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E6%B7%B1%E6%8B%B7%E8%B4%9D/">深拷贝</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E6%B5%85%E6%8B%B7%E8%B4%9D/">浅拷贝</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/post/15628.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/post/17532.html">
-                        JavaScript中宏任务和微任务有什么区别？
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        微任务和宏任务皆为异步任务，它们都属于一个队列，主要区别在于他们的执行顺序，Event Loop的走向和取值。
-Event Loop即事件循环，是指浏览器或Node的一种解决javaScript单线程运行时不会阻塞的一种机制，也就是我们经常使用异步的...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 31 2022 21:55:14 GMT+0800">2022-07-31</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Event-Loop/">Event Loop</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/post/17532.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/post/7491.html">
-                        node版本管理工具nvm
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        1、nvm是什么nvm全名node.js version management，顾名思义是一个nodejs的版本管理工具。通过它可以安装和切换不同版本的nodejs。下面列出下载、安装及使用方法。
-2、下载可在点此在github上下载最新版本,本次下...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 31 2022 21:50:14 GMT+0800">2022-07-31</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Other/">Other</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/nvm/">nvm</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/post/7491.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/post/1102.html">
-                        windows本地安装部署 Easy-Mock
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        集万家之精华最详细的本地部署 Easy-Mock 没有之一了
-一、背景：在前后端分离的开发方式下，后端如果暂时没数据，前端为了开发方便可以使用模拟数据来对付一下，目前提供模拟数据的平台已经有不少，大多数都是自带Api管理的，比如Yapi、sosoAp...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 31 2022 21:25:15 GMT+0800">2022-07-31</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Other/">Other</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/Easy-Mock/">Easy-Mock</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/post/1102.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/post/44928.html">
-                        标准盒模型和怪异盒模型的区别
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        css盒模型本质是一个盒子，它由边距、边框、填充和实际内容组成。盒模型能够让我们在其他元素和周边元素边框之间的空间放置元素。
-标准盒与怪异盒的区别在于他们的总宽度的计算公式不一样。
-标准模式下总宽度=width+margin（左右）+padding（...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 31 2022 21:20:15 GMT+0800">2022-07-31</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/CSS/">CSS</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/css/">css</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/post/44928.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/post/3e5e4cab.html">
-                        vue项目中快速使用阿里字体图标
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        1、”font-class引用” 和 “Unicode引用”下载
-
-
-
-2、将下载的字体图标放到项目中
-
-
-
-3、在main.js中引入
-1import &#x27;@/assets/iconfont/iconfont.css&#x27;
-
-
-
-一、...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 31 2022 16:40:15 GMT+0800">2022-07-31</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/%E9%98%BF%E9%87%8C%E5%9B%BE%E6%A0%87/">阿里图标</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/post/3e5e4cab.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/post/54215.html">
-                        Vue项目中生成分析报告进行性能优化
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        不需要安装插件，不需要配置 package.json 文件，不需要安装webpack-bundle-analyzer、 ~~！！去看 vue-cli 的官方文档
-1运行 npm run build -- --report
-
-在dist文件生成一个re...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 31 2022 16:31:19 GMT+0800">2022-07-31</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/vue-cli3/">vue-cli3</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/post/54215.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/post/24211.html">
-                        Js的forEach循环中使用return不能跳出循环
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        我们都知道 for 循环里要跳出整个循环是使用 break，但在数组中用 forEach 循环如要退出整个循环呢？使用 break 会报错，使用 return 也不能跳出循环。
-那么在用 forEach() 遍历数组时要如何才能跳出循环呢？第一种：使...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 31 2022 15:50:19 GMT+0800">2022-07-31</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/javaScript/">javaScript</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/post/24211.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/post/60784.html">
-                        Vue监听路由变化的几种方式
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        一、Vue监听路由变化的几种方式Vue页面开发中，我们经常需要根据路由的变化去实现一些操作，那么如何监听路由的变化呢？当然是利用VUE中的watch，请看代码。
-1.1、监听路由从哪儿来到哪儿去
-123456watch:&#123;    $rout...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Jul 31 2022 15:42:19 GMT+0800">2022-07-31</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Vue/">Vue</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/vue/">vue</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/route/">route</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/post/60784.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/post/16035.html">
-                        前端本地的html页面，手机如何查看？
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        在写前端页面中，经常会在浏览器运行HTML页面，从本地文件夹中直接打开的一般都是file协议，当代码中存在http或https的链接时，HTML页面就无法正常打开，为了解决这种情况，需要在在本地开启一个本地的服务器。本文是利用node.js中的htt...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Jul 30 2022 21:00:31 GMT+0800">2022-07-30</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Other/">Other</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/http-server/">http-server</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/post/16035.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/post/53848.html">
-                        Js使用new关键字调用函数和直接调用函数的区别
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        调用经典的构造函数需要加new
-1234567891011function Person(name, age, job)&#123;      var o = new Object();      o.name = name;      o.age ...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sat Jul 30 2022 20:58:31 GMT+0800">2022-07-30</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/JavaScript/">JavaScript</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/javaScript/">javaScript</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/post/53848.html">阅读全文&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-    </ul>
-
-    <div class="home-paginator">
-        <div class="paginator">
-    
-        <a class="prev btn"
-           href="/"
-        >上一页</a>
-    
-
-    
-        <a class="next btn"
-           href="/page/3/"
-        >下一页</a>
-    
-</div>
-
-    </div>
-</div>
-
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            <footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
-            
-              <span>2020</span>
-              -
-            
-            2024&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ZH_彪</a>
-        </div>
-        
-            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-            <div class="website-count info-item">
-                
-                    <span id="busuanzi_container_site_uv">
-                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
-                    </span>
-                
-                
-                    <span id="busuanzi_container_site_pv">
-                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>&ensp;
-                    </span>
-                
-                <!-- <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
-                <span>公安备案号43010402001143</span> -->
-            </div>
-        
-        <div class="theme-info info-item">
-          <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
-          <span>公安备案号43010402001143</span>
-            <!-- 由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a> -->
-        </div>
-        
-        
-    </div>
-</footer>
-
-        </div>
-    </div>
-
-    
-
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
-
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
-
-        <li class="tools-item tool-expand-width flex-center">
-            <i class="fas fa-arrows-alt-h"></i>
-        </li>
-
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
-
-        <!-- rss -->
-        
-
-        
-
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
-
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="arrow-up fas fa-arrow-up"></i>
-                <span class="percent"></span>
-            </li>
-        
-    </ul>
-</div>
-
-    </div>
-
-    
-
-    <div class="image-viewer-container">
-    <img src="">
-</div>
-
-
-    
-        <div class="search-pop-overlay">
-    <div class="popup search-popup">
-        <div class="search-header">
-          <span class="search-input-field-pre">
-            <i class="fas fa-keyboard"></i>
-          </span>
-            <div class="search-input-container">
-                <input autocomplete="off"
-                       autocorrect="off"
-                       autocapitalize="off"
-                       placeholder="搜索..."
-                       spellcheck="false"
-                       type="search"
-                       class="search-input"
-                >
-            </div>
-            <span class="popup-btn-close">
-                <i class="fas fa-times"></i>
-            </span>
-        </div>
-        <div id="search-result">
-            <div id="no-result">
-                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
-            </div>
-        </div>
-    </div>
-</div>
-
-    
-
-</main>
-
-
-
-
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/main.js"></script>
-
-<script src="/js/header-shrink.js"></script>
-
-<script src="/js/back2top.js"></script>
-
-<script src="/js/dark-light-toggle.js"></script>
-
-
-
-    
-<script src="/js/local-search.js"></script>
-
-
-
-
-    
-<script src="/js/code-copy.js"></script>
-
-
-
-
-    
-<script src="/js/lazyload.js"></script>
-
-
-
-<div class="post-scripts pjax">
-    
-</div>
-
-
-    
-<script src="/js/libs/pjax.min.js"></script>
-
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        window.pjax = new Pjax({
-            selectors: [
-                'head title',
-                '.page-container',
-                '.pjax'
-            ],
-            history: true,
-            debug: false,
-            cacheBust: false,
-            timeout: 0,
-            analytics: false,
-            currentUrlFullReload: false,
-            scrollRestoration: false,
-            // scrollTo: true,
-        });
-
-        document.addEventListener('pjax:send', () => {
-            KEEP.utils.pjaxProgressBarStart();
-        });
-
-        document.addEventListener('pjax:complete', () => {
-            KEEP.utils.pjaxProgressBarEnd();
-            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
-            KEEP.refresh();
-        });
-    });
-</script>
-
-
-
-</body>
-</html>
+$post-tools-offset = calc((100vw - var(--page-content-max-width) / 2) - 5rem)
+
+.page-container {
+  width 100%
+  height auto
+  background var(--background-color-1)
+
+  .page-main-content {
+    display flex
+    flex-direction column
+    justify-content space-between
+    min-height 100vh
+    padding-top var(--header-height)
+
+    &.is-home {
+      .transparent-1 {
+        background var(--header-transparent-background-1)
+        -webkit-backdrop-filter blur(var(--header-backdrop-filter-blur))
+        backdrop-filter blur(var(--header-backdrop-filter-blur))
+      }
+
+      .transparent-2 {
+        background var(--header-transparent-background-2)
+        -webkit-backdrop-filter blur(calc(var(--header-backdrop-filter-blur) * 1.25))
+        backdrop-filter blur(calc(var(--header-backdrop-filter-blur) * 1.25))
+      }
+    }
+
+
+    .header-shrink & {
+      padding-top var(--header-shrink-height)
+
+
+      +keep-tablet() {
+        padding-top calc(var(--header-shrink-height) * 0.9)
+      }
+
+      +keep-mobile() {
+        padding-top calc(var(--header-shrink-height) * 0.8)
+      }
+    }
+
+
+    +keep-tablet() {
+      padding-top calc(var(--header-height) * 0.9)
+    }
+
+
+    +keep-mobile() {
+      padding-top calc(var(--header-height) * 0.8)
+    }
+
+
+    .page-main-content-top {
+      position fixed
+      top 0
+      right 0
+      z-index $z-index-5
+      box-sizing border-box
+      width 100%
+      height var(--header-height)
+      transition-t("transform, height", "0, 0", "0.3, 0.2", "ease-out, ease")
+
+      +keep-tablet() {
+        height calc(var(--header-height) * 0.9)
+      }
+
+
+      +keep-mobile() {
+        height calc(var(--header-height) * 0.8)
+      }
+
+      &.hide {
+        transform translateY(-105%)
+      }
+
+
+      .header-shrink & {
+        height var(--header-shrink-height)
+
+        +keep-tablet() {
+          height calc(var(--header-shrink-height) * 0.9)
+        }
+
+        +keep-mobile() {
+          height calc(var(--header-shrink-height) * 0.8)
+        }
+      }
+
+
+      &.reset-color {
+        .header-content {
+          .site-name {
+            color var(--text-color-1) !important
+          }
+
+          .menu-item {
+            a {
+              color var(--text-color-3) !important
+
+              &:hover {
+                color var(--primary-color) !important
+              }
+            }
+
+
+            i.search {
+              color var(--text-color-3) !important
+            }
+          }
+        }
+      }
+    }
+
+
+    .page-main-content-middle {
+      display flex
+      justify-content center
+      width 100%
+      padding var(--component-gap) 0
+
+      +keep-tablet() {
+        padding calc(var(--component-gap) * 0.8) 0
+      }
+
+      +keep-mobile() {
+        padding calc(var(--component-gap) * 0.6) 0
+      }
+
+      .main-content {
+        width var(--page-content-width)
+        max-width var(--page-content-max-width)
+        height 100%
+        transition-t("max-width, width", "0, 0", "0.1, 0.1", "ease, ease")
+
+        .has-toc & {
+          max-width var(--page-content-max-width-2)
+        }
+
+
+        +keep-tablet() {
+          width var(--page-content-width-tablet)
+        }
+
+
+        +keep-mobile() {
+          width var(--page-content-width-mobile)
+        }
+      }
+    }
+
+
+    .page-main-content-bottom {
+      width 100%
+    }
+  }
+
+
+  .post-tools {
+    position fixed
+    top calc(var(--header-height) + var(--component-gap))
+    box-sizing border-box
+    opacity 0
+    transition-t("top, transform, opacity, left", "0, 0, 0.2, 0", "0.2, 0.2, 0.2, 0.2", "ease, ease, ease, ease")
+
+    &.right-toc {
+      left $post-tools-offset
+    }
+
+    &.left-toc {
+      right $post-tools-offset
+    }
+
+    .header-shrink & {
+      top calc(var(--header-shrink-height) + var(--component-gap))
+    }
+
+
+    +keep-tablet() {
+      display none !important
+    }
+  }
+
+
+  .side-tools {
+    position fixed
+    right 0
+    bottom 1.6rem
+    box-sizing border-box
+    padding-right 1rem
+
+    +keep-tablet() {
+      padding-right 0
+    }
+
+    &:hover {
+      .side-tools-container {
+        transform translateX(0)
+        opacity 1
+      }
+    }
+  }
+
+
+  .tablet-post-toc-mask {
+    position fixed
+    top 0
+    right 0
+    z-index $z-index-10
+    box-sizing border-box
+    width 100%
+    height 100%
+    background rgba(0, 0, 0, 0)
+    visibility hidden
+    transition-t("visibility", "0", "0.2", "ease")
+
+
+    .tablet-post-toc {
+      position absolute
+      top 0
+      left 0
+      box-sizing border-box
+      width 22rem
+      height 100%
+      padding 1.2rem 1rem
+      background var(--background-color-1)
+      transform translateX(-100%)
+      transition-t("transform", "0", "0.4", "ease")
+
+      +keep-mobile() {
+        width 70%
+      }
+    }
+  }
+}
+
