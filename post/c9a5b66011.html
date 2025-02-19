@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ZH_彪">
+    
+    <title>
+        
+            如何运行单vue文件 |
+        
+        Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/icon1.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"shixna.cn","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#f54c52","bannerIcon_color_light":"#fff","bannerIcon_color_dark":"#bebec6","nav_color_light":"#7b7b89","nav_color_dark":"#bebec6","nav_bgColor_light":"#fff0","nav_bgColor_dark":"#383940","avatar":"/images/authorIcon.png","favicon":"/images/icon1.png","article_img_align":"center","left_side_width":"500px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/banner2k.png","description":null},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content has-first-screen">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo2.png">
+                </a>
+            
+            <!-- <a class="logo-title" href="/">
+                Blog
+            </a> -->
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">如何运行单vue文件</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/authorIcon.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ZH_彪</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2025-02-18 23:55:33</span>
+        <span class="mobile">2025-02-18 23:55</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/vue/">vue</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>622 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h4 id="1-安装vue脚手架"><a href="#1-安装vue脚手架" class="headerlink" title="1.安装vue脚手架"></a>1.安装vue脚手架</h4><p>这里一定要安装4.x的脚手架，5.x的脚手架会报错</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli@<span class="number">4.</span>x</span><br><span class="line">vue --version  <span class="comment">// 查看版本号 是否安装成功</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="2-全局安装支持零配置运行-vue文件的扩展"><a href="#2-全局安装支持零配置运行-vue文件的扩展" class="headerlink" title="2.全局安装支持零配置运行 .vue文件的扩展"></a>2.全局安装支持零配置运行 .vue文件的扩展</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g @vue/cli-service-global</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="3-新建一个test文件夹"><a href="#3-新建一个test文件夹" class="headerlink" title="3.新建一个test文件夹"></a>3.新建一个test文件夹</h4><p>在test文件夹中创建一个需要运行的vue文件–app.vue</p>
+<h4 id="4-初始化项目"><a href="#4-初始化项目" class="headerlink" title="4.初始化项目"></a>4.初始化项目</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm init</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="5-运行app-vue文件"><a href="#5-运行app-vue文件" class="headerlink" title="5.运行app.vue文件"></a>5.运行app.vue文件</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue serve app.vue</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>官方文档文档的介绍到此为止，但是我运行的时候一直报错，详细错误见</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">PS E:\Desktop\test&gt; vue serve text.vue</span><br><span class="line"> INFO  Starting development server...</span><br><span class="line">(node:<span class="number">30628</span>) UnhandledPromiseRejectionWarning: <span class="built_in">Error</span>: Cannot find <span class="built_in">module</span> <span class="string">&#x27;vue-template-compiler&#x27;</span></span><br><span class="line">Require stack:</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\compiler.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\resolveScript.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\select.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\index.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\@vue\cli-service\lib\config\base.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\@vue\cli-service\lib\Service.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\index.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli\lib\util\loadCommand.js</span><br><span class="line">- D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli\bin\vue.js</span><br><span class="line">    at <span class="built_in">Function</span>.Module._resolveFilename (internal/modules/cjs/loader.js:<span class="number">966</span>:<span class="number">15</span>)</span><br><span class="line">    at <span class="built_in">Function</span>.resolve (internal/modules/cjs/helpers.js:<span class="number">78</span>:<span class="number">19</span>)</span><br><span class="line">    at loadFromContext (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\compiler.js:<span class="number">30</span>:<span class="number">26</span>)</span><br><span class="line">    at loadTemplateCompiler (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\compiler.js:<span class="number">37</span>:<span class="number">12</span>)</span><br><span class="line">    at <span class="built_in">exports</span>.resolveCompiler (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\compiler.js:<span class="number">25</span>:<span class="number">23</span>)</span><br><span class="line">    at VueLoaderPlugin.apply (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\plugin-webpack4.js:<span class="number">91</span>:<span class="number">22</span>)</span><br><span class="line">    at VueLoaderPlugin.apply (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\vue-loader\lib\plugin.js:<span class="number">13</span>:<span class="number">16</span>)</span><br><span class="line">    at webpack (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\webpack\lib\webpack.js:<span class="number">51</span>:<span class="number">13</span>)</span><br><span class="line">    at serve (D:\nvm\v12<span class="number">.18</span><span class="number">.1</span>\node_modules\@vue\cli-service-<span class="built_in">global</span>\node_modules\@vue\cli-service\lib\commands\serve.js:<span class="number">163</span>:<span class="number">22</span>)</span><br><span class="line">    at processTicksAndRejections (internal/process/task_queues.js:<span class="number">97</span>:<span class="number">5</span>)</span><br><span class="line">(node:<span class="number">30628</span>) UnhandledPromiseRejectionWarning: Unhandled promise rejection. This error originated either by throwing inside <span class="keyword">of</span> an <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">without</span> <span class="title">a</span> <span class="title">catch</span> <span class="title">block</span>, <span class="title">or</span> <span class="title">by</span> <span class="title">rejecting</span> <span class="title">a</span> <span class="title">promise</span> <span class="title">which</span> <span class="title">was</span> <span class="title">not</span> <span class="title">handled</span> <span class="title">with</span> .<span class="title">catch</span>(<span class="params"></span>). <span class="title">To</span> <span class="title">terminate</span> <span class="title">the</span> <span class="title">node</span> <span class="title">process</span> <span class="title">on</span> <span class="title">unhandled</span> <span class="title">promise</span> <span class="title">rejection</span>, <span class="title">use</span> <span class="title">the</span> <span class="title">CLI</span> <span class="title">flag</span> `--<span class="title">unhandled</span>-<span class="title">rejections</span>=<span class="title">strict</span>` (<span class="params">see https:<span class="comment">//nodejs.org/api/cli.html#cli_unhandled_rejections_mode). (rejection id: 1)</span></span></span></span><br><span class="line"><span class="params"><span class="function">(node:<span class="number">30628</span>) [DEP0018] DeprecationWarning: Unhandled promise rejections are deprecated. In the future, promise rejections that are not handled will terminate the Node.js process <span class="keyword">with</span> a non-zero exit code.</span></span></span><br></pre></td></tr></table></figure>
+
+<p>上面的错误主要是说 找不到 ‘vue-template-compiler’ 这个模块。<br><strong>那我们就安装这个依赖模块</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install vue-template-compiler --save-dev</span><br></pre></td></tr></table></figure>
+
+<p><strong>最后执行命令，运行成功</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue serve app.vue</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/202405140218383.jpeg"
+                      alt="1712511397966"
+                ></p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/vue/">#vue</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/post/6324.html"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">vue实现滚动到具体某元素位置</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/post/6c1468bf.html"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">在命名空间的VueX中的（root:true）</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2025&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ZH_彪</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>&ensp;
+                    </span>
+                
+                <!-- <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
+                <span>公安备案号43010402001143</span> -->
+            </div>
+        
+        <div class="theme-info info-item">
+          <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
+          <span>公安备案号43010402001143</span>
+            <!-- 由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a> -->
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%E5%AE%89%E8%A3%85vue%E8%84%9A%E6%89%8B%E6%9E%B6"><span class="nav-number">1.</span> <span class="nav-text">1.安装vue脚手架</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-%E5%85%A8%E5%B1%80%E5%AE%89%E8%A3%85%E6%94%AF%E6%8C%81%E9%9B%B6%E9%85%8D%E7%BD%AE%E8%BF%90%E8%A1%8C-vue%E6%96%87%E4%BB%B6%E7%9A%84%E6%89%A9%E5%B1%95"><span class="nav-number">2.</span> <span class="nav-text">2.全局安装支持零配置运行 .vue文件的扩展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AAtest%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">3.</span> <span class="nav-text">3.新建一个test文件夹</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%B9%E7%9B%AE"><span class="nav-number">4.</span> <span class="nav-text">4.初始化项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-%E8%BF%90%E8%A1%8Capp-vue%E6%96%87%E4%BB%B6"><span class="nav-number">5.</span> <span class="nav-text">5.运行app.vue文件</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
