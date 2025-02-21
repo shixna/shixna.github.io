@@ -192,11 +192,11 @@
                     </li>
                 
                     <li>
-                        | <a href="/tags/element-Plus/">element-Plus</a>&nbsp;
+                        | <a href="/tags/vue3/">vue3</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/vue3/">vue3</a>&nbsp;
+                        | <a href="/tags/element-Plus/">element-Plus</a>&nbsp;
                     </li>
                 
             </ul>
@@ -206,7 +206,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1.2k 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.3k 字</span>
         </span>
     
     
@@ -276,7 +276,8 @@
 
 
 
-<h3 id="五、icon图标自动导入"><a href="#五、icon图标自动导入" class="headerlink" title="五、icon图标自动导入"></a>五、icon图标自动导入</h3><h4 id="5-1、安装"><a href="#5-1、安装" class="headerlink" title="5.1、安装 "></a><font color='orange' size="4">5.1、安装 </font></h4><p>使用<code>unplugin-icons</code>和<code>unplugin-auto-import</code>从<a class="link"   target="_blank" rel="noopener" href="https://icon-sets.iconify.design/"  title=" iconify官网">iconify<i class="fas fa-external-link-alt"></i></a>中自动导入任何图标集，若安装unplugin-auto-import则不需再次安装</p>
+<h3 id="五、icon图标自动导入"><a href="#五、icon图标自动导入" class="headerlink" title="五、icon图标自动导入"></a>五、icon图标自动导入</h3><p>如果使用unocss原子CSS引擎，也可使用unocss的icon图标引入，详细见unocss使用教程</p>
+<h4 id="5-1、安装"><a href="#5-1、安装" class="headerlink" title="5.1、安装 "></a><font color='orange' size="4">5.1、安装 </font></h4><p>使用<code>unplugin-icons</code>和<code>unplugin-auto-import</code>从<a class="link"   target="_blank" rel="noopener" href="https://icon-sets.iconify.design/"  title=" iconify官网">iconify<i class="fas fa-external-link-alt"></i></a>中自动导入任何图标集，若安装unplugin-auto-import则不需再次安装</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pnpm add -D unplugin-icons unplugin-auto-import</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="5-2、配置文件"><a href="#5-2、配置文件" class="headerlink" title="5.2、配置文件"></a><font color='orange' size="4">5.2、配置文件</font></h4><h5 id="1）vite-config-ts配置"><a href="#1）vite-config-ts配置" class="headerlink" title="1）vite.config.ts配置 "></a><font color='cornflowerblue'>1）vite.config.ts配置 </font></h5><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Icons <span class="keyword">from</span> <span class="string">&#x27;unplugin-icons/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> IconsResolver <span class="keyword">from</span> <span class="string">&#x27;unplugin-icons/resolver&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        Components(&#123;</span><br><span class="line">            <span class="attr">resolvers</span>: [</span><br><span class="line">                IconsResolver(), </span><br><span class="line">                <span class="comment">// IconsResolver(&#123;</span></span><br><span class="line">                	<span class="comment">// prefix: &#x27;i&#x27;,</span></span><br><span class="line">                	<span class="comment">// enabledCollections: [&#x27;ep&#x27;],</span></span><br><span class="line">                <span class="comment">// &#125;),</span></span><br><span class="line">            ],</span><br><span class="line">        &#125;),</span><br><span class="line">        Icons(&#123;</span><br><span class="line">            <span class="attr">autoInstall</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;),</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
@@ -332,7 +333,8 @@
                      data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/202502180004288.png"
                       alt="image-20250218000454202"
                 ></p>
-<p>当没做图标库限制的时候，使用了哪些图标库就会自动安装这个图标库的依赖</p>
+<p><strong><code>注意</code></strong></p>
+<p>当没做图标库限制的时候，使用了哪些图标库就会自动安装这个图标库的依赖，因此更建议使用IconsResolver({})自定义的去限制图标库</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
@@ -352,11 +354,11 @@
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/element-Plus/">#element-Plus</a>&nbsp;
+                        <a href="/tags/vue3/">#vue3</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/vue3/">#vue3</a>&nbsp;
+                        <a href="/tags/element-Plus/">#element-Plus</a>&nbsp;
                     </li>
                 
             </ul>
@@ -368,13 +370,13 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/post/8e2e021e.html"
+                           href="/post/74efe575.html"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">【置顶】超级有用的html/css/js/vue等技巧 持续更新中</span>
+                                <span class="post-nav-title-item">unocss的使用</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
