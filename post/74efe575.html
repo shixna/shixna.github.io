@@ -9,7 +9,7 @@
     
     <title>
         
-            unocss的使用 |
+            UnoCSS的使用 |
         
         Blog
     </title>
@@ -159,7 +159,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">unocss的使用</span>
+            <span class="title-hover-animation">UnoCSS的使用</span>
         </div>
 
         
@@ -206,12 +206,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>1 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>647 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
         </span>
     
     
@@ -227,7 +227,90 @@
         
 
         <div class="article-content markdown-body">
-            <p>dsa </p>
+            <p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/202502221552580.png"
+                      alt="image-20250222155200521"
+                ></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://unocss.jiangruyi.com/" >UnoCSS中文文档<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装 "></a><font color='orange' size="4">1、安装 </font></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm add -D unocss @iconify-json/ep @unocss/preset-rem-to-px</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>unocss：核心库</p>
+<p>@iconify-jsonp/ep：使用elementplus图标库<a class="link"   target="_blank" rel="noopener" href="https://iconify.design/" >https://iconify.design/<i class="fas fa-external-link-alt"></i></a></p>
+<p>@unocss/preset-rem-to-px：默认是rem单位，将rem转成px</p>
+</blockquote>
+<p>**<code>UnoCSS</code>**图标预设：<a class="link"   target="_blank" rel="noopener" href="https://unocss.jiangruyi.com/presets/icons" >https://unocss.jiangruyi.com/presets/icons<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// vite.config.ts</span></span><br><span class="line"><span class="keyword">import</span> UnoCSS <span class="keyword">from</span> <span class="string">&#x27;unocss/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    UnoCSS(),</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、配置"><a href="#2、配置" class="headerlink" title="2、配置"></a><font color='orange' size="4">2、配置</font></h3><p>**<code>UnoCSS</code>**的尺寸1（m-1）转换之后是4px，根目录默认字体大小16px即16px = 1rem，4px = 0.25rem，因此得知Uno中的1表示4px，也代表0.25rem。如果要想将UnoCSS中的1变成1px，则需要安装<code>@unocss/preset-rem-to-px</code>插件。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// uno.config.ts</span></span><br><span class="line"><span class="keyword">import</span> presetRemToPx <span class="keyword">from</span> <span class="string">&#x27;@unocss/preset-rem-to-px&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    defineConfig,</span><br><span class="line">    presetAttributify,</span><br><span class="line">    presetIcons,</span><br><span class="line">    presetUno,</span><br><span class="line">    transformerDirectives,</span><br><span class="line">    transformerVariantGroup,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;unocss&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">    <span class="attr">shortcuts</span>: &#123; <span class="comment">// 自定义属性  一个属性可以对应多个UnoCSS类值</span></span><br><span class="line">        <span class="string">&#x27;flex-center&#x27;</span>: <span class="string">&#x27;flex justify-center items-center&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;flex-x-center&#x27;</span>: <span class="string">&#x27;flex justify-center&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;flex-y-center&#x27;</span>: <span class="string">&#x27;flex items-center&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;wh-full&#x27;</span>: <span class="string">&#x27;w-full h-full&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;flex-x-between&#x27;</span>: <span class="string">&#x27;flex items-center justify-between&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;flex-x-end&#x27;</span>: <span class="string">&#x27;flex items-center justify-end&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;absolute-lt&#x27;</span>: <span class="string">&#x27;absolute left-0 top-0&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;absolute-rt&#x27;</span>: <span class="string">&#x27;absolute right-0 top-0 &#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;fixed-lt&#x27;</span>: <span class="string">&#x27;fixed left-0 top-0&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">theme</span>: &#123;</span><br><span class="line">        <span class="attr">colors</span>: &#123;</span><br><span class="line">            <span class="attr">primary</span>: <span class="string">&#x27;var(--el-color-primary)&#x27;</span>,</span><br><span class="line">            <span class="attr">primary_dark</span>: <span class="string">&#x27;var(--el-color-primary-light-5)&#x27;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">presets</span>: [</span><br><span class="line">        presetUno(),</span><br><span class="line">        presetAttributify(),</span><br><span class="line">        presetIcons(&#123;</span><br><span class="line">            <span class="attr">scale</span>: <span class="number">1.2</span>,</span><br><span class="line">            <span class="attr">warn</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;),</span><br><span class="line">        presetRemToPx(&#123; <span class="comment">// 根目录字体设置为4即可实现unocss的1为1px</span></span><br><span class="line">            <span class="attr">baseFontSize</span>: <span class="number">4</span>,</span><br><span class="line">        &#125;),</span><br><span class="line">    ],</span><br><span class="line">    <span class="comment">// transformerDirectives() 可以使用@apply @screen theme函数</span></span><br><span class="line">    <span class="attr">transformers</span>: [transformerDirectives(), transformerVariantGroup()],</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">        <span class="comment">// 以下官网规则可自定义转换</span></span><br><span class="line">        <span class="comment">// [/^m-([.\d]+)$/, ([_, num]) =&gt; (&#123; margin: `$&#123;num&#125;px` &#125;)],</span></span><br><span class="line">    ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.ts</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;virtual:uno.css&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><font color='orange' size="4">3、UnoCSS中使用图标 </font></p>
+<p>@iconify-jsonp/ep</p>
+<blockquote>
+<p>语法：i前缀-ep图标库:xx（图标名称）</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">i-ep:chrome-filled</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/202502232318083.png"
+                      alt="image-20250223231812025"
+                ></p>
+<h3 id="4、UnoCSS预设语法"><a href="#4、UnoCSS预设语法" class="headerlink" title="4、UnoCSS预设语法 "></a><font color='orange' size="4">4、UnoCSS预设语法 </font></h3><p>默认的 <code>@unocss/preset-uno</code> 预设（实验阶段）是一系列流行的原子化框架的通用超集，包括了 <code>Tailwind CSS</code>，<code>Windi CSS</code>，<code>Bootstrap</code>，<code>Tachyons</code> 等。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">w-<span class="number">10</span> h-<span class="number">10</span></span><br><span class="line">    <span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line">max-w-<span class="number">96</span> min-w-<span class="number">96</span></span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">96px</span>;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">96px</span>;</span><br><span class="line"></span><br><span class="line">text-<span class="number">30</span></span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">30px</span></span><br><span class="line"></span><br><span class="line">rounded  rounded-<span class="number">2</span></span><br><span class="line">	border-radius: <span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">2px</span>;</span><br><span class="line"></span><br><span class="line">size-<span class="number">50</span></span><br><span class="line">	<span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line"></span><br><span class="line">py-<span class="number">2</span></span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">2px</span>;</span><br><span class="line">  	<span class="attribute">padding-bottom</span>: <span class="number">2px</span>;</span><br><span class="line"></span><br><span class="line">px-<span class="number">4</span></span><br><span class="line">    <span class="attribute">padding-left</span>: <span class="number">4px</span>;</span><br><span class="line"> 	<span class="attribute">padding-right</span>: <span class="number">4px</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">font</span>-bold</span><br><span class="line">	<span class="attribute">font-weight</span>: <span class="number">700</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">border</span>-<span class="number">4</span> // 边框宽度</span><br><span class="line">	<span class="attribute">border-width</span>: <span class="number">4px</span>;</span><br><span class="line"></span><br><span class="line">box-<span class="attribute">border</span></span><br><span class="line">	<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line"></span><br><span class="line">leading-<span class="number">3</span></span><br><span class="line">	<span class="attribute">line-height</span>: <span class="number">3px</span>;</span><br><span class="line"></span><br><span class="line">text-center</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line"></span><br><span class="line">如果你的项目需要一次性自定义颜色，请考虑使用任意值符号来按需为该颜色生成一个类，而不是将其添加到你的主题中：</span><br><span class="line">class=&quot;c-<span class="selector-attr">[#f40]</span>&quot; //必须要用class</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">b</span>-<span class="selector-tag">b</span>-<span class="number">2</span> <span class="selector-tag">b</span>-solid <span class="selector-tag">b</span>-red</span><br><span class="line">	<span class="attribute">border-bottom</span>: <span class="number">2px</span> solid red</span><br><span class="line"></span><br><span class="line">gap10</span><br><span class="line">	gap: <span class="number">10px</span>;  <span class="attribute">flex</span>布局盒子之间距离</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         </div>
 
@@ -406,7 +489,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">1、安装 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">2、配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81UnoCSS%E9%A2%84%E8%AE%BE%E8%AF%AD%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">4、UnoCSS预设语法 </span></a></li></ol>
     </div>
 </div>
         </aside>

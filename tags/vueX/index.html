@@ -9,7 +9,7 @@
     
     <title>
         
-            标签: vueX |
+            标签: vuex |
         
         Blog
     </title>
@@ -157,7 +157,7 @@
                 
                     <div class="fade-in-down-animation">
     <div class="tag-container">
-        <div class="tag-name"><i class="fas fa-tag"></i>&nbsp;vueX
+        <div class="tag-name"><i class="fas fa-tag"></i>&nbsp;vuex
         </div>
         <div class="tag-post-list">
             
@@ -166,22 +166,15 @@
         <section class="archive-item">
             <div class="archive-item-header">
                 <span class="archive-year">2025</span>
-                <span class="archive-year-post-count">[2]</span>
+                <span class="archive-year-post-count">[1]</span>
             </div>
             <ul class="article-list">
                 
                     <li class="article-item">
                         <a class="article-title"
-                           href="/post/1515505e.html"
-                        >vue中的Mutation不能使用异步函数</a>
-                        <span class="article-date">02-18</span>
-                    </li>
-                
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/post/6c1468bf.html"
-                        >在命名空间的VueX中的（root:true）</a>
-                        <span class="article-date">02-18</span>
+                           href="/post/1ef04b2.html"
+                        >vuex中的state/mapState/mapState对象展开符详解</a>
+                        <span class="article-date">02-19</span>
                     </li>
                 
             </ul>
@@ -395,6 +388,21 @@
 
         document.addEventListener('pjax:send', () => {
             KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
+xProgressBarStart();
         });
 
         document.addEventListener('pjax:complete', () => {
