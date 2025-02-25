@@ -9,7 +9,7 @@
     
     <title>
         
-            css标准盒模型和怪异盒模型的区别 |
+            vue3配置优化 |
         
         Blog
     </title>
@@ -159,7 +159,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">css标准盒模型和怪异盒模型的区别</span>
+            <span class="title-hover-animation">vue3配置优化</span>
         </div>
 
         
@@ -178,8 +178,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2025-02-18 23:50:08</span>
-        <span class="mobile">2025-02-18 23:50</span>
+        <span class="pc">2025-02-24 00:14:22</span>
+        <span class="mobile">2025-02-24 00:14</span>
     </span>
     
     
@@ -192,11 +192,11 @@
                     </li>
                 
                     <li>
-                        | <a href="/tags/css/">css</a>&nbsp;
+                        | <a href="/tags/vue3/">vue3</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/%E8%BD%AC%E8%BD%BD/">转载</a>&nbsp;
+                        | <a href="/tags/vite/">vite</a>&nbsp;
                     </li>
                 
             </ul>
@@ -206,7 +206,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>213 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>324 字</span>
         </span>
     
     
@@ -227,25 +227,27 @@
         
 
         <div class="article-content markdown-body">
-            <p>css盒模型本质是一个盒子，它由边距、边框、填充和实际内容组成。盒模型能够让我们在其他元素和周边元素边框之间的空间放置元素。</p>
-<p><strong>标准盒与怪异盒的区别在于他们的总宽度的计算公式不一样。</strong></p>
-<p>标准模式下总宽度=width+margin（左右）+padding（左右）border（左右）；<br>怪异模式下总宽度=width+margin（左右）（就是说width已经包含了padding和border值）。</p>
-<p>标准模式下如果定义的DOCTYPE缺失，则在ie6、ie7、ie8下汇触发怪异模式。当设置为box-sizing:content-box时，将采用标准模式解析计算，也是默认模式；当设置为box-sizing:border-box时，将采用怪异模式解析计算；</p>
-<h3 id="标准盒模型"><a href="#标准盒模型" class="headerlink" title="标准盒模型"></a>标准盒模型</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/202405140202607.png"
-                      alt="image-20230417001610017"
-                ></p>
-<h3 id="怪异盒模型-IE"><a href="#怪异盒模型-IE" class="headerlink" title="怪异盒模型(IE)"></a>怪异盒模型(IE)</h3><p><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/202405140202530.png"
-                      alt="image-20230417001615992"
-                ></p>
-<br>
+            <h3 id="1、gzip压缩"><a href="#1、gzip压缩" class="headerlink" title="1、gzip压缩"></a><font color='red' size="">1、gzip压缩</font></h3><h4 id="安装"><a href="#安装" class="headerlink" title="安装 "></a><font color='orange' size="4">安装 </font></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm i vite-plugin-compression -D</span><br></pre></td></tr></table></figure>
 
-<p>转载：<a class="link"   target="_blank" rel="noopener" href="https://www.jianshu.com/p/7dadcc458410" >https://www.jianshu.com/p/7dadcc458410<i class="fas fa-external-link-alt"></i></a></p>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a><font color='orange' size="4">配置</font></h4><p><code>vite.config.ts</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 压缩gzip</span></span><br><span class="line"><span class="keyword">import</span> viteCompression <span class="keyword">from</span> <span class="string">&#x27;vite-plugin-compression&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vitejs.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    viteCompression(&#123;</span><br><span class="line">        <span class="attr">verbose</span>: <span class="literal">true</span>, <span class="comment">// 是否在控制台输出压缩结果</span></span><br><span class="line">        <span class="attr">disable</span>: <span class="literal">false</span>, <span class="comment">// 是否禁用压缩</span></span><br><span class="line">        <span class="attr">deleteOriginFile</span>: <span class="literal">false</span>, <span class="comment">// 删除源文件</span></span><br><span class="line">        <span class="attr">threshold</span>: <span class="number">10240</span>, <span class="comment">// 文件大小超过此值时进行压缩，单位为字节</span></span><br><span class="line">        <span class="attr">algorithm</span>: <span class="string">&#x27;gzip&#x27;</span>, <span class="comment">// 压缩算法，可选 &#x27;gzip&#x27; 或 &#x27;brotli&#x27;</span></span><br><span class="line">        <span class="attr">ext</span>: <span class="string">&#x27;.gz&#x27;</span> <span class="comment">// 压缩后的文件扩展名</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>nginx服务器上还要对应配置（待实践）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">  listen <span class="number">80</span>;</span><br><span class="line">  server_name yourdomain.com;</span><br><span class="line"></span><br><span class="line">  location / &#123;</span><br><span class="line">    root /path/to/your/project/dist;</span><br><span class="line">    try_files $uri $uri/ /index.html;</span><br><span class="line">    gzip on;</span><br><span class="line">    gzip_static on;</span><br><span class="line">    gzip_types text/plain application/json application/javascript text/css text/xml application/xml application/xml+rss text/javascript;</span><br><span class="line">    gzip_vary on;</span><br><span class="line">    gzip_comp_level <span class="number">6</span>;</span><br><span class="line">    gzip_buffers <span class="number">4</span> 16k;</span><br><span class="line">    gzip_http_version <span class="number">1.1</span>;</span><br><span class="line">    gzip_disable <span class="string">&quot;MSIE [1-6]\.&quot;</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这些配置项的作用如下：</p>
+<ul>
+<li><code>gzip on;</code> 启用 Gzip 功能。</li>
+<li><code>gzip_static on;</code> 允许 Nginx 直接返回已压缩的静态文件。</li>
+<li><code>gzip_types</code> 指定需要压缩的文件类型。</li>
+<li><code>gzip_vary on;</code> 添加 <code>Vary: Accept-Encoding</code> 头部，确保浏览器正确处理压缩文件。</li>
+<li><code>gzip_comp_level</code> 设置压缩级别，数值越大压缩率越高，但性能消耗也越大（1-9）</li>
+<li><code>gzip_buffers</code> 设置缓冲区大小。</li>
+<li><code>gzip_http_version</code> 设置 HTTP 版本。</li>
+<li><code>gzip_disable</code> 禁用对特定浏览器的 Gzip 压缩。</li>
+</ul>
+<p><font color='orange' size="4">5.3、配置文件 </font></p>
+<p><font color='cornflowerblue'>1）安装 </font></p>
 
         </div>
 
@@ -259,11 +261,11 @@
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/css/">#css</a>&nbsp;
+                        <a href="/tags/vue3/">#vue3</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/%E8%BD%AC%E8%BD%BD/">#转载</a>&nbsp;
+                        <a href="/tags/vite/">#vite</a>&nbsp;
                     </li>
                 
             </ul>
@@ -275,13 +277,13 @@
                     <div class="article-prev">
                         <a class="prev"
                            rel="prev"
-                           href="/post/33dd3469.html"
+                           href="/post/8e2e021e.html"
                         >
                             <span class="left arrow-icon flex-center">
                               <i class="fas fa-chevron-left"></i>
                             </span>
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">css实现常用布局方式</span>
+                                <span class="post-nav-title-item">【置顶】超级有用的html/css/js/vue等技巧 持续更新中</span>
                                 <span class="post-nav-item">上一篇</span>
                             </span>
                         </a>
@@ -291,10 +293,10 @@
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/post/49bcf4a8.html"
+                           href="/post/74efe575.html"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">element-ui中Upload上传无效token问题</span>
+                                <span class="post-nav-title-item">UnoCSS的使用</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -424,7 +426,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E7%9B%92%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">标准盒模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%AA%E5%BC%82%E7%9B%92%E6%A8%A1%E5%9E%8B-IE"><span class="nav-number">2.</span> <span class="nav-text">怪异盒模型(IE)</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81gzip%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.</span> <span class="nav-text">1、gzip压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text">安装 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">配置</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>

@@ -196,15 +196,15 @@
                     </li>
                 
                     <li>
-                        | <a href="/tags/typeScript/">typeScript</a>&nbsp;
-                    </li>
-                
-                    <li>
                         | <a href="/tags/vite/">vite</a>&nbsp;
                     </li>
                 
                     <li>
                         | <a href="/tags/pnpm/">pnpm</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/typeScript/">typeScript</a>&nbsp;
                     </li>
                 
             </ul>
@@ -432,7 +432,8 @@
 <h5 id="1）安装"><a href="#1）安装" class="headerlink" title="1）安装 "></a><font color='cornflowerblue'>1）安装 </font></h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm i lint-staged -D</span><br></pre></td></tr></table></figure>
 
 <h5 id="2）配置文件"><a href="#2）配置文件" class="headerlink" title="2）配置文件 "></a><font color='cornflowerblue'>2）配置文件 </font></h5><p><strong>a、新建 lint-staged.config.mjs 配置文件</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**  <span class="doctag">@type <span class="type">&#123;import(&#x27;lint-staged&#x27;).Config&#125;</span> </span>*/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="string">&quot;*.&#123;js,jsx,ts,tsx&#125;&quot;</span>: [<span class="string">&quot;eslint --fix&quot;</span>],</span><br><span class="line">  <span class="string">&quot;*.json&quot;</span>: [<span class="string">&quot;eslint --fix&quot;</span>],</span><br><span class="line">  <span class="string">&quot;*.vue&quot;</span>: [<span class="string">&quot;eslint --fix&quot;</span>],</span><br><span class="line">  <span class="string">&quot;*.&#123;scss,less,styl,html&#125;&quot;</span>: [<span class="string">&quot;stylelint --fix --allow-empty-input&quot;</span>],</span><br><span class="line">  <span class="string">&quot;*.md&quot;</span>: [<span class="string">&quot;prettier --write&quot;</span>],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>cache缓存能使钩子检测速度更快</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**  <span class="doctag">@type <span class="type">&#123;import(&#x27;lint-staged&#x27;).Config&#125;</span> </span>*/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">    <span class="string">&#x27;*.&#123;js,jsx,ts,tsx,json,vue&#125;&#x27;</span>: [<span class="string">&#x27;eslint --fix --cache&#x27;</span>],</span><br><span class="line">    <span class="string">&#x27;*.&#123;scss,less,styl,html&#125;&#x27;</span>: [<span class="string">&#x27;stylelint --fix --allow-empty-input&#x27;</span>],</span><br><span class="line">    <span class="string">&#x27;*.&#123;css,yml,yaml&#125;&#x27;</span>: [<span class="string">&#x27;prettier --write&#x27;</span>],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p><strong>b、package.json 中添加指令</strong></p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">	<span class="comment">// ...</span></span><br><span class="line">    <span class="attr">&quot;lint:lint-staged&quot;</span>: <span class="string">&quot;lint-staged&quot;</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
@@ -500,15 +501,15 @@
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/typeScript/">#typeScript</a>&nbsp;
-                    </li>
-                
-                    <li class="tag-item">
                         <a href="/tags/vite/">#vite</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
                         <a href="/tags/pnpm/">#pnpm</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/typeScript/">#typeScript</a>&nbsp;
                     </li>
                 
             </ul>
