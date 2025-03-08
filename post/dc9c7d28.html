@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ZH_彪">
+    
+    <title>
+        
+            如何优化JavaScript中的ifelse复杂判断？ |
+        
+        Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/icon1.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"shixna.cn","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#f54c52","bannerIcon_color_light":"#fff","bannerIcon_color_dark":"#bebec6","nav_color_light":"#7b7b89","nav_color_dark":"#bebec6","nav_bgColor_light":"#fff0","nav_bgColor_dark":"#383940","avatar":"/images/authorIcon.png","favicon":"/images/icon1.png","article_img_align":"center","left_side_width":"500px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/banner2k.png","description":null},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content has-first-screen">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo2.png">
+                </a>
+            
+            <!-- <a class="logo-title" href="/">
+                Blog
+            </a> -->
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">如何优化JavaScript中的ifelse复杂判断？</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/authorIcon.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ZH_彪</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2025-02-19 16:52:01</span>
+        <span class="mobile">2025-02-19 16:52</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/javaScript/">javaScript</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>894 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>4 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <blockquote>
+<p>我们在写 JavaScript 代码的时候，经常会遇到逻辑判断比较复杂的情况，通常我们可以使用 if/else 或 switch 来实现多个条件判断。</p>
+</blockquote>
+<p>但是这样就存在一个问题，随着逻辑复杂度的增加，代码中的 <code>if/else/switch</code> 会越来越臃肿，越来越难理解。那么如何才能把判断逻辑写得更优雅呢？</p>
+<p>今天咱们就来看看这个问题！</p>
+<h4 id="一元条件判断"><a href="#一元条件判断" class="headerlink" title="一元条件判断"></a><strong>一元条件判断</strong></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> onButtonClick = <span class="function">(<span class="params">status</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(status == <span class="number">1</span>)&#123;</span><br><span class="line">    jumpTo(<span class="string">&#x27;进入索引页&#x27;</span>)</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(status == <span class="number">2</span>)&#123;</span><br><span class="line">    jumpTo(<span class="string">&#x27;进入失败页&#x27;</span>)</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(status == <span class="number">3</span>)&#123;</span><br><span class="line">    jumpTo(<span class="string">&#x27;进入失败页&#x27;</span>)</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(status == <span class="number">4</span>)&#123;</span><br><span class="line">    jumpTo(<span class="string">&#x27;进入成功页&#x27;</span>)</span><br><span class="line">  &#125;<span class="keyword">else</span> <span class="keyword">if</span>(status == <span class="number">5</span>)&#123;</span><br><span class="line">    jumpTo(<span class="string">&#x27;进入取消页&#x27;</span>)</span><br><span class="line">  &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    jumpTo(<span class="string">&#x27;其他操作&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>从代码中我们可以看到这个按钮的点击逻辑：根据不同的活动状态，进入不同的页面。</p>
+<p>当然，以上代码也可以通过 switch 进行重写：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> onButtonClick = <span class="function">(<span class="params">status</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">switch</span> (status)&#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;进入索引页&#x27;</span>)</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">      jumpTo(<span class="string">&#x27;进入失败页&#x27;</span>)</span><br><span class="line">      <span class="keyword">break</span>  </span><br><span class="line">    <span class="keyword">case</span> <span class="number">4</span>:</span><br><span class="line">      jumpTo(<span class="string">&#x27;进入成功页&#x27;</span>)</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">case</span> <span class="number">5</span>:</span><br><span class="line">      jumpTo(<span class="string">&#x27;进入取消页&#x27;</span>)</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">    <span class="attr">default</span>:</span><br><span class="line">      jumpTo(<span class="string">&#x27;其他操作&#x27;</span>)</span><br><span class="line">      <span class="keyword">break</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样看起来比用 if/else 要清晰多了。同时：当 case 2 和 case 3 的逻辑相同时，可以省略执行语句和 break，这样 case 2 就会自动执行 case 3 的逻辑。</p>
+<p><strong>但是</strong>，以上的代码还不够“完美”，我可以对它进行持续优化：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> actions = &#123;</span><br><span class="line">  <span class="string">&#x27;1&#x27;</span>: [<span class="string">&#x27;进入索引页&#x27;</span>],</span><br><span class="line">  <span class="string">&#x27;2&#x27;</span>: [<span class="string">&#x27;进入失败页&#x27;</span>],</span><br><span class="line">  <span class="string">&#x27;3&#x27;</span>: [<span class="string">&#x27;进入失败页&#x27;</span>],</span><br><span class="line">  <span class="string">&#x27;4&#x27;</span>: [<span class="string">&#x27;进入成功页&#x27;</span>],</span><br><span class="line">  <span class="string">&#x27;5&#x27;</span>: [<span class="string">&#x27;进入取消页&#x27;</span>],</span><br><span class="line">  <span class="string">&#x27;default&#x27;</span>: [<span class="string">&#x27;其他操作&#x27;</span>],</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> onButtonClick = <span class="function">(<span class="params">status</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> action = actions[status] || actions[<span class="string">&#x27;default&#x27;</span>],</span><br><span class="line">  jumpTo(action[<span class="number">0</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样优化之后代码就会清晰很多，这个方法的巧妙之处在于：<strong>把判定条件作为对象的属性名，把处理逻辑作为对象的属性值</strong>，点击按钮时通过查找对象属性进行逻辑判断，这种写法特别适合 <strong>一元条件</strong> 判断。</p>
+<h4 id="多元条件判断"><a href="#多元条件判断" class="headerlink" title="多元条件判断"></a><strong>多元条件判断</strong></h4><p>但是，如果判断条件变得更加复杂时，以上的操作就不适用了，例如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span>  onButtonClick = <span class="function">(<span class="params"> status,identity </span>)=&gt;</span>&#123;</span><br><span class="line">   <span class="keyword">if</span> (identity == <span class="string">&#x27;guest&#x27;</span> )&#123;</span><br><span class="line">     <span class="keyword">if</span> (status == <span class="number">1</span> )&#123;</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">    &#125; <span class="keyword">else</span>  <span class="keyword">if</span> (status == <span class="number">2</span> )&#123;</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">    &#125; <span class="keyword">else</span>  <span class="keyword">if</span> ( status == <span class="number">3</span> )&#123;</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">    &#125; <span class="keyword">else</span>  <span class="keyword">if</span> (status == <span class="number">4</span> )&#123;</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">    &#125; <span class="keyword">else</span>  <span class="keyword">if</span> (status == <span class="number">5</span> )&#123;</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span>  <span class="keyword">if</span> (identity == <span class="string">&#x27;master&#x27;</span> ) &#123;</span><br><span class="line">     <span class="keyword">if</span> (status == <span class="number">1</span> )&#123;</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">    &#125; <span class="keyword">else</span>  <span class="keyword">if</span> (status == <span class="number">2</span> )&#123;</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">    &#125; <span class="keyword">else</span>  <span class="keyword">if</span> (status == <span class="number">3</span> )&#123;</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">    &#125; <span class="keyword">else</span>  <span class="keyword">if</span> (status == <span class="number">4</span> )&#123;</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">    &#125; <span class="keyword">else</span>  <span class="keyword">if</span> (status == <span class="number">5</span> )&#123;</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>那么一旦遇到这种复杂的情况，最初的代码就不适用了。所以，我们需要对最初的逻辑进行优化可以这么做：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> actions = <span class="keyword">new</span> <span class="built_in">Map</span>([</span><br><span class="line">  [<span class="string">&#x27;guest_1&#x27;</span>, <span class="function">()=&gt;</span>&#123;<span class="comment">/* ... */</span>&#125;],</span><br><span class="line">  [<span class="string">&#x27;guest_2&#x27;</span>, <span class="function">()=&gt;</span>&#123;<span class="comment">/* ... */</span>&#125;],</span><br><span class="line">  [<span class="string">&#x27;guest_3&#x27;</span>, <span class="function">()=&gt;</span>&#123;<span class="comment">/* ... */</span>&#125;],</span><br><span class="line">  [<span class="string">&#x27;guest_4&#x27;</span>, <span class="function">()=&gt;</span>&#123;<span class="comment">/* ... */</span>&#125;],</span><br><span class="line">  [<span class="string">&#x27;guest_5&#x27;</span>, <span class="function">()=&gt;</span>&#123;<span class="comment">/* ... */</span>&#125;],</span><br><span class="line">  [<span class="string">&#x27;master_1&#x27;</span>, <span class="function">()=&gt;</span>&#123;<span class="comment">/* ... */</span>&#125;],</span><br><span class="line">  [<span class="string">&#x27;master_2&#x27;</span>, <span class="function">()=&gt;</span>&#123;<span class="comment">/* ... */</span>&#125;],</span><br><span class="line">  [<span class="string">&#x27;master_3&#x27;</span>, <span class="function">()=&gt;</span>&#123;<span class="comment">/* ... */</span>&#125;],</span><br><span class="line">  [<span class="string">&#x27;master_4&#x27;</span>, <span class="function">()=&gt;</span>&#123;<span class="comment">/* ... */</span>&#125;],</span><br><span class="line">  [<span class="string">&#x27;master_5&#x27;</span>, <span class="function">()=&gt;</span>&#123;<span class="comment">/* ... */</span>&#125;],</span><br><span class="line">  [<span class="string">&#x27;default&#x27;</span>, <span class="function">()=&gt;</span>&#123;<span class="comment">/* ... */</span>&#125;],</span><br><span class="line">])</span><br><span class="line"><span class="keyword">const</span> onButtonClick = <span class="function">(<span class="params">identity,status</span>)=&gt;</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> action = actions.get(<span class="string">`<span class="subst">$&#123;identity&#125;</span>_<span class="subst">$&#123;status&#125;</span>`</span>) || actions.get(<span class="string">&#x27;default&#x27;</span>)</span><br><span class="line">  action.call(<span class="built_in">this</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述代码的核心逻辑是：<strong>将两个条件拼接成一个字符串，以拼接后的条件字符串为键，以处理函数为值，通过 Map 对象进行查找并执行</strong>。这种方式在<strong>多条件判断</strong>的时候特别有用。</p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/javaScript/">#javaScript</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/post/ca31d25b.html"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">在浏览器调试器中加载某个js插件并调用其中的方法</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/post/7d1bb77e.html"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">match()函数和exec()函数的区别</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2025&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ZH_彪</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>&ensp;
+                    </span>
+                
+                <!-- <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
+                <span>公安备案号43010402001143</span> -->
+            </div>
+        
+        <div class="theme-info info-item">
+          <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
+          <span>公安备案号43010402001143</span>
+            <!-- 由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a> -->
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E5%85%83%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><span class="nav-number">1.</span> <span class="nav-text">一元条件判断</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E5%85%83%E6%9D%A1%E4%BB%B6%E5%88%A4%E6%96%AD"><span class="nav-number">2.</span> <span class="nav-text">多元条件判断</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
