@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ZH_彪">
+    
+    <title>
+        
+            element-Plus按需加载以及注意事项 |
+        
+        Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/icon1.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"shixna.cn","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#f54c52","bannerIcon_color_light":"#fff","bannerIcon_color_dark":"#bebec6","nav_color_light":"#7b7b89","nav_color_dark":"#bebec6","nav_bgColor_light":"#fff0","nav_bgColor_dark":"#383940","avatar":"/images/authorIcon.png","favicon":"/images/icon1.png","article_img_align":"center","left_side_width":"500px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/banner2k.png","description":null},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content has-first-screen">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo2.png">
+                </a>
+            
+            <!-- <a class="logo-title" href="/">
+                Blog
+            </a> -->
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">element-Plus按需加载以及注意事项</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/authorIcon.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ZH_彪</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2025-02-21 12:43:48</span>
+        <span class="mobile">2025-02-21 12:43</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/element-Plus/">element-Plus</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/vue3/">vue3</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.3k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>5 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="一、依赖包安装"><a href="#一、依赖包安装" class="headerlink" title="一、依赖包安装"></a>一、依赖包安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pnpm install element-plus</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="二、Volar-支持"><a href="#二、Volar-支持" class="headerlink" title="二、Volar 支持"></a>二、Volar 支持</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/ tsconfig.json</span><br><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;compilerOptions&quot;</span>: &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="attr">&quot;types&quot;</span>: [<span class="string">&quot;element-plus/global&quot;</span>]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="三、按需自动导入"><a href="#三、按需自动导入" class="headerlink" title="三、按需自动导入"></a>三、按需自动导入</h3><h4 id="3-1、安装"><a href="#3-1、安装" class="headerlink" title="3.1、安装 "></a><font color='orange' size="4">3.1、安装 </font></h4><p>安装自动导入组件和函数的插件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pnpm add unplugin-vue-components unplugin-auto-import -D</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2、配置"><a href="#3-2、配置" class="headerlink" title="3.2、配置 "></a><font color='orange' size="4">3.2、配置 </font></h4><p>安装完成会默认在根目录生成<code>auto-imports.d.ts</code>和<code>components.d.ts</code>两个文件ts声明文件</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">/ vite.config.ts配置</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> AutoImport <span class="keyword">from</span> <span class="string">&#x27;unplugin-auto-import/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Components <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-components/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; ElementPlusResolver &#125; <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-components/resolvers&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        AutoImport(&#123;</span><br><span class="line">         	<span class="attr">resolvers</span>: [ElementPlusResolver()],</span><br><span class="line">        &#125;),</span><br><span class="line">        Components(&#123;</span><br><span class="line">         	<span class="attr">resolvers</span>: [ElementPlusResolver()],</span><br><span class="line">        &#125;),</span><br><span class="line">    ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>将生成的声明文件关联到ts的配置文件中去</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/ tsconfig.app.json</span><br><span class="line"><span class="comment">// 将auto-imports.d.ts和components.d.ts和env.d.ts三个文件统一放到根目录的types文件夹中，然后在include中直接引入types即可</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="attr">&quot;include&quot;</span>: [<span class="string">&quot;types&quot;</span>, <span class="string">&quot;src/**/*&quot;</span>, <span class="string">&quot;src/**/*.vue&quot;</span>], <span class="comment">// TypeScript编译器编译的文件</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p> 问题：只要新加组件和和函数就又会在根目录生成两个声明文件，但是我需要生成的文件在types文件中，怎么做呢？ 在<code>vite.config.ts</code>文件中配置声明文件存储的路径</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/ vite.config.ts</span><br><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> AutoImport <span class="keyword">from</span> <span class="string">&#x27;unplugin-auto-import/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> Components <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-components/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; ElementPlusResolver &#125; <span class="keyword">from</span> <span class="string">&#x27;unplugin-vue-components/resolvers&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">        AutoImport(&#123;</span><br><span class="line">            <span class="comment">// 自动导入 Vue 相关函数，如：ref, reactive, toRef 等</span></span><br><span class="line">            <span class="attr">imports</span>: [<span class="string">&#x27;vue&#x27;</span>, <span class="string">&#x27;pinia&#x27;</span>, <span class="string">&#x27;vue-router&#x27;</span>],</span><br><span class="line">         	<span class="attr">resolvers</span>: [ElementPlusResolver()],</span><br><span class="line">            <span class="comment">// 指定自动导入 函数 TS类型声明文件路径，默认自动导入在根目录。</span></span><br><span class="line">            <span class="attr">dts</span>: <span class="string">&#x27;types/auto-imports.d.ts&#x27;</span>,</span><br><span class="line">        &#125;),</span><br><span class="line">        Components(&#123;</span><br><span class="line">         	<span class="attr">resolvers</span>: [ElementPlusResolver()],</span><br><span class="line">            <span class="comment">// 指定自动导入 组件 TS类型声明文件路径，默认自动导入在根目录。</span></span><br><span class="line">            <span class="attr">dts</span>: <span class="string">&#x27;types/components.d.ts&#x27;</span>,</span><br><span class="line">        &#125;),</span><br><span class="line">    ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>怎么查看<code>components.d.ts</code>声明文件生效？鼠标放到使用的elementPlus组件上，会出现如图的ts。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/image-20250217102004143.png"
+                      alt="image-20250217102004143"
+                ></p>
+<p>忽略<code>auto-imports.d.ts</code>和<code>components.d.ts</code>上传至仓库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">types/*</span><br><span class="line">!types/env.d.ts</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="四、element-plus-样式问题"><a href="#四、element-plus-样式问题" class="headerlink" title="四、element-plus 样式问题"></a>四、element-plus 样式问题</h3><p>当你使用unplugin-vue-components来引入ui库的时候，message, notification，toast 等引入样式不生效（弹窗在底部）</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/image-20250217104623237.png"
+                      alt="image-20250217104623237"
+                ></p>
+<h4 id="4-1、全量引入（不推荐）"><a href="#4-1、全量引入（不推荐）" class="headerlink" title="4.1、全量引入（不推荐） "></a><font color='orange' size="4">4.1、全量引入（不推荐） </font></h4><p>在main.ts中引入</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;element-plus/dist/index.css&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-1、按需自动引入"><a href="#4-1、按需自动引入" class="headerlink" title="4.1、按需自动引入"></a><font color='orange' size="4">4.1、按需自动引入</font></h4><h5 id="1）安装"><a href="#1）安装" class="headerlink" title="1）安装 "></a><font color='cornflowerblue'>1）安装 </font></h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pnpm add vite-plugin-style-import -D</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2）配置文件"><a href="#2）配置文件" class="headerlink" title="2）配置文件 "></a><font color='cornflowerblue'>2）配置文件 </font></h5><p>在 <code>vite.config.ts</code> 配置</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; createStyleImportPlugin, ElementPlusResolve &#125; <span class="keyword">from</span> <span class="string">&#x27;vite-plugin-style-import&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        createStyleImportPlugin(&#123;</span><br><span class="line">            <span class="comment">// 预设的和自定义二选一</span></span><br><span class="line">            <span class="attr">resolves</span>: [ElementPlusResolve()], <span class="comment">// 预设的样式解析器</span></span><br><span class="line">            <span class="comment">// libs: [&#123; // 自定义样式的加载方式</span></span><br><span class="line">            <span class="comment">//     libraryName: &#x27;element-plus&#x27;,</span></span><br><span class="line">            <span class="comment">//     esModule: true,</span></span><br><span class="line">            <span class="comment">//     resolveStyle: (name: string) =&gt; &#123;</span></span><br><span class="line">            <span class="comment">//         return `element-plus/theme-chalk/$&#123;name&#125;.css`</span></span><br><span class="line">            <span class="comment">//     &#125;,</span></span><br><span class="line">            <span class="comment">// &#125;],</span></span><br><span class="line">        &#125;),</span><br><span class="line">    ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="五、icon图标自动导入"><a href="#五、icon图标自动导入" class="headerlink" title="五、icon图标自动导入"></a>五、icon图标自动导入</h3><p>如果使用unocss原子CSS引擎，也可使用unocss的icon图标引入，详细见<a class="link"   target="_blank" rel="noopener" href="https://shixna.github.io/post/74efe575.html" >unocss使用教程<i class="fas fa-external-link-alt"></i></a></p>
+<h4 id="5-1、安装"><a href="#5-1、安装" class="headerlink" title="5.1、安装 "></a><font color='orange' size="4">5.1、安装 </font></h4><p>使用<code>unplugin-icons</code>和<code>unplugin-auto-import</code>从<a class="link"   target="_blank" rel="noopener" href="https://icon-sets.iconify.design/"  title=" iconify官网">iconify<i class="fas fa-external-link-alt"></i></a>中自动导入任何图标集，若安装unplugin-auto-import则不需再次安装</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pnpm add -D unplugin-icons unplugin-auto-import</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2、配置文件"><a href="#5-2、配置文件" class="headerlink" title="5.2、配置文件"></a><font color='orange' size="4">5.2、配置文件</font></h4><h5 id="1）vite-config-ts配置"><a href="#1）vite-config-ts配置" class="headerlink" title="1）vite.config.ts配置 "></a><font color='cornflowerblue'>1）vite.config.ts配置 </font></h5><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Icons <span class="keyword">from</span> <span class="string">&#x27;unplugin-icons/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> IconsResolver <span class="keyword">from</span> <span class="string">&#x27;unplugin-icons/resolver&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        Components(&#123;</span><br><span class="line">            <span class="attr">resolvers</span>: [</span><br><span class="line">                IconsResolver(), </span><br><span class="line">                <span class="comment">// IconsResolver(&#123;</span></span><br><span class="line">                	<span class="comment">// prefix: &#x27;i&#x27;,</span></span><br><span class="line">                	<span class="comment">// enabledCollections: [&#x27;ep&#x27;],</span></span><br><span class="line">                <span class="comment">// &#125;),</span></span><br><span class="line">            ],</span><br><span class="line">        &#125;),</span><br><span class="line">        Icons(&#123;</span><br><span class="line">            <span class="attr">autoInstall</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;),</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>网上很多教程有写在AutoImport中也需设置IconsResolver()，实际在AutoImport 下的 IconsResolver 中可以不添加 IconsResolver 配置，只在 Components 下的 IconsResolver 中进行相应配置就行</p>
+<h5 id="2）自动导入icon-图标的格式"><a href="#2）自动导入icon-图标的格式" class="headerlink" title="2）自动导入icon 图标的格式"></a><font color='cornflowerblue'>2）自动导入icon 图标的格式</font></h5><p>{prefix}-{collection}-{icon}</p>
+<p>即 ~ “前缀-使用的图标库名称-图标名” 格式形式来使用的，element-plus 的图标库名称是 “ep”，默认前缀是 “i”，需要改的话可以在 Components 配置项 的 IconsResolver 的<code>prefix</code>中进行相应配置</p>
+<p>以elementPlus的<code>icon</code>为例（<a class="link"   target="_blank" rel="noopener" href="https://icon-sets.iconify.design/"  title=" iconify官网">iconify<i class="fas fa-external-link-alt"></i></a>图标库中的也一样）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">i-ep-Bowl</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 或者 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">el-icon</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">i-ep-alarmClock</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-icon</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果设置属性例如颜色、大写则必须使用<code>&lt;el-icon&gt;</code>包裹，然后在其上写属性</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-icon</span> <span class="attr">:size</span>=<span class="string">&quot;60&quot;</span> <span class="attr">color</span>=<span class="string">&quot;red&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">i-ep-Plus</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-icon</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="3）IconsResolver配置解析"><a href="#3）IconsResolver配置解析" class="headerlink" title="3）IconsResolver配置解析"></a><font color='cornflowerblue'>3）IconsResolver配置解析</font></h5><p>当IconsResolver()不设置参数的时候，<a class="link"   target="_blank" rel="noopener" href="https://icon-sets.iconify.design/"  title=" iconify官网">iconify<i class="fas fa-external-link-alt"></i></a>图标库中的图标都能使用（这里面也包含了elementPlus的图标）</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Icons <span class="keyword">from</span> <span class="string">&#x27;unplugin-icons/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> IconsResolver <span class="keyword">from</span> <span class="string">&#x27;unplugin-icons/resolver&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        Components(&#123;</span><br><span class="line">            <span class="attr">resolvers</span>: [</span><br><span class="line">                IconsResolver(), </span><br><span class="line">            ],</span><br><span class="line">        &#125;),</span><br><span class="line">        Icons(&#123;</span><br><span class="line">            <span class="attr">autoInstall</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;),</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/202502172329868.png"
+                      alt="image-20250217232957812"
+                ></p>
+<p>怎么使用<a class="link"   target="_blank" rel="noopener" href="https://icon-sets.iconify.design/"  title=" iconify官网">iconify<i class="fas fa-external-link-alt"></i></a>图标库中的图标呢？举例子</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/202502172349404.png"
+                      alt="image-20250217234948316"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/202502172353815.png"
+                      alt="image-20250217235318764"
+                ></p>
+<p>当IconsResolver()设置参数的时候，自定义图标格式前缀、限制使用图标库。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Icons <span class="keyword">from</span> <span class="string">&#x27;unplugin-icons/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> IconsResolver <span class="keyword">from</span> <span class="string">&#x27;unplugin-icons/resolver&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        Components(&#123;</span><br><span class="line">            <span class="attr">resolvers</span>: [</span><br><span class="line">                IconsResolver(&#123;</span><br><span class="line">                	<span class="attr">prefix</span>: <span class="string">&#x27;icon&#x27;</span>,</span><br><span class="line">                	<span class="attr">enabledCollections</span>: [<span class="string">&#x27;ep&#x27;</span>, <span class="string">&#x27;mdi&#x27;</span>, <span class="string">&#x27;iconamoon&#x27;</span>],</span><br><span class="line">                &#125;),</span><br><span class="line">            ],</span><br><span class="line">        &#125;),</span><br><span class="line">        Icons(&#123;</span><br><span class="line">            <span class="attr">autoInstall</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;),</span><br><span class="line">    ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// xxxx.vue</span><br><span class="line"><span class="tag">&lt;<span class="name">icon-mdi-Bowl</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">icon-mdi-alarmClock</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">icon-iconamoon-arrow-bottom-right-1-fill</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/202502180003832.png"
+                      alt="image-20250218000329782"
+                ></p>
+<p>怎么去看enabledCollections中定义的这个图标库名称呢？</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/202502180004288.png"
+                      alt="image-20250218000454202"
+                ></p>
+<p><strong><code>注意</code></strong></p>
+<p>当没做图标库限制的时候，使用了哪些图标库就会自动安装这个图标库的依赖，因此更建议使用IconsResolver({})自定义的去限制图标库</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/image-20250220170724230.png"
+                      alt="image-20250220170724230"
+                ></p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/element-Plus/">#element-Plus</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/vue3/">#vue3</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/post/74efe575.html"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">UnoCSS的使用</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/post/eb0b56b0.html"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">0-1搭建vue3项目</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2025&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ZH_彪</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>&ensp;
+                    </span>
+                
+                <!-- <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
+                <span>公安备案号43010402001143</span> -->
+            </div>
+        
+        <div class="theme-info info-item">
+          <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
+          <span>公安备案号43010402001143</span>
+            <!-- 由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a> -->
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E4%BE%9D%E8%B5%96%E5%8C%85%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">一、依赖包安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81Volar-%E6%94%AF%E6%8C%81"><span class="nav-number">2.</span> <span class="nav-text">二、Volar 支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E6%8C%89%E9%9C%80%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%85%A5"><span class="nav-number">3.</span> <span class="nav-text">三、按需自动导入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1%E3%80%81%E5%AE%89%E8%A3%85"><span class="nav-number">3.1.</span> <span class="nav-text">3.1、安装 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2%E3%80%81%E9%85%8D%E7%BD%AE"><span class="nav-number">3.2.</span> <span class="nav-text">3.2、配置 </span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81element-plus-%E6%A0%B7%E5%BC%8F%E9%97%AE%E9%A2%98"><span class="nav-number">4.</span> <span class="nav-text">四、element-plus 样式问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1%E3%80%81%E5%85%A8%E9%87%8F%E5%BC%95%E5%85%A5%EF%BC%88%E4%B8%8D%E6%8E%A8%E8%8D%90%EF%BC%89"><span class="nav-number">4.1.</span> <span class="nav-text">4.1、全量引入（不推荐） </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1%E3%80%81%E6%8C%89%E9%9C%80%E8%87%AA%E5%8A%A8%E5%BC%95%E5%85%A5"><span class="nav-number">4.2.</span> <span class="nav-text">4.1、按需自动引入</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%EF%BC%89%E5%AE%89%E8%A3%85"><span class="nav-number">4.2.1.</span> <span class="nav-text">1）安装 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%EF%BC%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">4.2.2.</span> <span class="nav-text">2）配置文件 </span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81icon%E5%9B%BE%E6%A0%87%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%85%A5"><span class="nav-number">5.</span> <span class="nav-text">五、icon图标自动导入</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1%E3%80%81%E5%AE%89%E8%A3%85"><span class="nav-number">5.1.</span> <span class="nav-text">5.1、安装 </span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2%E3%80%81%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">5.2.</span> <span class="nav-text">5.2、配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1%EF%BC%89vite-config-ts%E9%85%8D%E7%BD%AE"><span class="nav-number">5.2.1.</span> <span class="nav-text">1）vite.config.ts配置 </span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2%EF%BC%89%E8%87%AA%E5%8A%A8%E5%AF%BC%E5%85%A5icon-%E5%9B%BE%E6%A0%87%E7%9A%84%E6%A0%BC%E5%BC%8F"><span class="nav-number">5.2.2.</span> <span class="nav-text">2）自动导入icon 图标的格式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3%EF%BC%89IconsResolver%E9%85%8D%E7%BD%AE%E8%A7%A3%E6%9E%90"><span class="nav-number">5.2.3.</span> <span class="nav-text">3）IconsResolver配置解析</span></a></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
