@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ZH_彪">
+    
+    <title>
+        
+            vue3配置优化 |
+        
+        Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/icon1.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"shixna.cn","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#f54c52","bannerIcon_color_light":"#fff","bannerIcon_color_dark":"#bebec6","nav_color_light":"#7b7b89","nav_color_dark":"#bebec6","nav_bgColor_light":"#fff0","nav_bgColor_dark":"#383940","avatar":"/images/authorIcon.png","favicon":"/images/icon1.png","article_img_align":"center","left_side_width":"500px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/banner2k.png","description":null},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content has-first-screen">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo2.png">
+                </a>
+            
+            <!-- <a class="logo-title" href="/">
+                Blog
+            </a> -->
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">vue3配置优化</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/authorIcon.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ZH_彪</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2025-02-24 00:14:22</span>
+        <span class="mobile">2025-02-24 00:14</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/vue3/">vue3</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/vite/">vite</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.8k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>13 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="1、gzip压缩"><a href="#1、gzip压缩" class="headerlink" title="1、gzip压缩"></a><font color='red' size="">1、gzip压缩</font></h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm i vite-plugin-compression -D</span><br></pre></td></tr></table></figure>
+
+<p><code>vite.config.ts</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 压缩gzip</span></span><br><span class="line"><span class="keyword">import</span> viteCompression <span class="keyword">from</span> <span class="string">&#x27;vite-plugin-compression&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vitejs.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    viteCompression(&#123;</span><br><span class="line">        <span class="attr">verbose</span>: <span class="literal">true</span>, <span class="comment">// 是否在控制台输出压缩结果</span></span><br><span class="line">        <span class="attr">disable</span>: <span class="literal">false</span>, <span class="comment">// 是否禁用压缩</span></span><br><span class="line">        <span class="attr">deleteOriginFile</span>: <span class="literal">false</span>, <span class="comment">// 删除源文件</span></span><br><span class="line">        <span class="attr">threshold</span>: <span class="number">10240</span>, <span class="comment">// 文件大小超过此值时进行压缩，单位为字节即10kb</span></span><br><span class="line">        <span class="attr">algorithm</span>: <span class="string">&#x27;gzip&#x27;</span>, <span class="comment">// 压缩算法，可选 &#x27;gzip&#x27; 或 &#x27;brotli&#x27;</span></span><br><span class="line">        <span class="attr">ext</span>: <span class="string">&#x27;.gz&#x27;</span> <span class="comment">// 压缩后的文件扩展名</span></span><br><span class="line">    &#125;)</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>nginx服务器上还要对应配置（待实践）</strong></p>
+<p>在server节点下新增以下配置</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>       <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span>  localhost;</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 追加如下配置</span></span><br><span class="line">	<span class="attribute">gzip</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">gzip_static</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">gzip_buffers</span>  <span class="number">4</span> <span class="number">16k</span>;</span><br><span class="line">    <span class="attribute">gzip_min_length</span> <span class="number">1k</span>;</span><br><span class="line">    <span class="attribute">gzip_comp_level</span> <span class="number">9</span>;</span><br><span class="line">    <span class="attribute">gzip_types</span> text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;</span><br><span class="line">    <span class="attribute">gzip_vary</span> <span class="literal">on</span>;</span><br><span class="line">    <span class="attribute">gzip_proxied</span>    any;</span><br><span class="line">    <span class="attribute">gzip_disable</span> <span class="string">&quot;MSIE [1-6]&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>如果是打包成docker镜像，Dockerfile可配置如下：</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> nginx:<span class="number">1.25</span>.<span class="number">2</span>-alpine-slim</span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> dist /usr/share/nginx/html/</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 开启gzip压缩配置</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> sed -i <span class="string">&#x27;/server_name  localhost;/a \</span></span></span><br><span class="line"><span class="string"><span class="bash"> gzip on;</span></span></span><br><span class="line"> gzip_static on;</span><br><span class="line"> gzip_buffers  <span class="number">4</span> <span class="number">16</span>k;</span><br><span class="line"> gzip_min_length <span class="number">1</span>k;</span><br><span class="line"> gzip_comp_level <span class="number">9</span>;</span><br><span class="line"> gzip_types text/plain application/javascript application/x-javascript text/css application/xml text/javascript application/x-httpd-php image/jpeg image/gif image/png;</span><br><span class="line"> gzip_proxied    any;</span><br><span class="line"> gzip_vary on;</span><br><span class="line"> gzip_disable <span class="string">&quot;MSIE [1-6]&quot;</span>;<span class="string">&#x27;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># 指定于外界交互的端口</span></span><br><span class="line"><span class="string">EXPOSE 80</span></span><br><span class="line"><span class="string"></span></span><br></pre></td></tr></table></figure>
+
+<p>这些配置项的作用如下：</p>
+<ul>
+<li><code>gzip on;</code> 启用 Gzip 功能。</li>
+<li><code>gzip_static on;</code> 允许 Nginx 直接返回已压缩的静态文件。</li>
+<li><code>gzip_types</code> 指定需要压缩的文件类型。</li>
+<li><code>gzip_vary on;</code> 添加 <code>Vary: Accept-Encoding</code> 头部，确保浏览器正确处理压缩文件。</li>
+<li><code>gzip_comp_level</code> 设置压缩级别，数值越大压缩率越高，但性能消耗也越大（1-9）</li>
+<li><code>gzip_buffers</code> 设置缓冲区大小。</li>
+<li><code>gzip_http_version</code> 设置 HTTP 版本。</li>
+<li><code>gzip_disable</code> 禁用对特定浏览器的 Gzip 压缩。</li>
+<li><code>gzip_proxied</code> 用于控制 Gzip 压缩的行为，特别是在处理来自代理服务器的请求时。<strong>any</strong>: 对所有请求（包括来自代理的请求）执行 Gzip 压缩</li>
+</ul>
+<h3 id="2、本地代理服务配置"><a href="#2、本地代理服务配置" class="headerlink" title="2、本地代理服务配置"></a><font color='red' size="">2、本地代理服务配置</font></h3><p>官网<a class="link"   target="_blank" rel="noopener" href="https://cn.vitejs.dev/config/server-options.html#server-proxy" >https://cn.vitejs.dev/config/server-options.html#server-proxy<i class="fas fa-external-link-alt"></i></a></p>
+<ul>
+<li><p><code>vite.config.ts</code>配置</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// https://vitejs.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">    <span class="attr">server</span>: &#123;</span><br><span class="line">        <span class="comment">// 监听所有公共ip</span></span><br><span class="line">        <span class="attr">host</span>: <span class="string">&#x27;0.0.0.0&#x27;</span>,</span><br><span class="line">        <span class="attr">cors</span>: <span class="literal">true</span>, <span class="comment">// 允许所有来源访问本地开发服务器的资源</span></span><br><span class="line">        <span class="attr">port</span>: <span class="number">3300</span>,</span><br><span class="line">        <span class="attr">proxy</span>: &#123;</span><br><span class="line">            <span class="string">&#x27;/api&#x27;</span>: &#123; <span class="comment">// 代理前缀</span></span><br><span class="line">                <span class="comment">// 转发地址 前端请求http://localhost:3000/api/users代理后实际请求			       					   http://www.example.com/users </span></span><br><span class="line">                <span class="attr">target</span>: <span class="string">&#x27;http://www.example.com&#x27;</span>,</span><br><span class="line">                <span class="attr">changeOrigin</span>: <span class="literal">true</span>, <span class="comment">// 修改 Origin 头为目标地址</span></span><br><span class="line">                <span class="comment">// 移除路径中开头的 /api 前缀 例如：/api/users → /users</span></span><br><span class="line">                <span class="attr">rewrite</span>: <span class="function">(<span class="params">path: string</span>) =&gt;</span> path.replace(<span class="regexp">/^\/api/</span>, <span class="string">&#x27;&#x27;</span>),</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong><font color='orange' size="4">参数解析</font></strong></p>
+<p><font color='cornflowerblue'>cors和changeOrigin</font></p>
+<p>在 <code>vite.config.ts</code> 中，<code>cors: true</code> 和 <code>changeOrigin: true</code> 用于解决不同场景下的跨域问题，具体区别如下：</p>
+<ol>
+<li><strong><code>cors: true</code></strong></li>
+</ol>
+<ul>
+<li><strong>作用</strong>：配置开发服务器（Vite Dev Server）的 CORS 响应头，允许浏览器跨域访问本地开发服务器的资源。</li>
+<li><strong>实现方式</strong>：<br>当设置为 <code>true</code> 时，Vite 会默认添加 <code>Access-Control-Allow-Origin: *</code> 响应头，允许所有来源的请求。若需更精细控制（如指定允许的域名），可通过 <code>CorsOptions</code> 对象配置。</li>
+<li><strong>适用场景</strong>：<br>用于本地开发环境，解决前端资源（如静态文件）被其他域名访问时的 CORS 限制。例如，主应用加载微前端子应用的资源时可能需要此配置。</li>
+</ul>
+<ol start="2">
+<li><strong><code>changeOrigin: true</code></strong></li>
+</ol>
+<ul>
+<li><strong>作用</strong>：在代理请求时修改请求头的 <code>Origin</code> 字段为目标服务器的地址，绕过目标服务器的 CORS 校验。</li>
+<li><strong>实现方式</strong>：<br>代理将前端请求的 <code>Origin</code>（如 <code>[http://localhost:3000 ](http://localhost:3000 )</code>）改为目标服务器的域名（如 <code>[https://apiservice.com ](https://apiservice.com )</code>），使目标服务器认为请求来自同源，从而避免 CORS 拦截。</li>
+<li><strong>适用场景</strong>：<br>用于代理接口请求，尤其是当前端与后端分离开发时。例如，将 <code>/api</code> 路径的请求代理到 <code>[http://localhost:8080 ]</code>，并通过 <code>changeOrigin: true</code> 让后端正常响应。</li>
+</ul>
+<p><strong>两者的区别</strong></p>
+<table>
+<thead>
+<tr>
+<th>配置项</th>
+<th>作用对象</th>
+<th>核心目的</th>
+<th>典型使用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>cors: true</code></td>
+<td>Vite 开发服务器</td>
+<td>允许浏览器跨域访问本地资源</td>
+<td>微前端资源加载、本地静态服务</td>
+</tr>
+<tr>
+<td><code>changeOrigin: true</code></td>
+<td>代理请求</td>
+<td>绕过目标服务器的 CORS 校验</td>
+<td>接口代理到不同域的后端服务</td>
+</tr>
+</tbody></table>
+<p><strong>注意事项</strong></p>
+<ul>
+<li><strong>优先级</strong>：<br><code>changeOrigin: true</code> 仅影响代理请求的 <code>Origin</code> 头，而 <code>cors: true</code> 影响的是 Vite 开发服务器自身的响应头。两者可同时使用。</li>
+<li><strong>生产环境</strong>：<br><code>cors: true</code> 和代理配置仅在开发环境生效，生产环境需通过后端或 Nginx 配置 CORS。</li>
+<li><strong>冲突处理</strong>：<br>若后端强制校验 <code>Origin</code>，需确保 <code>changeOrigin: true</code> 修改后的值与后端允许的域名一致</li>
+</ul>
+<h3 id="3、SVG配置"><a href="#3、SVG配置" class="headerlink" title="3、SVG配置 "></a><font color='red' size="">3、SVG配置 </font></h3><p>插件网站<a class="link"   target="_blank" rel="noopener" href="https://www.npmjs.com/package/vite-svg-loader" >https://www.npmjs.com/package/vite-svg-loader<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm add vite-svg-loader -D</span><br></pre></td></tr></table></figure>
+
+<p><code>vite.config.ts</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> svgLoader <span class="keyword">from</span> <span class="string">&#x27;vite-svg-loader&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        svgLoader(&#123;</span><br><span class="line">            <span class="comment">// &#x27;url&#x27;: img标签引入 &#x27;raw&#x27;：demo元素 v-html引入   &#x27;component&#x27;: 组件展示</span></span><br><span class="line">            <span class="attr">defaultImport</span>: <span class="string">&#x27;url&#x27;</span>,</span><br><span class="line">            <span class="attr">svgo</span>: <span class="literal">true</span>, <span class="comment">// 启用SVGO优化</span></span><br><span class="line">            <span class="attr">svgoConfig</span>: &#123;</span><br><span class="line">                <span class="attr">multipass</span>: <span class="literal">false</span>, <span class="comment">// 关闭对SVG文件进行多次优化迭代（更彻底地压缩 SVG，会增加处理时间）</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;),</span><br><span class="line">    ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// env.d.ts 模块声明</span></span><br><span class="line"><span class="comment">/// &lt;reference types=&quot;vite-svg-loader&quot; /&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- defaultImport: &#x27;url&#x27; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">w100</span> <span class="attr">:src</span>=<span class="string">&quot;logo&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- defaultImport: &#x27;raw&#x27; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">w100</span> <span class="attr">v-html</span>=<span class="string">&quot;logo&quot;</span> /&gt;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">&lt;!-- defaultImport: &#x27;component&#x27; --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">logo</span> <span class="attr">w100</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span> <span class="attr">lang</span>=<span class="string">&quot;ts&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">	<span class="keyword">import</span> logo <span class="keyword">from</span> <span class="string">&#x27;@/assets/logo.svg&#x27;</span></span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4、打包分析"><a href="#4、打包分析" class="headerlink" title="4、打包分析"></a><font color='red' size="">4、打包分析</font></h3><p>插件网站<a class="link"   target="_blank" rel="noopener" href="https://www.npmjs.com/package/rollup-plugin-visualizer" >https://www.npmjs.com/package/rollup-plugin-visualizer<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm add rollup-plugin-visualizer -D</span><br></pre></td></tr></table></figure>
+
+<p><code>vite.config.ts</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; visualizer &#125; <span class="keyword">from</span> <span class="string">&#x27;rollup-plugin-visualizer&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        visualizer(&#123;</span><br><span class="line">            <span class="comment">// 注意这里要设置为true，否则无效</span></span><br><span class="line">            <span class="attr">open</span>: !!((command === <span class="string">&#x27;build&#x27;</span> &amp;&amp; mode === <span class="string">&#x27;development&#x27;</span>)), </span><br><span class="line">            <span class="attr">filename</span>: <span class="string">&#x27;stats.html&#x27;</span>, <span class="comment">// 分析图生成的文件名</span></span><br><span class="line">            <span class="attr">gzipSize</span>: <span class="literal">true</span>, <span class="comment">// 收集 gzip 大小并将其显示</span></span><br><span class="line">            <span class="attr">brotliSize</span>: <span class="literal">true</span>, <span class="comment">// 收集 brotli 大小并将其显示</span></span><br><span class="line">        &#125;),</span><br><span class="line">    ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="5、px转换"><a href="#5、px转换" class="headerlink" title="5、px转换"></a><font color='red' size="">5、px转换</font></h3><h4 id="5-1、cnjm-postcss-px-to-viewport"><a href="#5-1、cnjm-postcss-px-to-viewport" class="headerlink" title="5.1、cnjm-postcss-px-to-viewport"></a><font color='orange' size="4">5.1、cnjm-postcss-px-to-viewport</font></h4><p>px转vw/vh</p>
+<p>插件网站<a class="link"   target="_blank" rel="noopener" href="https://www.npmjs.com/package/cnjm-postcss-px-to-viewport" >https://www.npmjs.com/package/cnjm-postcss-px-to-viewport<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm add cnjm-postcss-px-to-viewport -D</span><br></pre></td></tr></table></figure>
+
+<p><code>vite.config.ts</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> px2viewport <span class="keyword">from</span> <span class="string">&#x27;cnjm-postcss-px-to-viewport&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// https://vite.dev/config/</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(<span class="function">(<span class="params">&#123; mode &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        <span class="attr">css</span>: &#123;</span><br><span class="line">            <span class="attr">postcss</span>: &#123;</span><br><span class="line">                <span class="attr">plugins</span>: [</span><br><span class="line">                    px2viewport(&#123;</span><br><span class="line">                        <span class="attr">unitToConvert</span>: <span class="string">&#x27;px&#x27;</span>, <span class="comment">// 要转化的单位</span></span><br><span class="line">                        <span class="attr">viewportWidth</span>: <span class="number">750</span>, <span class="comment">// UI设计稿的宽度</span></span><br><span class="line">                        <span class="attr">unitPrecision</span>: <span class="number">6</span>, <span class="comment">// 转换后的精度，即小数点位数</span></span><br><span class="line">                        <span class="attr">propList</span>: [<span class="string">&#x27;*&#x27;</span>], <span class="comment">// 指定转换的css属性的单位，*代表全部css属性的单位都进行转换</span></span><br><span class="line">                        <span class="attr">viewportUnit</span>: <span class="string">&#x27;vw&#x27;</span>, <span class="comment">// 指定需要转换成的视窗单位，默认vw</span></span><br><span class="line">                        <span class="attr">fontViewportUnit</span>: <span class="string">&#x27;vw&#x27;</span>, <span class="comment">// 指定字体需要转换成的视窗单位，默认vw</span></span><br><span class="line">                        <span class="attr">selectorBlackList</span>: [<span class="string">&#x27;ignore&#x27;</span>], <span class="comment">// 指定不转换为视窗单位的类名，</span></span><br><span class="line">                        <span class="attr">minPixelValue</span>: <span class="number">1</span>, <span class="comment">// 默认值1，小于或等于1px则不进行转换</span></span><br><span class="line">                        <span class="attr">mediaQuery</span>: <span class="literal">true</span>, <span class="comment">// 是否在媒体查询的css代码中也进行转换，默认false</span></span><br><span class="line">                        <span class="attr">replace</span>: <span class="literal">true</span>, <span class="comment">// 是否转换后直接更换属性值</span></span><br><span class="line">                        <span class="attr">exclude</span>: [], <span class="comment">// 设置忽略文件，用正则做目录名匹配</span></span><br><span class="line">                        <span class="attr">landscape</span>: <span class="literal">false</span>, <span class="comment">// 是否处理横屏情况</span></span><br><span class="line">                        <span class="comment">// 如果没有使用其他的尺寸来设计，下面这个方法可以不需要， 这个自定义的方法是针对处理vant组件下的设计稿为375问题</span></span><br><span class="line">                        <span class="attr">customFun</span>: <span class="function">(<span class="params">&#123; file &#125;: &#123; file: <span class="built_in">string</span> &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">                            <span class="keyword">const</span> designWidth = path.join(file).includes(path.join(<span class="string">&#x27;node_modules&#x27;</span>, <span class="string">&#x27;vant&#x27;</span>))</span><br><span class="line">                                ? <span class="number">375</span></span><br><span class="line">                                : <span class="number">750</span></span><br><span class="line">                            <span class="keyword">return</span> designWidth</span><br><span class="line">                        &#125;,</span><br><span class="line">                    &#125;),</span><br><span class="line">                ],</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2、vite-plugin-px2rem"><a href="#5-2、vite-plugin-px2rem" class="headerlink" title="5.2、vite-plugin-px2rem"></a><font color='orange' size="4">5.2、vite-plugin-px2rem</font></h4><p>px转rem</p>
+<p>插件网站<a class="link"   target="_blank" rel="noopener" href="https://www.npmjs.com/package/vite-plugin-px2rem#vite-plugin-px2rem" >https://www.npmjs.com/package/vite-plugin-px2rem#vite-plugin-px2rem<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm add vite-plugin-px2rem -D</span><br></pre></td></tr></table></figure>
+
+<p><code>vite.config.ts</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; visualizer &#125; <span class="keyword">from</span> <span class="string">&#x27;rollup-plugin-visualizer&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        px2rem(&#123;</span><br><span class="line">            <span class="attr">width</span>: <span class="number">750</span>,</span><br><span class="line">            <span class="attr">rootFontSize</span>: <span class="number">16</span>,</span><br><span class="line">        &#125;),</span><br><span class="line">    ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="6、图片压缩"><a href="#6、图片压缩" class="headerlink" title="6、图片压缩"></a><font color='red' size="">6、图片压缩</font></h3><p>插件网站<a class="link"   target="_blank" rel="noopener" href="https://www.npmjs.com/package/vite-plugin-image-optimizer" >vite-plugin-image-optimizer <i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pnpm add vite-plugin-image-optimizer -D</span><br><span class="line">pnpm add sharp -D</span><br><span class="line">pnpm add svgo -D</span><br></pre></td></tr></table></figure>
+
+<p><code>vite.config.ts</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; ViteImageOptimizer &#125; <span class="keyword">from</span> <span class="string">&#x27;vite-plugin-image-optimizer&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">    <span class="attr">plugins</span>: [</span><br><span class="line">        ViteImageOptimizer(&#123; <span class="comment">// 图片压缩</span></span><br><span class="line">            <span class="attr">png</span>: &#123;</span><br><span class="line">                <span class="attr">quality</span>: <span class="number">80</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">jpeg</span>: &#123;</span><br><span class="line">                <span class="attr">quality</span>: <span class="number">80</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">jpg</span>: &#123;</span><br><span class="line">                <span class="attr">quality</span>: <span class="number">80</span>,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;),</span><br><span class="line">    ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="7、打包环境区分"><a href="#7、打包环境区分" class="headerlink" title="7、打包环境区分 "></a><font color='red' size="">7、打包环境区分 </font></h3><p><code>vite.config.ts</code></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>返回四个参数：</strong></p>
+<ul>
+<li><p><code>mode</code>：当前的运行模式（例如 <code>development</code> 或 <code>production</code>），没配置env文件默认就只有这两个值。</p>
+</li>
+<li><p><code>command</code>：当前运行的命令（例如 <code>serve</code> 或 <code>build</code>），本地运行返回serve，使用打包之后返回的build</p>
+</li>
+<li><p><code>isSsrBuild</code>：是否在进行服务器端渲染的构建。</p>
+</li>
+<li><p><code>isPreview</code>：是否在预览模式下运行。</p>
+</li>
+</ul>
+<p><strong>实践可知：</strong></p>
+<p>在运行本地项目时：</p>
+<p>​    有无<code>.env</code>文件时，<code>vite.config.ts</code>文件中res返回都是<code>mode=&quot;development&quot;</code>，<code>command=&quot;serve&quot;</code>；</p>
+<p>在运行打包项目时：</p>
+<p>​    默认无<code>.env</code>文件时，<code>vite.config.ts</code>文件中res返回<code>mode=&quot;production&quot;</code>，<code>command=&quot;build&quot;</code>；</p>
+<p>​    有<code>.env</code>文件时，根据打包的配置来的 ，如果你打包运行的是<code>.env.test</code>文件，res返回的则是<code>mode=&quot;test&quot;</code>，<code>command=&quot;build&quot;</code>；</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// package.json</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;dev&quot;</span>: <span class="string">&quot;vite&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;build&quot;</span>: <span class="string">&quot;run-p type-check \&quot;build-only &#123;@&#125;\&quot; --&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;build:development&quot;</span>: <span class="string">&quot;npm run build -- development&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;build:test&quot;</span>: <span class="string">&quot;npm run build -- test&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;build:prod&quot;</span>: <span class="string">&quot;npm run build -- production&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;type-check&quot;</span>: <span class="string">&quot;vue-tsc --build&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;build-only&quot;</span>: <span class="string">&quot;vite build --mode&quot;</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>vite.config.ts 中访问.env文件：</strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> process <span class="keyword">from</span> <span class="string">&#x27;node:process&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineConfig, loadEnv &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(<span class="function">(<span class="params">&#123; mode &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> env = loadEnv(mode, process.cwd())</span><br><span class="line">    <span class="built_in">console</span>.log(env)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>在vue或是ts中访问.env文件：</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="keyword">import</span>.meta.env)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="8、打包拆分-小图片转base64"><a href="#8、打包拆分-小图片转base64" class="headerlink" title="8、打包拆分 小图片转base64 "></a><font color='red' size="">8、打包拆分 小图片转base64 </font></h3><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm add terser <span class="literal">-D</span></span><br></pre></td></tr></table></figure>
+
+<p><strong><code>vite.config.ts</code></strong></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(<span class="function">(<span class="params">&#123; mode, command &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="attr">build</span>: &#123;</span><br><span class="line">        <span class="attr">assetsInlineLimit</span>: <span class="number">1024</span> * <span class="number">10</span>, <span class="comment">// 10kb以下，转Base64</span></span><br><span class="line">        <span class="attr">chunkSizeWarningLimit</span>: <span class="number">2000</span>, <span class="comment">// 消除打包大小超过500kb警告</span></span><br><span class="line">        <span class="attr">minify</span>: <span class="string">&#x27;terser&#x27;</span>, <span class="comment">// Vite 2.6.x 以上需要配置 minify: &quot;terser&quot;, terserOptions 才能生效</span></span><br><span class="line">        <span class="attr">terserOptions</span>: &#123;</span><br><span class="line">            <span class="attr">compress</span>: &#123;</span><br><span class="line">                <span class="attr">keep_infinity</span>: <span class="literal">true</span>, <span class="comment">// 防止 Infinity 被压缩成 1/0，这可能会导致 Chrome 上的性能问题</span></span><br><span class="line">                <span class="attr">drop_console</span>: mode === <span class="string">&#x27;production&#x27;</span>, <span class="comment">// 生产环境去除 console</span></span><br><span class="line">                <span class="attr">drop_debugger</span>: <span class="literal">true</span>, <span class="comment">// 生产环境去除 debugger</span></span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">format</span>: &#123;</span><br><span class="line">                <span class="attr">comments</span>: <span class="literal">false</span>, <span class="comment">// 删除注释</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="attr">rollupOptions</span>: &#123;</span><br><span class="line">            <span class="attr">output</span>: &#123;</span><br><span class="line">            <span class="comment">// 每个node_modules模块分成一个js文件</span></span><br><span class="line">                <span class="function"><span class="title">manualChunks</span>(<span class="params">id: <span class="built_in">string</span></span>)</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (id.includes(<span class="string">&#x27;node_modules&#x27;</span>)) &#123;</span><br><span class="line">                        <span class="keyword">return</span> <span class="string">&#x27;vendor&#x27;</span> <span class="comment">// 第三方依赖合并在一起</span></span><br><span class="line">                        <span class="comment">// 把第三方依赖抽离出来</span></span><br><span class="line">                        <span class="comment">// return id.toString().split(&#x27;node_modules/.pnpm/&#x27;)[1].split(&#x27;/&#x27;)[0].toString()</span></span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">undefined</span></span><br><span class="line">                &#125;,</span><br><span class="line">                <span class="attr">entryFileNames</span>: <span class="string">&#x27;js/[name].[hash].js&#x27;</span>,</span><br><span class="line">                <span class="attr">chunkFileNames</span>: <span class="string">&#x27;js/[name].[hash].js&#x27;</span>,</span><br><span class="line">                <span class="attr">assetFileNames</span>: <span class="function">(<span class="params">assetInfo: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line">                    <span class="keyword">const</span> info = assetInfo.name.split(<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">                    <span class="keyword">let</span> extType = info[info.length - <span class="number">1</span>]</span><br><span class="line">                    <span class="keyword">if</span> (<span class="regexp">/\.(?:png|jpe?g|gif|svg)(?:\?.*)?$/</span>.test(assetInfo.name)) &#123;</span><br><span class="line">                        extType = <span class="string">&#x27;img&#x27;</span></span><br><span class="line">                    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="regexp">/\.(?:mp4|webm|ogg|mp3|wav|aac)(?:\?.*)?$/i</span>.test(assetInfo.name)) &#123;</span><br><span class="line">                        extType = <span class="string">&#x27;media&#x27;</span></span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;extType&#125;</span>/[name].[hash].[ext]`</span></span><br><span class="line">                &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong><code>打包生成的文件结构</code></strong></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/202503082242752.png"
+                      alt="image-20250308224200647"
+                ></p>
+<h3 id="9、简化组件命名"><a href="#9、简化组件命名" class="headerlink" title="9、简化组件命名"></a><font color='red' size="">9、简化组件命名</font></h3><p><strong>正常组件命名</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;person&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">lang</span>=<span class="string">&quot;ts&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">  <span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="javascript">    <span class="attr">name</span>:<span class="string">&#x27;Person&#x27;</span>,</span></span><br><span class="line"><span class="javascript">  &#125;</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 下面的写法是setup语法糖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">setup</span> <span class="attr">lang</span>=<span class="string">&quot;ts&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>使用<code>vite-plugin-vue-setup-extend</code></strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm add vite-plugin-vue-setup-extend -D</span><br></pre></td></tr></table></figure>
+
+<p><code>vite.config.ts</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> VueSetupExtend <span class="keyword">from</span> <span class="string">&#x27;vite-plugin-vue-setup-extend&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [ VueSetupExtend() ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>组件中使用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script setup lang=<span class="string">&quot;ts&quot;</span> name=<span class="string">&quot;Person&quot;</span>&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="10、添加Vconsole打印"><a href="#10、添加Vconsole打印" class="headerlink" title="10、添加Vconsole打印"></a><font color='red' size="">10、添加Vconsole打印</font></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm add vite-plugin-vconsole vconsole -D</span><br></pre></td></tr></table></figure>
+
+<p><code>vite.config.ts</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> viteVConsole <span class="keyword">from</span> <span class="string">&#x27;vite-plugin-vconsole&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">  	<span class="attr">plugins</span>: [</span><br><span class="line">         viteVConsole(&#123;</span><br><span class="line">            <span class="attr">entry</span>: [path.resolve(<span class="string">&#x27;src/main.ts&#x27;</span>)], <span class="comment">// 项目入口文件 [[1, 6]]</span></span><br><span class="line">            <span class="attr">enabled</span>: mode !== <span class="string">&#x27;production&#x27;</span>, <span class="comment">// 根据环境启用 [[3, 6]]</span></span><br><span class="line">            <span class="attr">localEnabled</span>: <span class="literal">true</span>, <span class="comment">// 本地开发时强制启用 [[6]]</span></span><br><span class="line">            <span class="attr">config</span>: &#123;</span><br><span class="line">                <span class="attr">theme</span>: <span class="string">&#x27;dark&#x27;</span>, <span class="comment">// 主题配置</span></span><br><span class="line">                <span class="attr">maxLogNumber</span>: <span class="number">1000</span>, <span class="comment">// 日志数量限制</span></span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;),</span><br><span class="line">	]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/vue3/">#vue3</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/vite/">#vite</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/post/8e2e021e.html"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">【置顶】超级有用的html/css/js/vue等技巧 持续更新中</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/post/74efe575.html"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">UnoCSS的使用</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2025&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ZH_彪</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>&ensp;
+                    </span>
+                
+                <!-- <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
+                <span>公安备案号43010402001143</span> -->
+            </div>
+        
+        <div class="theme-info info-item">
+          <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
+          <span>公安备案号43010402001143</span>
+            <!-- 由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a> -->
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81gzip%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.</span> <span class="nav-text">1、gzip压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E6%9C%AC%E5%9C%B0%E4%BB%A3%E7%90%86%E6%9C%8D%E5%8A%A1%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">2、本地代理服务配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%E3%80%81SVG%E9%85%8D%E7%BD%AE"><span class="nav-number">3.</span> <span class="nav-text">3、SVG配置 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81%E6%89%93%E5%8C%85%E5%88%86%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">4、打包分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E3%80%81px%E8%BD%AC%E6%8D%A2"><span class="nav-number">5.</span> <span class="nav-text">5、px转换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#5-1%E3%80%81cnjm-postcss-px-to-viewport"><span class="nav-number">5.1.</span> <span class="nav-text">5.1、cnjm-postcss-px-to-viewport</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-2%E3%80%81vite-plugin-px2rem"><span class="nav-number">5.2.</span> <span class="nav-text">5.2、vite-plugin-px2rem</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6%E3%80%81%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9"><span class="nav-number">6.</span> <span class="nav-text">6、图片压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7%E3%80%81%E6%89%93%E5%8C%85%E7%8E%AF%E5%A2%83%E5%8C%BA%E5%88%86"><span class="nav-number">7.</span> <span class="nav-text">7、打包环境区分 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8%E3%80%81%E6%89%93%E5%8C%85%E6%8B%86%E5%88%86-%E5%B0%8F%E5%9B%BE%E7%89%87%E8%BD%ACbase64"><span class="nav-number">8.</span> <span class="nav-text">8、打包拆分 小图片转base64 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9%E3%80%81%E7%AE%80%E5%8C%96%E7%BB%84%E4%BB%B6%E5%91%BD%E5%90%8D"><span class="nav-number">9.</span> <span class="nav-text">9、简化组件命名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10%E3%80%81%E6%B7%BB%E5%8A%A0Vconsole%E6%89%93%E5%8D%B0"><span class="nav-number">10.</span> <span class="nav-text">10、添加Vconsole打印</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
