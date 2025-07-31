@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ZH_彪">
+    
+    <title>
+        
+            UnoCSS的使用 |
+        
+        Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/icon1.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"shixna.cn","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#f54c52","bannerIcon_color_light":"#fff","bannerIcon_color_dark":"#bebec6","nav_color_light":"#7b7b89","nav_color_dark":"#bebec6","nav_bgColor_light":"#fff0","nav_bgColor_dark":"#383940","avatar":"/images/authorIcon.png","favicon":"/images/icon1.png","article_img_align":"center","left_side_width":"500px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/banner2k.png","description":null},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content has-first-screen">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo2.png">
+                </a>
+            
+            <!-- <a class="logo-title" href="/">
+                Blog
+            </a> -->
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">UnoCSS的使用</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/authorIcon.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ZH_彪</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2025-02-21 17:52:09</span>
+        <span class="mobile">2025-02-21 17:52</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/css/">css</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/unocss/">unocss</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>737 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/202502221552580.png"
+                      alt="image-20250222155200521"
+                ></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://unocss.jiangruyi.com/" >UnoCSS中文文档<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="1、安装"><a href="#1、安装" class="headerlink" title="1、安装 "></a><font color='orange' size="4">1、安装 </font></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnpm add -D unocss @iconify-json/ep @unocss/preset-rem-to-px</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>unocss：核心库</p>
+<p>@iconify-jsonp/ep：使用elementplus图标库<a class="link"   target="_blank" rel="noopener" href="https://iconify.design/" >https://iconify.design/<i class="fas fa-external-link-alt"></i></a></p>
+<p>@unocss/preset-rem-to-px：默认是rem单位，将rem转成px</p>
+</blockquote>
+<p>**<code>UnoCSS</code>**图标预设：<a class="link"   target="_blank" rel="noopener" href="https://unocss.jiangruyi.com/presets/icons" >https://unocss.jiangruyi.com/presets/icons<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// vite.config.ts</span></span><br><span class="line"><span class="keyword">import</span> UnoCSS <span class="keyword">from</span> <span class="string">&#x27;unocss/vite&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; defineConfig &#125; <span class="keyword">from</span> <span class="string">&#x27;vite&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">  <span class="attr">plugins</span>: [</span><br><span class="line">    UnoCSS(),</span><br><span class="line">  ],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2、配置"><a href="#2、配置" class="headerlink" title="2、配置"></a><font color='orange' size="4">2、配置</font></h3><p>**<code>UnoCSS</code>**的尺寸1（m-1）转换之后是4px，根目录默认字体大小16px即16px = 1rem，4px = 0.25rem，因此得知Uno中的1表示4px，也代表0.25rem。如果要想将UnoCSS中的1变成1px，则需要安装<code>@unocss/preset-rem-to-px</code>插件。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// uno.config.ts</span></span><br><span class="line"><span class="keyword">import</span> presetRemToPx <span class="keyword">from</span> <span class="string">&#x27;@unocss/preset-rem-to-px&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">    defineConfig,</span><br><span class="line">    presetAttributify,</span><br><span class="line">    presetIcons,</span><br><span class="line">    presetWind3,</span><br><span class="line">    transformerDirectives,</span><br><span class="line">    transformerVariantGroup,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">&#x27;unocss&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> defineConfig(&#123;</span><br><span class="line">    <span class="attr">shortcuts</span>: &#123; <span class="comment">// 自定义属性  一个属性可以对应多个UnoCSS类值</span></span><br><span class="line">        <span class="string">&#x27;flex-center&#x27;</span>: <span class="string">&#x27;flex justify-center items-center&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;flex-x-center&#x27;</span>: <span class="string">&#x27;flex justify-center&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;flex-y-center&#x27;</span>: <span class="string">&#x27;flex items-center&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;grid-center&#x27;</span>: <span class="string">&#x27;grid place-items-center&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;wh-full&#x27;</span>: <span class="string">&#x27;w-full h-full&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;flex-x-between&#x27;</span>: <span class="string">&#x27;flex items-center justify-between&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;flex-x-end&#x27;</span>: <span class="string">&#x27;flex items-center justify-end&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;absolute-lt&#x27;</span>: <span class="string">&#x27;absolute left-0 top-0&#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;absolute-rt&#x27;</span>: <span class="string">&#x27;absolute right-0 top-0 &#x27;</span>,</span><br><span class="line">        <span class="string">&#x27;fixed-lt&#x27;</span>: <span class="string">&#x27;fixed left-0 top-0&#x27;</span>,</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="attr">theme</span>: &#123;</span><br><span class="line">        <span class="attr">colors</span>: &#123; <span class="comment">// 自定义颜色</span></span><br><span class="line">            <span class="attr">primary</span>: <span class="string">&#x27;var(--el-color-primary)&#x27;</span>,</span><br><span class="line">            <span class="attr">red</span>: <span class="string">&#x27;#f53e31&#x27;</span>,</span><br><span class="line">            <span class="attr">gray_888</span>: <span class="string">&#x27;#888&#x27;</span>,</span><br><span class="line">            <span class="attr">gray_999</span>: <span class="string">&#x27;#999&#x27;</span>,</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">    <span class="attr">presets</span>: [</span><br><span class="line">        presetWind3(&#123;</span><br><span class="line">            <span class="attr">important</span>: <span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">        &#125;),</span><br><span class="line">        <span class="comment">// 允许你直接在HTML元素上使用属性来定义样式，而不需要使用class。例如，&lt;div flex m=&quot;5&quot;&gt;&lt;/div&gt;可以等价于&lt;div class=&quot;flex m-5&quot;&gt;&lt;/div&gt;</span></span><br><span class="line">        presetAttributify(),</span><br><span class="line">        presetIcons(&#123;</span><br><span class="line">            <span class="attr">scale</span>: <span class="number">1.2</span>,</span><br><span class="line">            <span class="attr">warn</span>: <span class="literal">true</span>,</span><br><span class="line">        &#125;),</span><br><span class="line">        presetRemToPx(&#123; <span class="comment">// 根目录字体设置为4即可实现unocss的1为1px</span></span><br><span class="line">            <span class="attr">baseFontSize</span>: <span class="number">4</span>,</span><br><span class="line">        &#125;),</span><br><span class="line"></span><br><span class="line">    ],</span><br><span class="line">    <span class="comment">// transformerDirectives() 可以使用@apply @screen theme函数</span></span><br><span class="line">    <span class="attr">transformers</span>: [</span><br><span class="line">        transformerDirectives(),</span><br><span class="line">        transformerVariantGroup(),</span><br><span class="line">    ],</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">        <span class="comment">// 以下官网规则可自定义转换</span></span><br><span class="line">        <span class="comment">// [/^m-([.\d]+)$/, ([_, num]) =&gt; (&#123; margin: `$&#123;num&#125;px` &#125;)],</span></span><br><span class="line">    ],</span><br><span class="line">&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.ts</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;virtual:uno.css&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><font color='orange' size="4">3、UnoCSS中使用图标 </font></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://icon-sets.iconify.design/"  title=" iconify官网">iconify官网<i class="fas fa-external-link-alt"></i></a>中的@iconify-jsonp/ep图标</p>
+<p>@iconify-jsonp/ep</p>
+<blockquote>
+<p>语法：i前缀-ep图标库:xx（图标名称）</p>
+</blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">i-ep:chrome-filled</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2023.oss-cn-nanjing.aliyuncs.com/img/202502232318083.png"
+                      alt="image-20250223231812025"
+                ></p>
+<h3 id="4、UnoCSS预设语法"><a href="#4、UnoCSS预设语法" class="headerlink" title="4、UnoCSS预设语法 "></a><font color='orange' size="4">4、UnoCSS预设语法 </font></h3><p>默认的 <code>@unocss/preset-uno</code> 预设（实验阶段）是一系列流行的原子化框架的通用超集，包括了 <code>Tailwind CSS</code>，<code>Windi CSS</code>，<code>Bootstrap</code>，<code>Tachyons</code> 等。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">w-<span class="number">10</span> h-<span class="number">10</span></span><br><span class="line">    <span class="attribute">width</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line">max-w-<span class="number">96</span> min-w-<span class="number">96</span></span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">96px</span>;</span><br><span class="line">    <span class="attribute">min-width</span>: <span class="number">96px</span>;</span><br><span class="line"></span><br><span class="line">text-<span class="number">30</span></span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">30px</span></span><br><span class="line"></span><br><span class="line">rounded  rounded-<span class="number">2</span></span><br><span class="line">	border-radius: <span class="number">1px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">2px</span>;</span><br><span class="line"></span><br><span class="line">size-<span class="number">50</span></span><br><span class="line">	<span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line"></span><br><span class="line">py-<span class="number">2</span></span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">2px</span>;</span><br><span class="line">  	<span class="attribute">padding-bottom</span>: <span class="number">2px</span>;</span><br><span class="line"></span><br><span class="line">px-<span class="number">4</span></span><br><span class="line">    <span class="attribute">padding-left</span>: <span class="number">4px</span>;</span><br><span class="line"> 	<span class="attribute">padding-right</span>: <span class="number">4px</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">font</span>-bold</span><br><span class="line">	<span class="attribute">font-weight</span>: <span class="number">700</span>;</span><br><span class="line"></span><br><span class="line"><span class="attribute">border</span>-<span class="number">4</span> // 边框宽度</span><br><span class="line">	<span class="attribute">border-width</span>: <span class="number">4px</span>;</span><br><span class="line"></span><br><span class="line">box-<span class="attribute">border</span></span><br><span class="line">	<span class="attribute">box-sizing</span>: border-box;</span><br><span class="line"></span><br><span class="line">leading-<span class="number">3</span></span><br><span class="line">	<span class="attribute">line-height</span>: <span class="number">3px</span>;</span><br><span class="line"></span><br><span class="line">text-center</span><br><span class="line">	<span class="attribute">text-align</span>: center;</span><br><span class="line"></span><br><span class="line">如果你的项目需要一次性自定义颜色，请考虑使用任意值符号来按需为该颜色生成一个类，而不是将其添加到你的主题中：</span><br><span class="line">class=&quot;c-<span class="selector-attr">[#f40]</span>&quot; //必须要用class</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">b</span>-<span class="selector-tag">b</span>-<span class="number">2</span> <span class="selector-tag">b</span>-solid <span class="selector-tag">b</span>-red</span><br><span class="line">	<span class="attribute">border-bottom</span>: <span class="number">2px</span> solid red</span><br><span class="line"></span><br><span class="line">gap10</span><br><span class="line">	gap: <span class="number">10px</span>;  <span class="attribute">flex</span>布局盒子之间距离</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/css/">#css</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/unocss/">#unocss</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/post/74efe571215.html"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">UniApp</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/post/e3b10f75.html"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">element-Plus按需加载以及注意事项</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2025&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ZH_彪</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>&ensp;
+                    </span>
+                
+                <!-- <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
+                <span>公安备案号43010402001143</span> -->
+            </div>
+        
+        <div class="theme-info info-item">
+          <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
+          <span>公安备案号43010402001143</span>
+            <!-- 由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a> -->
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%E3%80%81%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">1、安装 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%E3%80%81%E9%85%8D%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">2、配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%E3%80%81UnoCSS%E9%A2%84%E8%AE%BE%E8%AF%AD%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">4、UnoCSS预设语法 </span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
