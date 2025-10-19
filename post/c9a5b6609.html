@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="ZH_彪">
+    
+    <title>
+        
+            vue中自定义组件中的v-model |
+        
+        Blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/icon1.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"shixna.cn","root":"/","language":"zh-CN","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":true,"expand_all":true,"init_open":false},"style":{"primary_color":"#f54c52","bannerIcon_color_light":"#fff","bannerIcon_color_dark":"#bebec6","nav_color_light":"#7b7b89","nav_color_dark":"#bebec6","nav_bgColor_light":"#fff0","nav_bgColor_dark":"#383940","avatar":"/images/authorIcon.png","favicon":"/images/icon1.png","article_img_align":"center","left_side_width":"500px","content_max_width":"920px","hover":{"shadow":true,"scale":false},"first_screen":{"enable":true,"background_img":"/images/banner2k.png","description":null},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":true},"lazyload":{"enable":true},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.0.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="pjax-progress-icon">
+            <i class="fas fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content has-first-screen">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo2.png">
+                </a>
+            
+            <!-- <a class="logo-title" href="/">
+                Blog
+            </a> -->
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/tags"
+                            >
+                                标签
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                归档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/about"
+                            >
+                                关于
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/tags">标签</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">vue中自定义组件中的v-model</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/authorIcon.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">ZH_彪</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2025-02-18 23:55:39</span>
+        <span class="mobile">2025-02-18 23:55</span>
+    </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">前端</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/vue/">vue</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>522 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="一、基础准备"><a href="#一、基础准备" class="headerlink" title="一、基础准备"></a>一、基础准备</h3><h4 id="1-1、v-model基本概念"><a href="#1-1、v-model基本概念" class="headerlink" title="1.1、v-model基本概念"></a>1.1、v-model基本概念</h4><blockquote>
+<p>v-model 实际上就是 $emit(‘input’) 以及 props:value 的组合<a class="link"   target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E8%AF%AD%E6%B3%95%E7%B3%96&spm=1001.2101.3001.7020" >语法糖<i class="fas fa-external-link-alt"></i></a>，在背后做了两件事：</p>
+<ol>
+<li>v-bind绑定value属性的值；</li>
+<li>v-on绑定input事件监听到函数中，函数会获取最新的值赋值到绑定的属性中；</li>
+</ol>
+</blockquote>
+<p>所以，在大部分情况下，以下两种写发是等价的：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">&quot;foo&quot;</span> /&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">el-input</span> <span class="attr">:value</span>=<span class="string">&quot;foo&quot;</span> @<span class="attr">input</span>=<span class="string">&quot;foo = $event&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>checkbox 和 radio 使用 props:checked 属性和 $emit(‘change’) 事件。</p>
+<p>select 使用 props:value 属性和 $emit(‘change’) 事件。</p>
+<p>但是，除了上面列举的这些，别的都是 $emit(‘input’) 以及 props:value</p>
+<hr>
+<h4 id="1-2、单向数据流"><a href="#1-2、单向数据流" class="headerlink" title="1.2、单向数据流"></a><strong>1.2、单向数据流</strong></h4><blockquote>
+<p>props 有一个特性，那就是「单向数据流」,也可以称之为「单向下行绑定」，相当于就是父组件的值通过 props 传递给子组件，父组件中值的修改会传递到子组件，而子组件中对于这个值的修改则不能传递给父组件。「（虽然可以，控制台会给出警告，而且官方也不推荐这样子做）」</p>
+</blockquote>
+<h4 id="1-2、单向数据流-1"><a href="#1-2、单向数据流-1" class="headerlink" title="1.2、单向数据流"></a><strong>1.2、单向数据流</strong></h4><blockquote>
+<p>默认情况下，一个组件上的 v-model 会把 value 用作 prop 且把 input 用作 event，为了避免有时候的冲突，我们可以自定义事件；以下是在子组件中声明：</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 当我们使用model的默认值的时候value作prop，input作event时，可以省略不写model。</span></span><br><span class="line"><span class="attr">model</span>: &#123;</span><br><span class="line">    <span class="attr">prop</span>: <span class="string">&#x27;myValue&#x27;</span>, <span class="comment">// 默认是value</span></span><br><span class="line">    <span class="attr">event</span>: <span class="string">&#x27;myInput&#x27;</span>, <span class="comment">// 默认是input</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>具体见绑定方式2中的例子</p>
+<h3 id="二、三种绑定方法"><a href="#二、三种绑定方法" class="headerlink" title="二、三种绑定方法"></a>二、三种绑定方法</h3><h4 id="2-1、父组件使用v-model绑定"><a href="#2-1、父组件使用v-model绑定" class="headerlink" title="2.1、父组件使用v-model绑定"></a>2.1、<strong>父组件使用v-model绑定</strong></h4><p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2024.oss-cn-beijing.aliyuncs.com/img/202405140217421.png"
+                      alt="image-20240321170725400"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2024.oss-cn-beijing.aliyuncs.com/img/202405140217126.png"
+                      alt="image-20240321170744666"
+                ></p>
+<h4 id="2-2、父组件使用v-model绑定"><a href="#2-2、父组件使用v-model绑定" class="headerlink" title="2.2、父组件使用v-model绑定"></a>2.2、<strong>父组件使用v-model绑定</strong></h4><p>子组件props接收参数，参数名称可以自定义，$emit触发方法传值，方法名称可以 自定义，通过model属性将prop参数名和事件名进行关联</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2024.oss-cn-beijing.aliyuncs.com/img/202405140217788.png"
+                      alt="image-20240321171220991"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2024.oss-cn-beijing.aliyuncs.com/img/202405140217032.png"
+                      alt="image-20240321171233922"
+                ></p>
+<h4 id="2-3、父组件使用-name-sync绑定"><a href="#2-3、父组件使用-name-sync绑定" class="headerlink" title="2.3、父组件使用:name.sync绑定"></a>2.3、<strong>父组件使用:name.sync绑定</strong></h4><p>子组件props接收参数名称为name，$emit触发update:name事件传值，这三部的name名称可以自定义，但需保持一致</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2024.oss-cn-beijing.aliyuncs.com/img/202405140217636.png"
+                      alt="image-20240321171321083"
+                ></p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://picgo-2024.oss-cn-beijing.aliyuncs.com/img/202405140218143.png"
+                      alt="image-20240321171350643"
+                ></p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/%E5%89%8D%E7%AB%AF/">#前端</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/vue/">#vue</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/post/1515505e.html"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">vue中的Mutation不能使用异步函数</span>
+                                <span class="post-nav-item">上一篇</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/post/60784.html"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">vue监听路由变化的几种方式</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>
+              -
+            
+            2025&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">ZH_彪</a>
+        </div>
+        
+            <script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        访问人数&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        总访问量&nbsp;<span id="busuanzi_value_site_pv"></span>&ensp;
+                    </span>
+                
+                <!-- <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
+                <span>公安备案号43010402001143</span> -->
+            </div>
+        
+        <div class="theme-info info-item">
+          <a target="_blank" rel="noopener" href="https://beian.miit.gov.cn">湘ICP备2022002936号</a>&ensp;
+          <span>公安备案号43010402001143</span>
+            <!-- 由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a> -->
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E5%87%86%E5%A4%87"><span class="nav-number">1.</span> <span class="nav-text">一、基础准备</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1%E3%80%81v-model%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">1.1、v-model基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2%E3%80%81%E5%8D%95%E5%90%91%E6%95%B0%E6%8D%AE%E6%B5%81"><span class="nav-number">1.2.</span> <span class="nav-text">1.2、单向数据流</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2%E3%80%81%E5%8D%95%E5%90%91%E6%95%B0%E6%8D%AE%E6%B5%81-1"><span class="nav-number">1.3.</span> <span class="nav-text">1.2、单向数据流</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E4%B8%89%E7%A7%8D%E7%BB%91%E5%AE%9A%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">二、三种绑定方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1%E3%80%81%E7%88%B6%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8v-model%E7%BB%91%E5%AE%9A"><span class="nav-number">2.1.</span> <span class="nav-text">2.1、父组件使用v-model绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2%E3%80%81%E7%88%B6%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8v-model%E7%BB%91%E5%AE%9A"><span class="nav-number">2.2.</span> <span class="nav-text">2.2、父组件使用v-model绑定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3%E3%80%81%E7%88%B6%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8-name-sync%E7%BB%91%E5%AE%9A"><span class="nav-number">2.3.</span> <span class="nav-text">2.3、父组件使用:name.sync绑定</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
+
+
+
+</body>
+</html>
